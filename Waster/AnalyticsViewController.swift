@@ -20,7 +20,7 @@ class AnalyticsViewController: UIViewController {
     
     let secondGraphView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemMint
+        view.backgroundColor = .systemGray
         return view
     }()
     
@@ -96,15 +96,17 @@ class AnalyticsViewController: UIViewController {
         //createWasteGraph(summ: 5, stack: firstGraphStack)
         //createWasteGraph(summ: 5, stack: secondGraphStack)
         for element in userCreatedTypes {
-            createWasteGraph(summ: 1500, view: firstGraphView, element: element)
+            createWasteGraph(summ: 1780, view: firstGraphView, element: element)
         }
         
-        //one.createWasteGraph(summ: 2000, view: secondGraphStack)
+        for element in userCreatedTypes {
+            createWasteGraph(summ: 1780, view: secondGraphView, element: element)
+        }
     }
     
     func createWasteGraph(summ: Int, view: UIView, element: Icon) {
         let delta = 20
-        let width = 30
+        let width = 40
 
         print("plus graph = ", plusGraph)
         let newTypeView: UIView = {
@@ -113,14 +115,16 @@ class AnalyticsViewController: UIViewController {
             return view
         }()
         view.addSubview(newTypeView)
+        plusGraph += 1
         newTypeView.snp.makeConstraints { make in
             make.width.equalTo(width)
             make.height.equalTo(summ/10)
             make.centerY.equalTo(view)
-            if plusGraph == 0 {
-                make.leading.equalToSuperview().offset(-15)
+            if plusGraph == 1 {
+                make.leading.equalToSuperview().offset(15)
+                
             } else {
-                make.leading.equalToSuperview().offset((delta + width) * plusGraph)
+                make.leading.equalToSuperview().offset((delta + width) * (plusGraph - 1))
             }
         }
         let name = UILabel()
@@ -131,7 +135,6 @@ class AnalyticsViewController: UIViewController {
             make.centerX.equalTo(newTypeView)
             make.bottom.equalTo(newTypeView).offset(20)
         }
-        plusGraph += 1
         if plusGraph == userCreatedTypes.count {
             plusGraph = 0
         }

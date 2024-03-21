@@ -8,8 +8,8 @@
 import UIKit
 
 
-
-//print(colorsArray.randomElement())
-
-
 var colorsStringArray = ["systemGreenColor", "systemRedColor", "systemCyanColor", "systemPinkColor", "systemOrangeColor", "systemMintColor", "systemGray2Color"]
+
+
+
+

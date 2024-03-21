@@ -21,10 +21,30 @@ class PersonalPageViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var addNewTypeButton: UIButton!
+    
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
+    let contentView: UIView = {
+    let addView = UIView()
+        addView.backgroundColor = .systemIndigo
+    return addView
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .themeBG
+        scrollView.backgroundColor = .themeBG
+        
+        addNewTypeButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+        addNewTypeButton.layer.cornerRadius = 10
         
         view.addSubview(titleLabel)
         titleLabel.font = UIFont.systemFont(ofSize: 28)
@@ -49,6 +69,18 @@ class PersonalPageViewController: UIViewController {
         currentDateLabel.font = UIFont.systemFont(ofSize: 21)
         fillDate(label: currentDateLabel)
         currentDateLabel.textColor = .texts
+        
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.snp.makeConstraints {
+            $0.top.equalTo(scrollView.snp.top)
+            $0.bottom.equalTo(scrollView.snp.bottom)
+            $0.leading.equalTo(scrollView.snp.leading)
+            $0.trailing.equalTo(scrollView.snp.trailing)
+            
+            $0.width.equalTo(scrollView)
+            $0.height.equalTo(scrollView).multipliedBy(2)
+        }
 
     }
     
@@ -66,8 +98,18 @@ class PersonalPageViewController: UIViewController {
     
     func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
+        imagePicker.sourceType = .photoLibrary
         return imagePicker
     }
+    
+    @IBAction func addNewTypeTap(_ sender: Any) {
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        let wastePageVC = sb.instantiateViewController(withIdentifier: "WastePageViewController") as! WastePageViewController
+        
+        present(wastePageVC, animated: true)
+    }
+    
  
 }

@@ -428,12 +428,19 @@
                                     <constraint firstAttribute="height" constant="130" id="vjf-ly-rS6"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create new type of waste" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUe-wy-VYK">
+                                <rect key="frame" x="80" y="99" width="233" height="25.333333333333329"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DWE-wc-agb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="jTS-c2-MdE" firstAttribute="centerY" secondItem="xmR-lk-3Mj" secondAttribute="centerY" id="43C-6c-iH0"/>
                             <constraint firstItem="p8e-TH-mQJ" firstAttribute="top" secondItem="Nei-pB-EHe" secondAttribute="bottom" constant="29.666666666666686" id="6YN-1G-hem"/>
+                            <constraint firstItem="hUe-wy-VYK" firstAttribute="top" secondItem="DWE-wc-agb" secondAttribute="top" constant="40" id="7tg-t0-G6X"/>
                             <constraint firstItem="DWE-wc-agb" firstAttribute="trailing" secondItem="HLO-AZ-kzc" secondAttribute="trailing" constant="50" id="CG1-CS-dZE"/>
                             <constraint firstItem="xmR-lk-3Mj" firstAttribute="leading" secondItem="DWE-wc-agb" secondAttribute="leading" constant="50" id="CVw-fD-buh"/>
                             <constraint firstItem="P2S-Y8-YHR" firstAttribute="centerX" secondItem="DWE-wc-agb" secondAttribute="centerX" id="H4a-67-SoC"/>
@@ -444,6 +451,7 @@
                             <constraint firstItem="Dbz-ht-izg" firstAttribute="top" secondItem="DWE-wc-agb" secondAttribute="top" constant="109" id="bIZ-qt-Mal"/>
                             <constraint firstItem="xmR-lk-3Mj" firstAttribute="top" secondItem="Dbz-ht-izg" secondAttribute="bottom" constant="29.666666666666657" id="gae-ve-HLq"/>
                             <constraint firstItem="Nei-pB-EHe" firstAttribute="top" secondItem="xY9-rm-EJD" secondAttribute="bottom" constant="30" id="gjd-IQ-0RH"/>
+                            <constraint firstItem="hUe-wy-VYK" firstAttribute="centerX" secondItem="DWE-wc-agb" secondAttribute="centerX" id="kGA-9S-AQY"/>
                             <constraint firstItem="AyG-9f-SU9" firstAttribute="centerX" secondItem="xY9-rm-EJD" secondAttribute="centerX" id="kP1-Rd-jnJ"/>
                             <constraint firstItem="xY9-rm-EJD" firstAttribute="leading" secondItem="DWE-wc-agb" secondAttribute="leading" constant="50" id="kX2-lZ-q18"/>
                             <constraint firstItem="p8e-TH-mQJ" firstAttribute="leading" secondItem="DWE-wc-agb" secondAttribute="leading" constant="50" id="lOZ-G2-ghb"/>
@@ -462,6 +470,7 @@
                         <outlet property="markValue" destination="p8e-TH-mQJ" id="9hU-fE-vFY"/>
                         <outlet property="nameField" destination="Dbz-ht-izg" id="Pt1-kp-QNB"/>
                         <outlet property="nameValue" destination="xmR-lk-3Mj" id="AAd-xA-JgP"/>
+                        <outlet property="titleLabel" destination="hUe-wy-VYK" id="E2y-hm-yN7"/>
                         <outlet property="wasteIconView" destination="P2S-Y8-YHR" id="68s-fj-DBG"/>
                     </connections>
                 </viewController>
@@ -553,13 +562,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W4z-hF-s1c">
-                                <rect key="frame" x="0.0" y="374" width="393" height="344"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W4z-hF-s1c">
+                                <rect key="frame" x="0.0" y="441" width="393" height="344"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="J8S-KM-ck7"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="vnO-g6-Uru"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJ9-pP-Shw">
+                                <rect key="frame" x="132.33333333333337" y="364" width="128.66666666666663" height="35"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add new type"/>
+                                <connections>
+                                    <action selector="addNewTypeTap:" destination="Tnh-6f-83n" eventType="touchUpInside" id="gmg-tc-Cqe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MZI-vd-2Y1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -568,20 +585,27 @@
                             <constraint firstItem="qv6-od-p5Z" firstAttribute="top" secondItem="MZI-vd-2Y1" secondAttribute="top" constant="70" id="1vE-5s-S5k"/>
                             <constraint firstItem="Kne-2S-FWp" firstAttribute="leading" secondItem="MZI-vd-2Y1" secondAttribute="leading" constant="20" id="8bK-BR-g4C"/>
                             <constraint firstItem="MZI-vd-2Y1" firstAttribute="trailing" secondItem="qv6-od-p5Z" secondAttribute="trailing" constant="20" id="C0s-TM-eYO"/>
+                            <constraint firstItem="lJ9-pP-Shw" firstAttribute="centerX" secondItem="MZI-vd-2Y1" secondAttribute="centerX" id="Cxq-kQ-NgU"/>
+                            <constraint firstItem="W4z-hF-s1c" firstAttribute="top" secondItem="lJ9-pP-Shw" secondAttribute="bottom" constant="42" id="Laf-FU-02r"/>
                             <constraint firstItem="zcu-pl-ciO" firstAttribute="top" secondItem="MZI-vd-2Y1" secondAttribute="top" constant="20" id="O9f-xi-JyD"/>
                             <constraint firstItem="g8P-6h-Ecl" firstAttribute="top" secondItem="MZI-vd-2Y1" secondAttribute="top" constant="150" id="OkG-Rc-SGG"/>
                             <constraint firstItem="k8X-TS-Vr8" firstAttribute="leading" secondItem="MZI-vd-2Y1" secondAttribute="leading" constant="40" id="QAZ-6f-31n"/>
+                            <constraint firstItem="W4z-hF-s1c" firstAttribute="width" secondItem="7iX-XN-U1s" secondAttribute="width" id="WYh-py-Xo9"/>
+                            <constraint firstItem="MZI-vd-2Y1" firstAttribute="bottom" secondItem="W4z-hF-s1c" secondAttribute="bottom" constant="33" id="aB9-7J-zRG"/>
                             <constraint firstItem="MZI-vd-2Y1" firstAttribute="trailing" secondItem="g8P-6h-Ecl" secondAttribute="trailing" constant="20" id="aCC-RH-CtC"/>
+                            <constraint firstItem="lJ9-pP-Shw" firstAttribute="top" secondItem="Kne-2S-FWp" secondAttribute="bottom" constant="35" id="fZx-mw-UOO"/>
                             <constraint firstItem="Kne-2S-FWp" firstAttribute="top" secondItem="MZI-vd-2Y1" secondAttribute="top" constant="150" id="izr-mL-ciz"/>
                             <constraint firstItem="zcu-pl-ciO" firstAttribute="centerX" secondItem="MZI-vd-2Y1" secondAttribute="centerX" id="raW-ZV-6g0"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addNewTypeButton" destination="lJ9-pP-Shw" id="a3O-I7-bWT"/>
                         <outlet property="currentDateLabel" destination="k8X-TS-Vr8" id="3A1-N6-rN6"/>
                         <outlet property="editButtonView" destination="qv6-od-p5Z" id="deR-9G-tok"/>
                         <outlet property="editIcon" destination="FNa-07-3iu" id="k5w-Xh-8gE"/>
                         <outlet property="photoView" destination="g8P-6h-Ecl" id="3ti-sd-wQl"/>
                         <outlet property="profileTitleView" destination="Kne-2S-FWp" id="BTQ-oy-x5v"/>
+                        <outlet property="scrollView" destination="W4z-hF-s1c" id="HBy-wH-bZU"/>
                         <outlet property="titleLabel" destination="zcu-pl-ciO" id="Gi1-vZ-QF7"/>
                     </connections>
                 </viewController>
@@ -834,19 +858,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

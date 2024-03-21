@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateWasteViewController: UIViewController {
+class CreateWasteViewController: UIViewController  {
     
     @IBOutlet weak var wasteName: UILabel!
     
@@ -113,6 +113,9 @@ class CreateWasteViewController: UIViewController {
         tapOnIcon(icon: chooseSubsIcon)
         
         print("NUMBER OF ICONS USED = \(userCreatedTypes.count)")
+        
+
+
     }
     
     @IBAction func saveNameButtonTap(_ sender: Any) {
@@ -166,6 +169,8 @@ class CreateWasteViewController: UIViewController {
             print("tap added to icon \(nameOfIcon)")
             print("object added to array and it is \(wastesArray.last)")
             self.dismiss(animated: true)
+            
+            
            
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "StatsViewController") as! StatsViewController
@@ -174,7 +179,6 @@ class CreateWasteViewController: UIViewController {
             showNewWasteButton.tintColor = .systemYellow
             saveWasteNameButton.tintColor = .systemYellow
             saveWasteBudgetButton.tintColor = .systemYellow
-            
         }
         
         //print("last added element = ", wastesArray.last)
@@ -184,18 +188,18 @@ class CreateWasteViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(highlightIcon))
         icon.addGestureRecognizer(tap)
         icon.isUserInteractionEnabled = true
-        for element in iconsUsedArray {
-            if icon == element.view {
-                nameOfIcon = element.name
-            }
-        }
+//        for element in iconsUsedArray {
+//            if icon == element.view {
+//                nameOfIcon = element.name
+//            }
+//        }
         
         print("name = \(nameOfIcon)")
         let iconNew = Icon(name: nameOfIcon, view: icon)
         userCreatedTypes.append(iconNew)
         print("new icon in userCreatedicons - ", iconNew.name)
         
-        
+
     }
     @objc func highlightIcon(_sender : UITapGestureRecognizer) {
         let alert = UIAlertController(title: "Done", message: "Icon is chosen!", preferredStyle: .alert)
@@ -205,10 +209,9 @@ class CreateWasteViewController: UIViewController {
         self.present(alert, animated: true)
         
         print("icon is chosen")
-
     }
     
     private func setIconName() {
-        name
+        
     }
 }

@@ -14,6 +14,9 @@ class WastePageViewController: UIViewController {
     lazy var mark: String = ""
     
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    
     @IBOutlet weak var nameField: UILabel!
     
     @IBOutlet weak var nameValue: UILabel!

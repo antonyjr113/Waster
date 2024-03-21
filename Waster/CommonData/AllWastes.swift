@@ -14,3 +14,5 @@ struct Waste {
 }
 
 var wastesArray: [Waste] = []
+
+
