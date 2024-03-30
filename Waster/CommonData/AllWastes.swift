@@ -7,12 +7,6 @@
 
 import UIKit
 
-struct Waste {
-    let name: String?
-    let wasteAmount: String?
-    let type: String?
-}
 
-var wastesArray: [Waste] = []
 
 

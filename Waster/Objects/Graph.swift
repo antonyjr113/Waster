@@ -8,9 +8,11 @@
 import UIKit
 import SnapKit
 
-class WasteGraph {
+class Graph {
     
     let nameOfGraph: String
+    
+    var heightOfGraph = 0
     
     init(name: String) {
         self.nameOfGraph = name
@@ -25,7 +27,7 @@ class WasteGraph {
         let delta = 15
         let width = 45
         
-        let height = (summ / 10)
+        //let height = (summ / 10)
         
         let newTypeView: UIView = {
             let view = UIView()
@@ -35,7 +37,7 @@ class WasteGraph {
         view.addSubview(newTypeView)
         newTypeView.snp.makeConstraints { make in
             make.width.equalTo(width)
-            make.height.equalTo(height)
+            make.height.equalTo(countHeightOfGraph(totalSumm: 1250))
             make.centerY.equalTo(view)
             if numberOfGraph == 0 {
                 make.leading.equalToSuperview().offset(-15)
@@ -53,6 +55,28 @@ class WasteGraph {
             make.bottom.equalTo(newTypeView)
         }
         print("waste graph \(nameOfGraph) created")
+    }
+    
+    private func countHeightOfGraph(totalSumm: Int) -> Int{
+        var height: Int?
+        
+        if totalSumm > 100 {
+            height = totalSumm / 5
+        } else{
+            if totalSumm > 1000 {
+                height = totalSumm / 20
+            }
+        }
+        height = heightOfGraph
+        
+        if heightOfGraph == 0 {
+            print("error with counting height for \(nameOfGraph)")
+        }
+        
+        return height ?? 0
+        
+
+        
     }
     
 }

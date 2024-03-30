@@ -25,6 +25,8 @@ class StatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("StatsViewController opened")
+        
         view.backgroundColor = .themeBg
         
         for element in wastesArray {
@@ -38,7 +40,7 @@ class StatsViewController: UIViewController {
         
         let new = UIView(frame: CGRect(x: baseX, y: baseY, width: 365, height: 150))
         onView.addSubview(new)
-        new.backgroundColor = .systemCyan
+        new.backgroundColor = ColorRandomizer.shared.randomizeColors()
         
         let name = UILabel()
         new.addSubview(name)
@@ -84,6 +86,12 @@ class StatsViewController: UIViewController {
             make.width.equalTo(100)
         }
         baseY+=180
+    }
+    
+    private func randomizeColors() -> UIColor {
+        let numberOfColors = (colorsForWastes.count - 1)
+        let index = Int.random(in: 0...numberOfColors)
+        return colorsForWastes[index]
     }
 }
 

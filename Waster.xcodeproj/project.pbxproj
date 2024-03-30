@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D1F9DB82B612BAB0099C23C /* AllTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DB72B612BAB0099C23C /* AllTypes.swift */; };
-		7D1F9DBB2B627BB60099C23C /* WasteSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DBA2B627BB60099C23C /* WasteSingle.swift */; };
+		7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DBA2B627BB60099C23C /* Waste.swift */; };
 		7D1F9DBD2B62810E0099C23C /* AllWastes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DBC2B62810E0099C23C /* AllWastes.swift */; };
 		7D4777482B69149000BFEEAE /* WasteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4777472B69149000BFEEAE /* WasteType.swift */; };
 		7D701B982B45E0F300308946 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D701B972B45E0F300308946 /* AppDelegate.swift */; };
@@ -23,7 +23,8 @@
 		7D75379F2B6023D4004ABCAF /* TypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75379E2B6023D4004ABCAF /* TypesViewController.swift */; };
 		7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD110F2B6A63A200BA73C7 /* AllColors.swift */; };
 		7DAD11122B6E595F00BA73C7 /* EditWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD11112B6E595F00BA73C7 /* EditWindow.swift */; };
-		7DAD11392B7E2F7700BA73C7 /* WatseGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD11382B7E2F7700BA73C7 /* WatseGraph.swift */; };
+		7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD11382B7E2F7700BA73C7 /* Graph.swift */; };
+		7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */; };
 		7DE0971A2B54184700E23A5B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE097192B54184700E23A5B /* ColorExtension.swift */; };
 		7DE0971C2B541A1700E23A5B /* CreateWasteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0971B2B541A1700E23A5B /* CreateWasteViewController.swift */; };
 		7DE0971F2B541C2600E23A5B /* LocalizableWaster.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7DE0971E2B541C2600E23A5B /* LocalizableWaster.xcstrings */; };
@@ -36,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		7D1F9DB72B612BAB0099C23C /* AllTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTypes.swift; sourceTree = "<group>"; };
-		7D1F9DBA2B627BB60099C23C /* WasteSingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteSingle.swift; sourceTree = "<group>"; };
+		7D1F9DBA2B627BB60099C23C /* Waste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waste.swift; sourceTree = "<group>"; };
 		7D1F9DBC2B62810E0099C23C /* AllWastes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWastes.swift; sourceTree = "<group>"; };
 		7D4777472B69149000BFEEAE /* WasteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteType.swift; sourceTree = "<group>"; };
 		7D701B942B45E0F300308946 /* Waster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waster.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +52,8 @@
 		7D75379E2B6023D4004ABCAF /* TypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesViewController.swift; sourceTree = "<group>"; };
 		7DAD110F2B6A63A200BA73C7 /* AllColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllColors.swift; sourceTree = "<group>"; };
 		7DAD11112B6E595F00BA73C7 /* EditWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWindow.swift; sourceTree = "<group>"; };
-		7DAD11382B7E2F7700BA73C7 /* WatseGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatseGraph.swift; sourceTree = "<group>"; };
+		7DAD11382B7E2F7700BA73C7 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRandomizer.swift; sourceTree = "<group>"; };
 		7DE097192B54184700E23A5B /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7DE0971B2B541A1700E23A5B /* CreateWasteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWasteViewController.swift; sourceTree = "<group>"; };
 		7DE0971E2B541C2600E23A5B /* LocalizableWaster.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = LocalizableWaster.xcstrings; sourceTree = "<group>"; };
@@ -88,10 +90,11 @@
 		7D1F9DB92B627BA20099C23C /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				7D1F9DBA2B627BB60099C23C /* WasteSingle.swift */,
+				7D1F9DBA2B627BB60099C23C /* Waste.swift */,
 				7D4777472B69149000BFEEAE /* WasteType.swift */,
 				7DAD11112B6E595F00BA73C7 /* EditWindow.swift */,
-				7DAD11382B7E2F7700BA73C7 /* WatseGraph.swift */,
+				7DAD11382B7E2F7700BA73C7 /* Graph.swift */,
+				7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -233,9 +236,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D1F9DBB2B627BB60099C23C /* WasteSingle.swift in Sources */,
+				7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */,
 				7D701B9C2B45E0F300308946 /* ViewController.swift in Sources */,
-				7DAD11392B7E2F7700BA73C7 /* WatseGraph.swift in Sources */,
+				7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */,
+				7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */,
 				7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */,
 				7DE0971C2B541A1700E23A5B /* CreateWasteViewController.swift in Sources */,
 				7DE097252B584F1D00E23A5B /* StatsViewController.swift in Sources */,

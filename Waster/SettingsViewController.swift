@@ -28,6 +28,8 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("SettingsViewController opened")
+        
         view.backgroundColor = .themeBG
         
         view.addSubview(touView)
@@ -35,7 +37,7 @@ class SettingsViewController: UIViewController {
         
         
         touView.layer.cornerRadius = 10
-        touView.backgroundColor = .systemGreen
+        touView.backgroundColor = greenProperty
         touLabel.textColor = .texts
 //        touLabel.font = UIFont(name: "system", size: 21)
         

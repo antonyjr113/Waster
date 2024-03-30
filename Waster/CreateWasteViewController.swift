@@ -45,6 +45,8 @@ class CreateWasteViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("CreateWasteViewController opened")
+        
         view.backgroundColor = .themeBG
         
         view.addSubview(chooseIconView)
@@ -210,8 +212,5 @@ class CreateWasteViewController: UIViewController  {
         
         print("icon is chosen")
     }
-    
-    private func setIconName() {
-        
-    }
+
 }

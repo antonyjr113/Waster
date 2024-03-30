@@ -47,6 +47,8 @@ class TypesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("TypesViewController opened")
+        
         view.backgroundColor = .themeBg
         
         view.addSubview(scrollView)

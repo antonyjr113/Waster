@@ -37,6 +37,8 @@ class PersonalPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("PersonalPageViewController opened")
+        
         view.backgroundColor = .themeBG
         scrollView.backgroundColor = .themeBG
         

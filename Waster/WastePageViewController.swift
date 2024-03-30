@@ -41,6 +41,9 @@ class WastePageViewController: UIViewController {
     
 
     override func viewDidLoad() {
+        
+        print("WastePageViewController opened")
+        
         super.viewDidLoad()
         view.backgroundColor = .themeBG
         

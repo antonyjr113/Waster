@@ -96,29 +96,30 @@ class AnalyticsViewController: UIViewController {
         //createWasteGraph(summ: 5, stack: firstGraphStack)
         //createWasteGraph(summ: 5, stack: secondGraphStack)
         for element in userCreatedTypes {
-            createWasteGraph(summ: 1780, view: firstGraphView, element: element)
+            createWasteGraph(view: firstGraphView, element: element)
         }
         
         for element in userCreatedTypes {
-            createWasteGraph(summ: 1780, view: secondGraphView, element: element)
+            createWasteGraph(view: secondGraphView, element: element)
         }
     }
     
-    func createWasteGraph(summ: Int, view: UIView, element: Icon) {
+    func createWasteGraph(view: UIView, element: Icon) {
         let delta = 20
         let width = 40
 
         print("plus graph = ", plusGraph)
+        
         let newTypeView: UIView = {
             let view = UIView()
-            view.backgroundColor = .systemYellow
+            view.backgroundColor = ColorRandomizer.shared.randomizeColors()
             return view
         }()
         view.addSubview(newTypeView)
         plusGraph += 1
         newTypeView.snp.makeConstraints { make in
             make.width.equalTo(width)
-            make.height.equalTo(summ/10)
+            make.height.equalTo(100)
             make.centerY.equalTo(view)
             if plusGraph == 1 {
                 make.leading.equalToSuperview().offset(15)
