@@ -22,7 +22,9 @@ class Graph {
     
     let minValue = 10
     
-    func createWasteGraph(summ: Int, view: UIView, numberOfGraph: Int) {
+    var summForCountHeight = 0
+    
+    func createGraph(summ: Int, view: UIView, numberOfGraph: Int) {
         
         let delta = 15
         let width = 45
@@ -58,6 +60,8 @@ class Graph {
     }
     
     private func countHeightOfGraph(totalSumm: Int) -> Int{
+        
+        
         var height: Int?
         
         if totalSumm > 100 {
@@ -74,9 +78,10 @@ class Graph {
         }
         
         return height ?? 0
-        
-
-        
     }
+    
+//    func updateSumm(array: ) {
+//        
+//    }
     
 }

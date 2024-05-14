@@ -7,7 +7,13 @@
 
 import UIKit
 
-class CreateWasteViewController: UIViewController  {
+protocol IconDelegate {
+    func transferIcon(icon: Icon)
+}
+
+class CreateWasteViewController: UIViewController {
+    
+    var delegate: IconDelegate?
     
     @IBOutlet weak var wasteName: UILabel!
     
@@ -42,6 +48,8 @@ class CreateWasteViewController: UIViewController  {
     
     var nameOfIcon = ""
     
+    var lastTappedTypeIcon: Icon?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,12 +72,12 @@ class CreateWasteViewController: UIViewController  {
         let sub = Icon(name: "sub", view: chooseSubsIcon)
         let joy = Icon(name: "joy", view: chooseJoyIcon)
         
-        iconsUsedArray.append(car)
-        iconsUsedArray.append(home)
-        iconsUsedArray.append(health)
-        iconsUsedArray.append(child)
-        iconsUsedArray.append(sub)
-        iconsUsedArray.append(joy)
+        categoriesArray.append(car)
+        categoriesArray.append(home)
+        categoriesArray.append(health)
+        categoriesArray.append(child)
+        categoriesArray.append(sub)
+        categoriesArray.append(joy)
         
         
         view.addSubview(wasteName)
@@ -78,7 +86,7 @@ class CreateWasteViewController: UIViewController  {
         wasteName.backgroundColor = .themeBg
         wasteName.layer.cornerRadius = 30
         
-        view.addSubview(wasteBudget) 
+        view.addSubview(wasteBudget)
         wasteBudget.text = "Enter waste budget"
         wasteBudget.textColor = .texts
         wasteBudget.backgroundColor = .themeBg
@@ -107,26 +115,20 @@ class CreateWasteViewController: UIViewController  {
         saveWasteNameButton.tintColor = .systemYellow
         saveWasteBudgetButton.tintColor = .systemYellow
         
-        tapOnIcon(icon: chooseCarIcon)
-        tapOnIcon(icon: chooseHomeIcon)
-        tapOnIcon(icon: chooseJoyIcon)
-        tapOnIcon(icon: chooseHealthIcon)
-        tapOnIcon(icon: chooseChildIcon)
-        tapOnIcon(icon: chooseSubsIcon)
         
-        print("NUMBER OF ICONS USED = \(userCreatedTypes.count)")
+        for element in categoriesArray {
+            tapOnIcon(icon: element.view)
+        }
         
-
-
     }
     
     @IBAction func saveNameButtonTap(_ sender: Any) {
         
         if enterNameTF.text == "" {
             let alert = UIAlertController(title: "Name is empty", message: "Enter name of waste at first", preferredStyle: .alert)
-
+            
             alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-
+            
             self.present(alert, animated: true)
         } else {
             saveWasteNameButton.tintColor = UIColor.systemGreen
@@ -138,17 +140,18 @@ class CreateWasteViewController: UIViewController  {
     @IBAction func saveBudgetButtonTap(_ sender: Any) {
         
         if enterBudgetTF.text == "" {
- 
+            
             let alert = UIAlertController(title: "Budget summ is empty", message: "Enter the summ of budjet please", preferredStyle: .alert)
-
+            
             alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-
+            
             self.present(alert, animated: true)
         } else {
             saveWasteBudgetButton.tintColor = UIColor.systemGreen
             newWaste.budget = enterBudgetTF.text ?? ""
+            
         }
-
+        
         print("budget saved")
     }
     
@@ -156,61 +159,103 @@ class CreateWasteViewController: UIViewController  {
         
         if newWaste.name == "" || newWaste.budget == "" {
             let alert = UIAlertController(title: "Empty fields", message: "Please, fill Name and Budget fields", preferredStyle: .alert)
-
+            
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-
+            
             self.present(alert, animated: true)
         }
         else {
             if saveWasteNameButton.tintColor == UIColor.systemGreen && saveWasteBudgetButton.tintColor == UIColor.systemGreen {
                 showNewWasteButton.tintColor = UIColor.systemGreen
             }
-
+            
             let waste = Waste(name: enterNameTF.text, wasteAmount: enterBudgetTF.text, type: nameOfIcon)
             wastesArray.append(waste)
+            
             print("tap added to icon \(nameOfIcon)")
             print("object added to array and it is \(wastesArray.last)")
             self.dismiss(animated: true)
             
             
-           
+            
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "StatsViewController") as! StatsViewController
-            
             present(vc, animated: true)
             showNewWasteButton.tintColor = .systemYellow
             saveWasteNameButton.tintColor = .systemYellow
             saveWasteBudgetButton.tintColor = .systemYellow
         }
         
-        //print("last added element = ", wastesArray.last)
+        updateAnalytics(arrayWithData: wastesArray)
+        
     }
     
     private func tapOnIcon(icon: UIImageView) {
         let tap = UITapGestureRecognizer(target: self, action: #selector(highlightIcon))
         icon.addGestureRecognizer(tap)
         icon.isUserInteractionEnabled = true
-//        for element in iconsUsedArray {
-//            if icon == element.view {
-//                nameOfIcon = element.name
-//            }
-//        }
-        
-        print("name = \(nameOfIcon)")
-        let iconNew = Icon(name: nameOfIcon, view: icon)
-        userCreatedTypes.append(iconNew)
-        print("new icon in userCreatedicons - ", iconNew.name)
-        
-
     }
-    @objc func highlightIcon(_sender : UITapGestureRecognizer) {
+    
+    @objc func highlightIcon(sender : UITapGestureRecognizer) {
+        
+        var currentViewTap = sender.view ?? nil
         let alert = UIAlertController(title: "Done", message: "Icon is chosen!", preferredStyle: .alert)
-
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-
         self.present(alert, animated: true)
+        //currentViewTap = lastTappedTypeIcon
+        //currentViewTap = iconForLastWaste
+        print("what is tapped = ", sender.view)
         
-        print("icon is chosen")
+        for element in categoriesArray {
+            if sender.view == element.view {
+                print("TRUE = ", element.name)
+                nameOfIcon = element.name
+                //iconForLastWaste = element.view
+                iconForLastWasteGlobal = element.name
+                print("for icon for last view = ", iconForLastWasteGlobal)
+            } else {
+                print("шляпа")
+            }
+            
+        }
+        
+        //compareViewWithIcons(view: currentViewTap)
+        
     }
-
+    
+    private func compareViewWithIcons(view: UIView) {
+        for element in categoriesArray {
+            if view == element.view {
+                nameOfIcon = element.name
+            }
+            print("!!! - ", nameOfIcon)
+        }
+    }
+    
+    private func updateAnalytics(arrayWithData: [Waste]) {
+        
+        var neededKey = "error"
+        guard
+            let last = arrayWithData.last
+        else {
+            return
+        }
+        print(last.name)
+        let summ = last.wasteAmount ?? "error"
+        print("summ = ", summ)
+        let intSumm = Int(summ)!
+        print("summ int = ", intSumm)
+        
+        let name = last.type ?? "error"
+        print("name = ", name)
+        
+        for element in analyticsData {
+            if element.key == last.name {
+                neededKey = element.key
+            }
+        }
+        analyticsData.updateValue(intSumm, forKey: name)
+        print(analyticsData)
+    }
+    
 }

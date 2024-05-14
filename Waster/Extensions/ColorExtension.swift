@@ -12,3 +12,7 @@ extension UIColor {
     static let textsColor = UIColor(named: "texts")
     static let shadowColor = UIColor(named: "shadow")
 }
+
+protocol TransferDataForGraph {
+    func transferData() 
+}

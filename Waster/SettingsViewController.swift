@@ -61,6 +61,56 @@ class SettingsViewController: UIViewController {
         contactUsView.layer.cornerRadius = 10
         contactUsView.backgroundColor = .systemGreen
         contactUsLabel.textColor = .texts
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(makeRequest))
+        touView.addGestureRecognizer(tap)
+        touView.isUserInteractionEnabled = true
+        
+        if tap.state == .began {
+            touView.backgroundColor = .systemMint
+        }
+    }
+    
+    private func simpleGetUrlRequestWithErrorHandling(){
+            let session = URLSession.shared
+            let url = URL(string: "https://drive.google.com/file/d/1TrVSSylDQAA0_GXuOwrSeVZKD0ZjGT2Q/view?usp=drive_link")!
+            
+            let task = session.dataTask(with: url) { data, response, error in
+                
+                if error != nil || data == nil {
+                    print("Client error!")
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    print("Server error!")
+                    return
+                }
+                
+                if response == response as? HTTPURLResponse, (400...499).contains(response.statusCode) {
+                    print("Client error!")
+                } else {
+                    return
+                }
+                
+                guard let mime = response.mimeType, mime == "application/json" else {
+                    print("Wrong MIME type!")
+                    return
+                }
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                    print("The Response is : ",json)
+                } catch {
+                    print("JSON error: \(error.localizedDescription)")
+                }
+                
+            }
+            task.resume()
+        }
+    
+    @objc private func makeRequest() {
+        simpleGetUrlRequestWithErrorHandling()
     }
     
 

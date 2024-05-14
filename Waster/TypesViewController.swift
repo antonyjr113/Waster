@@ -98,7 +98,7 @@ class TypesViewController: UIViewController {
             self.createNewView.alpha = 0
         }
 
-        let newType = WasteType()
+        let newType = Category()
         
         newType.openEditView(onView: contentView)
         
@@ -134,7 +134,7 @@ class TypesViewController: UIViewController {
         
     }
     
-    private func editWasteType(wt: WasteType) {
+    private func editWasteType(wt: Category) {
 
         let alert = UIAlertController(title: "Enter new type name", message: "You are to enter the neame of your personal waste type :", preferredStyle: .alert)
         

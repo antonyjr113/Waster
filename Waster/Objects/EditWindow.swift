@@ -53,6 +53,7 @@ class EditWindow: UIViewController {
     let close: UIButton = {
         let button = UIButton()
         button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.gray, for: .selected)
         return button
     }()
     
@@ -92,27 +93,30 @@ class EditWindow: UIViewController {
             make.width.equalTo(40)
             make.height.equalTo(40)
         }
-            
-            editNewView.alpha = 0
-            
-            UIView.animate(withDuration: 1) {
-                self.editNewView.alpha = 1
-            }
-            
-            let tapOnName = UITapGestureRecognizer(target: self, action: #selector(openAlertToType))
-            name.addGestureRecognizer(tapOnName)
-            name.isUserInteractionEnabled = true
-            
-            let tapOnIcon = UITapGestureRecognizer(target: self, action: #selector(openAlertToType))
-            icon.addGestureRecognizer(tapOnIcon)
-            icon.isUserInteractionEnabled = true
-            
-            let tapOnDesc = UITapGestureRecognizer(target: self, action: #selector(openAlertToType))
-            desc.addGestureRecognizer(tapOnDesc)
-            desc.isUserInteractionEnabled = true
-            
-            
+        
+        let tapOnName = UITapGestureRecognizer(target: self, action: #selector(openAlertToType))
+        name.addGestureRecognizer(tapOnName)
+        name.isUserInteractionEnabled = true
+        
+        let tapOnIcon = UITapGestureRecognizer(target: self, action: #selector(openAlertToType))
+        icon.addGestureRecognizer(tapOnIcon)
+        icon.isUserInteractionEnabled = true
+        
+        let tapOnDesc = UITapGestureRecognizer(target: self, action: #selector(openAlertToType))
+        desc.addGestureRecognizer(tapOnDesc)
+        desc.isUserInteractionEnabled = true
+        
+        let closeTap = UITapGestureRecognizer(target: self, action: #selector(closeWindow))
+        editNewView.addGestureRecognizer(tapOnDesc)
+        editNewView.isUserInteractionEnabled = true
+        
+        editNewView.alpha = 0
+        
+        UIView.animate(withDuration: 0.33) {
+            self.editNewView.alpha = 1
         }
+        
+    }
     
     @objc private func openAlertToType() {
         
@@ -127,6 +131,10 @@ class EditWindow: UIViewController {
         }))
         
         self.present(alert, animated: true)
+    }
+    
+    @objc private func closeWindow(what: EditWindow) {
+        what.dismiss(animated: true)
     }
     
 }

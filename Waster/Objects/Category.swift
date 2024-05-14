@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 
-class WasteType {
+class Category {
     
     let baseH = 160
     

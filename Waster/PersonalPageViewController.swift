@@ -48,6 +48,13 @@ class PersonalPageViewController: UIViewController {
         }
         addNewTypeButton.layer.cornerRadius = 10
         
+        view.addSubview(profileTitleView)
+        profileTitleView.backgroundColor = .systemMint
+        let tapOnProfile = UITapGestureRecognizer(target: self, action: #selector(openEditWindow))
+        profileTitleView.addGestureRecognizer(tapOnProfile)
+        profileTitleView.isUserInteractionEnabled = true
+        
+        
         view.addSubview(titleLabel)
         titleLabel.font = UIFont.systemFont(ofSize: 28)
         titleLabel.textColor = .texts
@@ -91,6 +98,16 @@ class PersonalPageViewController: UIViewController {
         self.present(openPicker, animated: true)
     }
     
+    @objc private func openEditWindow() {
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let vcEditWindow = sb.instantiateViewController(withIdentifier: "EditWindow") as! EditWindow
+//        present(vcEditWindow, animated: true)
+        let editWindow = EditWindow()
+        editWindow.setConstraints(onView: view)
+        editWindow.modalPresentationStyle = .overFullScreen
+        present(editWindow, animated: true)
+    }
+    
     private func fillDate(label: UILabel) {
         let date = Date()
         let format = DateFormatter()
@@ -98,7 +115,7 @@ class PersonalPageViewController: UIViewController {
         label.text = format.string(from: date)
     }
     
-    func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
+    private func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         return imagePicker

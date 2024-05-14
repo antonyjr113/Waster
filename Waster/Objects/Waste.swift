@@ -7,11 +7,12 @@
 
 import UIKit
 
-struct Waste {
+struct Waste: Codable {
     let name: String?
     let wasteAmount: String?
     let type: String?
 }
+
 
 var wastesArray: [Waste] = []
 
@@ -27,28 +28,12 @@ var totalSummforChild = 0
 
 var totalSummforCar = 0
 
+var analyticsData: [String: Int] = [
+    "car" : 0,
+    "health" : 0,
+    "joy": 0,
+    "sub" : 0,
+    "home" : 0,
+    "child" : 0
+]
 
-
-
-func updateWasteAmountForType() {
-    guard var last = wastesArray.last
-    else {
-        return
-    }
-//    switch last.name {
-//    case "car" :
-//        totalSummforCar += last.wasteAmount?
-//    case "home" :
-//        totalSummforHome += last.wasteAmount?
-//    case "health" :
-//        totalSummforHealth += last.wasteAmount?
-//    case "joy" :
-//        totalSummforJoy += last.wasteAmount?
-//    case "subs" :
-//        totalSummforSubs += last.wasteAmount?
-//    case "child" :
-//        totalSummforChild += last.wasteAmount?
-//    default:
-//        break
-//    }
-}

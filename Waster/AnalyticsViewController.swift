@@ -95,20 +95,33 @@ class AnalyticsViewController: UIViewController {
         
         //createWasteGraph(summ: 5, stack: firstGraphStack)
         //createWasteGraph(summ: 5, stack: secondGraphStack)
-        for element in userCreatedTypes {
-            createWasteGraph(view: firstGraphView, element: element)
-        }
         
-        for element in userCreatedTypes {
-            createWasteGraph(view: secondGraphView, element: element)
+        
+        if analyticsData.isEmpty == false {
+            
+            for element in categoriesArray {
+                createWasteGraph(view: firstGraphView, element: element)
+            }
+            
+            for element in categoriesArray {
+                createWasteGraph(view: secondGraphView, element: element)
+            }
         }
     }
     
     func createWasteGraph(view: UIView, element: Icon) {
         let delta = 20
         let width = 40
+        var height = 0
 
         print("plus graph = ", plusGraph)
+        
+        for type in analyticsData {
+            if type.key == element.name {
+                height = type.value
+                break
+            }
+        }
         
         let newTypeView: UIView = {
             let view = UIView()
@@ -117,10 +130,11 @@ class AnalyticsViewController: UIViewController {
         }()
         view.addSubview(newTypeView)
         plusGraph += 1
+        
         newTypeView.snp.makeConstraints { make in
             make.width.equalTo(width)
-            make.height.equalTo(100)
-            make.centerY.equalTo(view)
+            make.height.equalTo(height)
+            make.bottom.equalTo(view).offset(-50)
             if plusGraph == 1 {
                 make.leading.equalToSuperview().offset(15)
                 
@@ -136,8 +150,10 @@ class AnalyticsViewController: UIViewController {
             make.centerX.equalTo(newTypeView)
             make.bottom.equalTo(newTypeView).offset(20)
         }
-        if plusGraph == userCreatedTypes.count {
+        if plusGraph == categoriesArray.count {
             plusGraph = 0
         }
+        
     }
+    
 }

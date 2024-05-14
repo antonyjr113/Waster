@@ -10,7 +10,8 @@
 		7D1F9DB82B612BAB0099C23C /* AllTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DB72B612BAB0099C23C /* AllTypes.swift */; };
 		7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DBA2B627BB60099C23C /* Waste.swift */; };
 		7D1F9DBD2B62810E0099C23C /* AllWastes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DBC2B62810E0099C23C /* AllWastes.swift */; };
-		7D4777482B69149000BFEEAE /* WasteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4777472B69149000BFEEAE /* WasteType.swift */; };
+		7D4777482B69149000BFEEAE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4777472B69149000BFEEAE /* Category.swift */; };
+		7D5C2F432BDFED9B00B12F07 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C2F422BDFED9B00B12F07 /* JSONManager.swift */; };
 		7D701B982B45E0F300308946 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D701B972B45E0F300308946 /* AppDelegate.swift */; };
 		7D701B9A2B45E0F300308946 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D701B992B45E0F300308946 /* SceneDelegate.swift */; };
 		7D701B9C2B45E0F300308946 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D701B9B2B45E0F300308946 /* ViewController.swift */; };
@@ -39,7 +40,8 @@
 		7D1F9DB72B612BAB0099C23C /* AllTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTypes.swift; sourceTree = "<group>"; };
 		7D1F9DBA2B627BB60099C23C /* Waste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waste.swift; sourceTree = "<group>"; };
 		7D1F9DBC2B62810E0099C23C /* AllWastes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWastes.swift; sourceTree = "<group>"; };
-		7D4777472B69149000BFEEAE /* WasteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteType.swift; sourceTree = "<group>"; };
+		7D4777472B69149000BFEEAE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		7D5C2F422BDFED9B00B12F07 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		7D701B942B45E0F300308946 /* Waster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D701B972B45E0F300308946 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D701B992B45E0F300308946 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,10 +93,11 @@
 			isa = PBXGroup;
 			children = (
 				7D1F9DBA2B627BB60099C23C /* Waste.swift */,
-				7D4777472B69149000BFEEAE /* WasteType.swift */,
+				7D4777472B69149000BFEEAE /* Category.swift */,
 				7DAD11112B6E595F00BA73C7 /* EditWindow.swift */,
 				7DAD11382B7E2F7700BA73C7 /* Graph.swift */,
 				7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */,
+				7D5C2F422BDFED9B00B12F07 /* JSONManager.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */,
+				7D5C2F432BDFED9B00B12F07 /* JSONManager.swift in Sources */,
 				7D701B9C2B45E0F300308946 /* ViewController.swift in Sources */,
 				7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */,
 				7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */,
@@ -247,7 +251,7 @@
 				7D701B982B45E0F300308946 /* AppDelegate.swift in Sources */,
 				7DAD11122B6E595F00BA73C7 /* EditWindow.swift in Sources */,
 				7D701B9A2B45E0F300308946 /* SceneDelegate.swift in Sources */,
-				7D4777482B69149000BFEEAE /* WasteType.swift in Sources */,
+				7D4777482B69149000BFEEAE /* Category.swift in Sources */,
 				7D75379D2B5EE95D004ABCAF /* IconsExtension.swift in Sources */,
 				7DE097212B554A9600E23A5B /* WastePageViewController.swift in Sources */,
 				7DE097232B584C0200E23A5B /* PersonalPageViewController.swift in Sources */,

@@ -9,7 +9,9 @@ import UIKit
 
 let typesArrayString: [String] = ["car", "home", "health", "children", "subs", "joys"]
 
-var iconsUsedArray = [Icon]()
+//let typesArrayView: [UIView] = [, "home", "health", "children", "subs", "joys"]
+
+var iconsArray = [Icon]()
 
 
 var typesArray = [UIView]()
@@ -29,7 +31,33 @@ struct Icon {
     let view: UIImageView
 }
 
-var userCreatedTypes = [Icon]()
+
+var categoriesArray = [Icon]()
+
+var iconForLastWasteGlobal = ""
 
 
+enum IconsTapped: String {
+    case car
+    case health
+    case home
+    case child
+    case joy
+    case subs
+}
+
+//switch IconsTapped.self {
+//case .car:
+//    return "car"
+//case .health:
+//    return "heart.circle"
+//case .joy:
+//    return "gamecontroller"
+//case .home:
+//    return "house"
+//case .child:
+//    return "figure.arms.open"
+//case .subs:
+//    return "play.tv.fill"
+//}
 
