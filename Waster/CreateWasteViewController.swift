@@ -258,4 +258,12 @@ class CreateWasteViewController: UIViewController {
         print(analyticsData)
     }
     
+//    func findNeededKey(array: [String : Int]) {
+//        for element in analyticsData {
+//            if element.key == last.name {
+//                neededKey = element.key
+//            }
+//        }
+//    }
+    
 }

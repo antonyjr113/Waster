@@ -10,7 +10,9 @@ import SnapKit
 
 class AnalyticsViewController: UIViewController {
     
-    var plusGraph = 0
+    var plusGraphFirst = 0
+    var plusGraphSecond = 0
+    var heightCorrected = 0
     
     let firstGraphView: UIView = {
         let view = UIView()
@@ -92,29 +94,45 @@ class AnalyticsViewController: UIViewController {
 //            make.centerX.equalToSuperview()
 //            make.bottom.equalToSuperview().offset(-10)
 //        }
-        
-        //createWasteGraph(summ: 5, stack: firstGraphStack)
-        //createWasteGraph(summ: 5, stack: secondGraphStack)
-        
-        
-        if analyticsData.isEmpty == false {
-            
-            for element in categoriesArray {
-                createWasteGraph(view: firstGraphView, element: element)
-            }
-            
-            for element in categoriesArray {
-                createWasteGraph(view: secondGraphView, element: element)
+        for element in analyticsData {
+            if element.value != 0 {
+                
             }
         }
+
+        for element in analyticsData {
+            if element.value != 0 {
+                for element in categoriesArray {
+                    plusGraphFirst += 1
+                    createWasteGraph(view: firstGraphView, element: element)
+                }
+                
+                for element in categoriesArray {
+                    plusGraphSecond += 1
+                    createWasteGraph(view: secondGraphView, element: element)
+                }
+            }
+        }
+        
+        
     }
     
     func createWasteGraph(view: UIView, element: Icon) {
+        
         let delta = 20
         let width = 40
         var height = 0
+        var counter = 0
+        print("\ntype: ", element.name)
 
-        print("plus graph = ", plusGraph)
+        if view == firstGraphView {
+            counter = plusGraphFirst
+            print("1st graphic")
+        } else {
+            counter = plusGraphSecond
+            print("2nd graphic")
+        }
+
         
         for type in analyticsData {
             if type.key == element.name {
@@ -122,6 +140,11 @@ class AnalyticsViewController: UIViewController {
                 break
             }
         }
+        print("height = \(height) for element \(element.name)")
+        
+        
+        height = correctHeight(height: height)
+        print("height of graph = ", height)
         
         let newTypeView: UIView = {
             let view = UIView()
@@ -129,17 +152,16 @@ class AnalyticsViewController: UIViewController {
             return view
         }()
         view.addSubview(newTypeView)
-        plusGraph += 1
+        counter += 1
         
         newTypeView.snp.makeConstraints { make in
             make.width.equalTo(width)
             make.height.equalTo(height)
             make.bottom.equalTo(view).offset(-50)
-            if plusGraph == 1 {
-                make.leading.equalToSuperview().offset(15)
-                
+            if counter == 1 {
+                make.leading.equalToSuperview()
             } else {
-                make.leading.equalToSuperview().offset((delta + width) * (plusGraph - 1))
+                make.leading.equalToSuperview().offset((delta + width) * (counter - 1))
             }
         }
         let name = UILabel()
@@ -150,10 +172,34 @@ class AnalyticsViewController: UIViewController {
             make.centerX.equalTo(newTypeView)
             make.bottom.equalTo(newTypeView).offset(20)
         }
-        if plusGraph == categoriesArray.count {
-            plusGraph = 0
+        print("analyticsData.count = ", analyticsData.count)
+        print("graphCounter = ", counter)
+        if counter == analyticsData.count {
+            counter = 0
         }
+        heightCorrected = 0
         
     }
+    
+    private func correctHeight(height: Int) -> Int  {
+        
+        if height > 1000 {
+            heightCorrected = height / 100
+        } else {
+            if height > 100 {
+                heightCorrected = height / 10
+            }
+        }
+        return heightCorrected
+    }
+    
+//    func findNeededKey(array: [String : Int], icon: Icon) {
+//        for object in analyticsData {
+//            if object.key == icon.name {
+//                
+//            }
+//        }
+//    }
+    
     
 }
