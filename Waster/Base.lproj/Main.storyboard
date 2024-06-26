@@ -622,23 +622,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All wastes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMv-5A-2es">
-                                <rect key="frame" x="158" y="99" width="77" height="21"/>
+                                <rect key="frame" x="151.66666666666666" y="89" width="90" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="Alf-ip-agA"/>
+                                    <constraint firstAttribute="width" constant="90" id="Alf-ip-agA"/>
                                     <constraint firstAttribute="height" constant="21" id="lSH-1J-XrB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3A-yF-oXp">
+                                <rect key="frame" x="312" y="82" width="56" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sort"/>
+                                <connections>
+                                    <action selector="sortButtonTap:" destination="OTR-t1-7Oz" eventType="touchUpInside" id="bRF-X2-z1M"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d1h-Kl-YBH">
+                                <rect key="frame" x="25" y="77.333333333333343" width="40" height="42"/>
+                                <color key="backgroundColor" name="theme_bg"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="3hx-DR-WAI"/>
+                                    <constraint firstAttribute="height" constant="40" id="vsg-rO-L8K"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gmj-6m-tzq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="d1h-Kl-YBH" firstAttribute="centerY" secondItem="eMv-5A-2es" secondAttribute="centerY" id="8G2-RO-cI0"/>
+                            <constraint firstItem="gmj-6m-tzq" firstAttribute="trailing" secondItem="D3A-yF-oXp" secondAttribute="trailing" constant="25" id="K6a-HM-nM0"/>
                             <constraint firstItem="eMv-5A-2es" firstAttribute="centerX" secondItem="gmj-6m-tzq" secondAttribute="centerX" id="P0n-Qc-i1B"/>
-                            <constraint firstItem="eMv-5A-2es" firstAttribute="top" secondItem="gmj-6m-tzq" secondAttribute="top" constant="40" id="eVn-by-TUf"/>
+                            <constraint firstItem="D3A-yF-oXp" firstAttribute="top" secondItem="gmj-6m-tzq" secondAttribute="top" constant="23" id="ZSh-FY-onX"/>
+                            <constraint firstItem="d1h-Kl-YBH" firstAttribute="leading" secondItem="gmj-6m-tzq" secondAttribute="leading" constant="25" id="coo-y0-91T"/>
+                            <constraint firstItem="eMv-5A-2es" firstAttribute="top" secondItem="gmj-6m-tzq" secondAttribute="top" constant="30" id="eVn-by-TUf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="shareButtonView" destination="d1h-Kl-YBH" id="pVG-pT-g2d"/>
+                        <outlet property="sortButton" destination="D3A-yF-oXp" id="a8U-gI-vaz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gNK-8b-bWc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -830,6 +854,7 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="photo.badge.plus.fill" catalog="system" width="128" height="97"/>
         <image name="play.tv" catalog="system" width="128" height="95"/>
+        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="121"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

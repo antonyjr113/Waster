@@ -13,6 +13,8 @@ class AnalyticsViewController: UIViewController {
     var plusGraphFirst = 0
     var plusGraphSecond = 0
     var heightCorrected = 0
+    var totalOfAll = 0
+    var sumsOfTypes = [Int]()
     
     let firstGraphView: UIView = {
         let view = UIView()
@@ -94,54 +96,41 @@ class AnalyticsViewController: UIViewController {
 //            make.centerX.equalToSuperview()
 //            make.bottom.equalToSuperview().offset(-10)
 //        }
-        for element in analyticsData {
-            if element.value != 0 {
-                
-            }
-        }
 
+//        for element in analyticsData {
+//            if element.value != 0 {
+//                for element in categoriesArray {
+//                    createWasteGraphFirst(view: firstGraphView, element: element)
+//                    createWasteGraphSecond(view: secondGraphView, element: element)
+//                }
+//            }
+//        }
         for element in analyticsData {
             if element.value != 0 {
-                for element in categoriesArray {
-                    plusGraphFirst += 1
-                    createWasteGraph(view: firstGraphView, element: element)
-                }
-                
-                for element in categoriesArray {
-                    plusGraphSecond += 1
-                    createWasteGraph(view: secondGraphView, element: element)
-                }
+                createWasteGraphFirst(view: firstGraphView, element: element.key)
+                createWasteGraphSecond(view: secondGraphView, element: element.key)
             }
         }
         
         
     }
     
-    func createWasteGraph(view: UIView, element: Icon) {
-        
+    private func createWasteGraphFirst(view: UIView, element: String) {
         let delta = 20
         let width = 40
         var height = 0
-        var counter = 0
-        print("\ntype: ", element.name)
 
-        if view == firstGraphView {
-            counter = plusGraphFirst
-            print("1st graphic")
-        } else {
-            counter = plusGraphSecond
-            print("2nd graphic")
-        }
+        print("\ntype: ", element)
 
-        
+        print("COUNTER = ", plusGraphFirst)
         for type in analyticsData {
-            if type.key == element.name {
+            if type.key == element {
                 height = type.value
                 break
             }
         }
-        print("height = \(height) for element \(element.name)")
-        
+        print("height = \(height) for element \(element)")
+        print("COUNTER = ", plusGraphFirst)
         
         height = correctHeight(height: height)
         print("height of graph = ", height)
@@ -152,20 +141,21 @@ class AnalyticsViewController: UIViewController {
             return view
         }()
         view.addSubview(newTypeView)
-        counter += 1
-        
+        print("COUNTER = ", plusGraphFirst)
         newTypeView.snp.makeConstraints { make in
             make.width.equalTo(width)
             make.height.equalTo(height)
             make.bottom.equalTo(view).offset(-50)
-            if counter == 1 {
-                make.leading.equalToSuperview()
-            } else {
-                make.leading.equalToSuperview().offset((delta + width) * (counter - 1))
+            if plusGraphFirst == 0 {
+                make.leading.equalTo(firstGraphView.bounds.minX).offset(20)
+            }
+            else {
+                make.leading.equalTo(view).offset((delta + width) * plusGraphFirst)
             }
         }
+        plusGraphFirst += 1
         let name = UILabel()
-        name.text = element.name
+        name.text = element
         name.font = UIFont(name: "system", size: 8)
         newTypeView.addSubview(name)
         name.snp.makeConstraints { make in
@@ -173,16 +163,75 @@ class AnalyticsViewController: UIViewController {
             make.bottom.equalTo(newTypeView).offset(20)
         }
         print("analyticsData.count = ", analyticsData.count)
-        print("graphCounter = ", counter)
-        if counter == analyticsData.count {
-            counter = 0
-        }
+        print("graphCounter = ", plusGraphFirst)
+
         heightCorrected = 0
+        print("COUNTER = ", plusGraphFirst)
+    }
+    
+    
+    
+    private func createWasteGraphSecond(view: UIView, element: String) {
+        let delta = 20
+        let width = 40
+        var height = 0
+        for type in analyticsData {
+            totalOfAll += type.value
+        }
+        print("TOTAL SUMM OF ALL WASTES = ", totalOfAll)
+            
+        print("\ntype: ", element)
+
+        print("COUNTER = ", plusGraphSecond)
         
+        let percentageArray = createPercentageArray()
+        
+        for type in percentageArray {
+            if type.key == element {
+                height = type.value
+                print("new percentage height for \(element) = \(height)")
+                break
+            }
+        }
+        print("height = \(height) for element \(element)")
+        //print("COUNTER = ", plusGraphSecond)
+        //height = (correctHeight(height: height))
+        print("height of graph = ", height)
+        let newTypeView: UIView = {
+            let view = UIView()
+            view.backgroundColor = ColorRandomizer.shared.randomizeColors()
+            return view
+        }()
+        view.addSubview(newTypeView)
+        print("COUNTER = ", plusGraphSecond)
+        newTypeView.snp.makeConstraints { make in
+            make.width.equalTo(width)
+            make.height.equalTo(height)
+            make.bottom.equalTo(view).offset(-50)
+            if plusGraphFirst == 0 {
+                make.leading.equalTo(firstGraphView.bounds.minX).offset(20)
+            }
+            else {
+                make.leading.equalTo(view).offset((delta + width) * plusGraphSecond)
+            }
+        }
+        plusGraphSecond += 1
+        let name = UILabel()
+        name.text = element
+        name.font = UIFont(name: "system", size: 8)
+        newTypeView.addSubview(name)
+        name.snp.makeConstraints { make in
+            make.centerX.equalTo(newTypeView)
+            make.bottom.equalTo(newTypeView).offset(20)
+        }
+        print("analyticsData.count = ", analyticsData.count)
+        print("graphCounter = ", plusGraphSecond)
+        heightCorrected = 0
+        totalOfAll = 0
+        print("COUNTER = ", plusGraphSecond)
     }
     
     private func correctHeight(height: Int) -> Int  {
-        
         if height > 1000 {
             heightCorrected = height / 100
         } else {
@@ -193,13 +242,23 @@ class AnalyticsViewController: UIViewController {
         return heightCorrected
     }
     
-//    func findNeededKey(array: [String : Int], icon: Icon) {
-//        for object in analyticsData {
-//            if object.key == icon.name {
-//                
-//            }
-//        }
-//    }
+    private func countPercentage(typeSumm: Int) -> Int {
+        var percentageForType = ((Double(typeSumm) / Double(totalOfAll)) * 100)
+        //print("for type = \(typeSumm)/\(totalOfAll) * 100 = ", percentageForType)
+        return Int(percentageForType)
+    }
     
+    private func createPercentageArray() -> [String: Int] {
+        var array = analyticsData
+        //print("ARRAY FOR 2 FUNC = ", array)
+        for element in array {
+            //print("\nold value = ", element.value)
+            var new = countPercentage(typeSumm: element.value)
+            //print("new value = ", new)
+            array.updateValue(new, forKey: element.key)
+        }
+        print("UPDATED ARRAY FOR 2 FUNC = ", array)
+        return array
+    }
     
 }

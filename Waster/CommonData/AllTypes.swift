@@ -37,7 +37,7 @@ var categoriesArray = [Icon]()
 var iconForLastWasteGlobal = ""
 
 
-enum IconsTapped: String {
+enum Icons: String {
     case car
     case health
     case home
@@ -46,7 +46,10 @@ enum IconsTapped: String {
     case subs
 }
 
-//switch IconsTapped.self {
+var icon = ""
+
+
+//switch icon {
 //case .car:
 //    return "car"
 //case .health:

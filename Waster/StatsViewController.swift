@@ -9,11 +9,12 @@ import UIKit
 import SnapKit
 
 
-class StatsViewController: UIViewController, IconDelegate {
+class StatsViewController: UIViewController {
     
-    func transferIcon(icon: Icon) {
-        iconForLastWaste = icon
-    }
+    
+    @IBOutlet weak var sortButton: UIButton!
+    
+    @IBOutlet weak var shareButtonView: UIImageView!
     
     var i = 0
     
@@ -25,7 +26,7 @@ class StatsViewController: UIViewController, IconDelegate {
     
     var iconForLastWaste: Icon?
     
-    //var delegate: IconDelegate?
+    var delegate: TransferData?
     
     var wasteNumber = wastesArray.count
     
@@ -36,17 +37,27 @@ class StatsViewController: UIViewController, IconDelegate {
     }()
     
     let contentView: UIView = {
-    let addView = UIView()
+        let addView = UIView()
         addView.backgroundColor = .themeBg
-    return addView
+        return addView
     }()
     
+    let picker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    var selectedDate = Date()
+    var isTapped = false
+    var tapCounter = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("StatsViewController opened")
         
         view.backgroundColor = .themeBg
+        
+        // добавить сюда text view для отображения даты текущей и добавления date picker
+        sortButton.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(30)
+        }
         
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,14 +86,26 @@ class StatsViewController: UIViewController, IconDelegate {
             addNewWaste(onView: contentView, element: element)
         }
         
-        let allWastesData = JSONManager()
-        allWastesData.saveData()
+        //        let allWastesData = JSONManager()
+        //        allWastesData.saveData()
         
-//        guard let lastAddedElement = wastesArray.last else {
-//            return
-//            print("no element in wastes array")
-//        }
-//        addNewWaste(onView: view, element: lastAddedElement)
+        //        guard let lastAddedElement = wastesArray.last else {
+        //            return
+        //            print("no element in wastes array")
+        //        }
+        //        addNewWaste(onView: view, element: lastAddedElement)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openShareView))
+        shareButtonView.addGestureRecognizer(tap)
+        shareButtonView.isUserInteractionEnabled = true
+        
+        if isTapped {
+            sortButton.setTitle("Sort", for: .normal)
+            UIView.animate(withDuration: 1, delay: 0.33) {
+                self.picker.removeFromSuperview()
+            }
+            isTapped = false
+        }
     }
     
     private func addNewWaste(onView: UIView, element: Waste) {
@@ -116,12 +139,10 @@ class StatsViewController: UIViewController, IconDelegate {
         
         let icon = UILabel()
         new.addSubview(icon)
-        //icon.text = iconForLastWaste?.name ?? "error"
-        var iconName = wastesArray.last?.type ?? "error 2"
-        icon.text = iconName
-        
-        let whatChosen = IconsTapped.RawValue.self
-        print("!!!!!! - ", whatChosen)
+        icon.text = delegate?.transferIcon()
+        print("DELEGATE ICON TEXT = ", icon.text)
+        let whatChosen = Icons.RawValue.self
+        print("!!!!!! what chosen - ", whatChosen)
         
         
         icon.font = UIFont(name: "system", size: 15)
@@ -131,15 +152,35 @@ class StatsViewController: UIViewController, IconDelegate {
             make.width.equalTo(100)
         }
         
-
         var iconView = UIImageView()
-//        iconView = iconForLastWaste?.view ?? UIImageView(image: UIImage(named: "car"))
+        
         new.addSubview(iconView)
-//        iconView.backgroundColor = .themeBg
-        iconView.image = UIImage(systemName: "heart.circle")
+        var iconToApply = ""
+        
+        switch wastesArray.last?.type ?? "car" {
+        case "car":
+            iconToApply = "car"
+        case "health":
+            iconToApply = "heart.circle"
+        case "joy":
+            iconToApply = "gamecontroller"
+        case "home":
+            iconToApply = "house"
+        case "child":
+            iconToApply = "figure.arms.open"
+        case "subs":
+            iconToApply = "play.tv.fill"
+        default :
+            break
+        }
+        print("isSetForIConForLastWaste = ", iconToApply)
+        
+        
+        iconView.image = UIImage(systemName: iconToApply)
         iconView.snp.makeConstraints { make in
             make.centerY.centerX.equalToSuperview()
-            make.width.height.equalTo(70)
+            make.width.equalTo(90)
+            make.height.equalTo(90)
         }
         
         let dateLabel = UILabel()
@@ -160,6 +201,73 @@ class StatsViewController: UIViewController, IconDelegate {
         let numberOfColors = (colorsForWastes.count - 1)
         let index = Int.random(in: 0...numberOfColors)
         return colorsForWastes[index]
+    }
+    
+    @IBAction func sortButtonTap(_ sender: Any) { //пофиксить проблему без выбора даты не закрывается
+        
+        print("sortButtonTap success")
+        
+        print(isTapped)
+        sortButton.setTitle("Close", for: .normal)
+        
+        picker.frame.origin.x = view.frame.midX - 150
+        picker.frame.origin.y = view.frame.midY - 150
+        picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .inline
+        picker.backgroundColor = .white
+        picker.alpha = 0
+        picker.addTarget(self, action: #selector(setChosenData), for: UIControl.Event.valueChanged)
+        view.addSubview(picker)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.33) {
+            self.picker.alpha = 1
+            self.picker.frame.size.width = 300
+            self.picker.frame.size.height = 300
+        }
+        isTapped = true
+        
+        //
+        //        if isTapped == true {
+        //            print(isTapped)
+        //            sortButton.setTitle("Sort", for: .normal)
+        //            UIView.animate(withDuration: 1, delay: 0.33) {
+        //                self.picker.removeFromSuperview()
+        //            }
+        //            isTapped = false
+        //            print(isTapped)
+        //        }
+        print("isTapped = ", isTapped)
+        tapCounter += 1
+        checkTapCounter()
+    }
+    
+    
+    
+    
+    @objc func openShareView() {
+        print("openShareButton tap success")
+        
+        let allWastesData = JSONManager()
+        allWastesData.saveData()
+        
+        let items = ["Save or share your wastes", ]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
+        
+    }
+    
+    @objc func setChosenData() {
+        selectedDate = self.picker.date
+        print(selectedDate)
+    }
+    private func checkTapCounter() {
+        if tapCounter > 1 {
+            sortButton.setTitle("Sort", for: .normal)
+            tapCounter = 0
+            UIView.animate(withDuration: 1, delay: 0.33) {
+                self.picker.removeFromSuperview()
+            }
+        }
     }
 }
 

@@ -6,14 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
-protocol IconDelegate {
-    func transferIcon(icon: Icon)
-}
-
-class CreateWasteViewController: UIViewController {
+class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround, TransferData{
     
-    var delegate: IconDelegate?
+
     
     @IBOutlet weak var wasteName: UILabel!
     
@@ -48,10 +45,15 @@ class CreateWasteViewController: UIViewController {
     
     var nameOfIcon = ""
     
-    var lastTappedTypeIcon: Icon?
+    var lastTappedTypeIcon: String?
+    
+    var lastMadeWaste: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideKeyboardWhenTappedAround()
         
         print("CreateWasteViewController opened")
         
@@ -171,7 +173,7 @@ class CreateWasteViewController: UIViewController {
             
             let waste = Waste(name: enterNameTF.text, wasteAmount: enterBudgetTF.text, type: nameOfIcon)
             wastesArray.append(waste)
-            
+            lastMadeWaste = waste.wasteAmount
             print("tap added to icon \(nameOfIcon)")
             print("object added to array and it is \(wastesArray.last)")
             self.dismiss(animated: true)
@@ -212,15 +214,14 @@ class CreateWasteViewController: UIViewController {
                 nameOfIcon = element.name
                 //iconForLastWaste = element.view
                 iconForLastWasteGlobal = element.name
+                lastTappedTypeIcon = element.name
+                
                 print("for icon for last view = ", iconForLastWasteGlobal)
             } else {
                 print("шляпа")
             }
             
         }
-        
-        //compareViewWithIcons(view: currentViewTap)
-        
     }
     
     private func compareViewWithIcons(view: UIView) {
@@ -265,5 +266,25 @@ class CreateWasteViewController: UIViewController {
 //            }
 //        }
 //    }
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+
+    @objc
+    private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func transferIcon() -> String {
+        return lastTappedTypeIcon ?? "error"
+    }
+    
+    func transferWaste() -> String {
+        return lastMadeWaste ?? "999"
+    }
+    
     
 }

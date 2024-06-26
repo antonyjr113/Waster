@@ -37,3 +37,14 @@ var analyticsData: [String: Int] = [
     "child" : 0
 ]
 
+func summariseWastesForType(type: String) {
+    for element in wastesArray {
+        if element.type == type {
+//            switch type {
+//            case.car:
+//                totalSummforCar += (element.wasteAmount as! NSString).integerValue
+//            }
+        }
+    }
+}
+
