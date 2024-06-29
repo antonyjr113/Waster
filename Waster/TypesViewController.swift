@@ -102,11 +102,6 @@ class TypesViewController: UIViewController {
         
         newType.openEditView(onView: contentView)
         
-        
-        let editWindow = EditWindow()
-        
-        editWindow.setConstraints(onView: view)
-        
 //        editWasteType(wt: newType)
 //        newType.newTypeView.backgroundColor = .systemCyan
 //        newType.createType(onView: contentView, name: "CAR" , icon: "ICON")

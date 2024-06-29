@@ -23,7 +23,6 @@ class PersonalPageViewController: UIViewController {
     
     @IBOutlet weak var addNewTypeButton: UIButton!
     
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
     
@@ -33,6 +32,7 @@ class PersonalPageViewController: UIViewController {
     return addView
     }()
     
+    let edit = EditAlert()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,13 +99,11 @@ class PersonalPageViewController: UIViewController {
     }
     
     @objc private func openEditWindow() {
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let vcEditWindow = sb.instantiateViewController(withIdentifier: "EditWindow") as! EditWindow
-//        present(vcEditWindow, animated: true)
-        let editWindow = EditWindow()
-        editWindow.setConstraints(onView: view)
-        editWindow.modalPresentationStyle = .overFullScreen
-        present(editWindow, animated: true)
+        edit.openEditAlert(onView: view)
+        edit.closeButton.addTarget(self, action: #selector(closeEditAlert), for: .touchUpInside)
+        edit.name.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        edit.desc.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        edit.icon.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
     }
     
     private func fillDate(label: UILabel) {
@@ -129,6 +127,20 @@ class PersonalPageViewController: UIViewController {
         
         present(wastePageVC, animated: true)
     }
-    
- 
+    @objc private func closeEditAlert() {
+        edit.editAlertView.removeFromSuperview()
+    }
+    @objc private func openAlertToTypeValue() {
+        let alert = UIAlertController(title: "Change data", message: "Please, enter new value: ", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
+            let tf = alert?.textFields![0]
+        }))
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: { [weak alert] (_) in
+            alert?.dismiss(animated: true)
+        }))
+        self.present(alert, animated: true)
+    }
 }

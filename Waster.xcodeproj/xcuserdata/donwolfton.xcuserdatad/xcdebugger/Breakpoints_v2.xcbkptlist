@@ -20,5 +20,68 @@
             landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5EB88E0-5D20-4496-AC06-36DCFD63AA3E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waster/Objects/EditWindow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "closeWindow(what:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F5EB88E0-5D20-4496-AC06-36DCFD63AA3E - 82935a1178f564"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waster.EditWindow.closeWindow(what: Waster.EditWindow) -&gt; ()"
+                  moduleName = "Waster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/donwolfton/Documents/git/Waster/Waster/Objects/EditWindow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "F5EB88E0-5D20-4496-AC06-36DCFD63AA3E - 82935a1178f55b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waster.EditWindow.closeWindow(what: Waster.EditWindow) -&gt; ()"
+                  moduleName = "Waster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/donwolfton/Documents/git/Waster/Waster/Objects/EditWindow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "F5EB88E0-5D20-4496-AC06-36DCFD63AA3E - 82935a1178f53a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Waster.EditWindow.closeWindow(what: Waster.EditWindow) -&gt; ()"
+                  moduleName = "Waster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/donwolfton/Documents/git/Waster/Waster/Objects/EditWindow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

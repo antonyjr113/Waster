@@ -46,6 +46,8 @@ class StatsViewController: UIViewController {
     var selectedDate = Date()
     var isTapped = false
     var tapCounter = 0
+    let edit = EditAlert()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,6 +128,10 @@ class StatsViewController: UIViewController {
             make.width.equalTo(100)
             make.height.equalTo(20)
         }
+        // long tap - open edit alert
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(openEditWindow))
+        new.addGestureRecognizer(longTap)
+        new.isUserInteractionEnabled = true
         
         let summ = UILabel()
         new.addSubview(summ)
@@ -225,25 +231,11 @@ class StatsViewController: UIViewController {
             self.picker.frame.size.height = 300
         }
         isTapped = true
-        
-        //
-        //        if isTapped == true {
-        //            print(isTapped)
-        //            sortButton.setTitle("Sort", for: .normal)
-        //            UIView.animate(withDuration: 1, delay: 0.33) {
-        //                self.picker.removeFromSuperview()
-        //            }
-        //            isTapped = false
-        //            print(isTapped)
-        //        }
         print("isTapped = ", isTapped)
         tapCounter += 1
         checkTapCounter()
     }
-    
-    
-    
-    
+
     @objc func openShareView() {
         print("openShareButton tap success")
         
@@ -267,6 +259,39 @@ class StatsViewController: UIViewController {
             UIView.animate(withDuration: 1, delay: 0.33) {
                 self.picker.removeFromSuperview()
             }
+        }
+    }
+    @objc private func openEditWindow() {
+        edit.editAlertView.alpha = 0
+        UIView.animate(withDuration: 0.5, delay: 0.5) {
+            self.edit.openEditAlert(onView: self.view)
+            self.edit.editAlertView.alpha = 1
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+        }
+        edit.closeButton.addTarget(self, action: #selector(closeEditAlert), for: .touchUpInside)
+        edit.name.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        edit.desc.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        edit.icon.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        
+    }
+    @objc private func openAlertToTypeValue() {
+        let alert = UIAlertController(title: "Change data", message: "Please, enter new value: ", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
+            let tf = alert?.textFields![0]
+        }))
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: { [weak alert] (_) in
+            alert?.dismiss(animated: true)
+        }))
+        self.present(alert, animated: true)
+    }
+    @objc private func closeEditAlert() {
+        UIView.animate(withDuration: 0.5, delay: 0.5) {
+            self.edit.editAlertView.removeFromSuperview()
+            self.edit.editAlertView.alpha = 0
         }
     }
 }

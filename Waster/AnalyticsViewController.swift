@@ -197,6 +197,7 @@ class AnalyticsViewController: UIViewController {
         //print("COUNTER = ", plusGraphSecond)
         //height = (correctHeight(height: height))
         print("height of graph = ", height)
+        
         let newTypeView: UIView = {
             let view = UIView()
             view.backgroundColor = ColorRandomizer.shared.randomizeColors()
@@ -206,9 +207,9 @@ class AnalyticsViewController: UIViewController {
         print("COUNTER = ", plusGraphSecond)
         newTypeView.snp.makeConstraints { make in
             make.width.equalTo(width)
-            make.height.equalTo(height)
+            make.height.equalTo(height * 2)
             make.bottom.equalTo(view).offset(-50)
-            if plusGraphFirst == 0 {
+            if plusGraphSecond == 0 {
                 make.leading.equalTo(firstGraphView.bounds.minX).offset(20)
             }
             else {
@@ -223,6 +224,14 @@ class AnalyticsViewController: UIViewController {
         name.snp.makeConstraints { make in
             make.centerX.equalTo(newTypeView)
             make.bottom.equalTo(newTypeView).offset(20)
+        }
+        let percent = UILabel()
+        percent.text = String(height)
+        percent.font = UIFont(name: "system", size: 8)
+        newTypeView.addSubview(percent)
+        percent.snp.makeConstraints { make in
+            make.centerX.equalTo(newTypeView)
+            make.top.equalTo(newTypeView).offset(-20)
         }
         print("analyticsData.count = ", analyticsData.count)
         print("graphCounter = ", plusGraphSecond)
