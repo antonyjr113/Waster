@@ -23,6 +23,9 @@
 		7D701BA42B45E0F400308946 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D701BA22B45E0F400308946 /* LaunchScreen.storyboard */; };
 		7D75379D2B5EE95D004ABCAF /* IconsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75379C2B5EE95D004ABCAF /* IconsExtension.swift */; };
 		7D75379F2B6023D4004ABCAF /* TypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75379E2B6023D4004ABCAF /* TypesViewController.swift */; };
+		7D76F71F2C47E780001B7A26 /* UDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76F71E2C47E780001B7A26 /* UDManager.swift */; };
+		7D76F7212C501AC5001B7A26 /* PersonalTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76F7202C501AC5001B7A26 /* PersonalTablesViewController.swift */; };
+		7D76F7232C501EC9001B7A26 /* PersonalTablesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76F7222C501EC9001B7A26 /* PersonalTablesCell.swift */; };
 		7D9701C02C3035FD00C11578 /* EditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9701BF2C3035FD00C11578 /* EditAlert.swift */; };
 		7D9EA48F2C0897BC004CCFFF /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EA48E2C0897BC004CCFFF /* HideKeyboard.swift */; };
 		7D9EA4912C0897CC004CCFFF /* AvoidingKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EA4902C0897CC004CCFFF /* AvoidingKeyboard.swift */; };
@@ -70,6 +73,9 @@
 		7D701BA52B45E0F400308946 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D75379C2B5EE95D004ABCAF /* IconsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsExtension.swift; sourceTree = "<group>"; };
 		7D75379E2B6023D4004ABCAF /* TypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesViewController.swift; sourceTree = "<group>"; };
+		7D76F71E2C47E780001B7A26 /* UDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDManager.swift; sourceTree = "<group>"; };
+		7D76F7202C501AC5001B7A26 /* PersonalTablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTablesViewController.swift; sourceTree = "<group>"; };
+		7D76F7222C501EC9001B7A26 /* PersonalTablesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTablesCell.swift; sourceTree = "<group>"; };
 		7D9701BF2C3035FD00C11578 /* EditAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlert.swift; sourceTree = "<group>"; };
 		7D9EA48E2C0897BC004CCFFF /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		7D9EA4902C0897CC004CCFFF /* AvoidingKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidingKeyboard.swift; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 				7D27C4E82C21A3ED00A9B304 /* WastesManager.swift */,
 				7D27C4EA2C21A75C00A9B304 /* DateManager.swift */,
 				7D9701BF2C3035FD00C11578 /* EditAlert.swift */,
+				7D76F71E2C47E780001B7A26 /* UDManager.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -147,6 +154,8 @@
 				7DE0971B2B541A1700E23A5B /* CreateWasteViewController.swift */,
 				7DE097202B554A9600E23A5B /* WastePageViewController.swift */,
 				7DE097222B584C0200E23A5B /* PersonalPageViewController.swift */,
+				7D76F7202C501AC5001B7A26 /* PersonalTablesViewController.swift */,
+				7D76F7222C501EC9001B7A26 /* PersonalTablesCell.swift */,
 				7DE097242B584F1D00E23A5B /* StatsViewController.swift */,
 				7DE097262B585ED600E23A5B /* SettingsViewController.swift */,
 				7DE097282B585F2A00E23A5B /* AnalyticsViewController.swift */,
@@ -264,6 +273,7 @@
 			files = (
 				7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */,
 				7D5C2F432BDFED9B00B12F07 /* JSONManager.swift in Sources */,
+				7D76F7232C501EC9001B7A26 /* PersonalTablesCell.swift in Sources */,
 				7D27C4E72C0CB45100A9B304 /* TransferData.swift in Sources */,
 				7D701B9C2B45E0F300308946 /* ViewController.swift in Sources */,
 				7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */,
@@ -284,6 +294,8 @@
 				7D1F9DB82B612BAB0099C23C /* AllTypes.swift in Sources */,
 				7D75379F2B6023D4004ABCAF /* TypesViewController.swift in Sources */,
 				7D27C4EB2C21A75C00A9B304 /* DateManager.swift in Sources */,
+				7D76F71F2C47E780001B7A26 /* UDManager.swift in Sources */,
+				7D76F7212C501AC5001B7A26 /* PersonalTablesViewController.swift in Sources */,
 				7DE097292B585F2A00E23A5B /* AnalyticsViewController.swift in Sources */,
 				7DE0971A2B54184700E23A5B /* ColorExtension.swift in Sources */,
 				7DE097272B585ED600E23A5B /* SettingsViewController.swift in Sources */,

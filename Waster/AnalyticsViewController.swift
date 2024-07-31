@@ -28,91 +28,56 @@ class AnalyticsViewController: UIViewController {
         return view
     }()
     
-//    let firstGraphStack: UIStackView = {
-//        let stack = UIStackView()
-//        //stack.spacing = 60
-//        stack.axis = .horizontal
-//        stack.backgroundColor = .white
-//        return stack
-//    }()
+    @IBOutlet weak var titleLabel: UILabel!
     
-//    let secondGraphStack: UIStackView = {
-//        let stack = UIStackView()
-//        stack.spacing = 15
-//        stack.axis = .horizontal
-//        stack.backgroundColor = .white
-//        return stack
-//    }()
-    
-    @IBOutlet weak var titleTF: UITextField!
-    
+    let placeholder = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("AnalyticsViewController opened")
         view.backgroundColor = .themeBG
-        titleTF.textAlignment = .center
-        titleTF.isEnabled = false
-        titleTF.text = "Your personal analytics"
-        titleTF.backgroundColor = .themeBg
-        titleTF.font = UIFont(name: "system", size: 32)
-        titleTF.borderStyle = .none
-        view.addSubview(titleTF)
-        
-        view.addSubview(firstGraphView)
-        firstGraphView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-            make.height.equalTo(300)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(titleTF).offset(30)
-        }
-        print("firstGraphView created")
-        
-//        firstGraphView.addSubview(firstGraphStack)
-//        firstGraphStack.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(10)
-//            make.trailing.equalToSuperview().offset(-10)
-//            make.height.equalTo(280)
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(titleTF).offset(40)
-//        }
-        
-        view.addSubview(secondGraphView)
-        secondGraphView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-            make.height.equalTo(300)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-65)
-        }
-        print("secondGraphView created")
-        
-//        secondGraphView.addSubview(secondGraphStack)
-//        secondGraphStack.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(10)
-//            make.trailing.equalToSuperview().offset(-10)
-//            make.height.equalTo(280)
-//            make.centerX.equalToSuperview()
-//            make.bottom.equalToSuperview().offset(-10)
-//        }
+        view.addSubview(titleLabel)
+        titleLabel.textAlignment = .center
 
-//        for element in analyticsData {
-//            if element.value != 0 {
-//                for element in categoriesArray {
-//                    createWasteGraphFirst(view: firstGraphView, element: element)
-//                    createWasteGraphSecond(view: secondGraphView, element: element)
-//                }
-//            }
-//        }
-        for element in analyticsData {
-            if element.value != 0 {
-                createWasteGraphFirst(view: firstGraphView, element: element.key)
-                createWasteGraphSecond(view: secondGraphView, element: element.key)
+        if wastesArray.isEmpty {
+            view.addSubview(placeholder)
+            placeholder.snp.makeConstraints { make in
+                make.centerX.centerY.equalToSuperview()
+            }
+            placeholder.text = "No wastes"
+            placeholder.textAlignment = .center
+            placeholder.font = placeholder.font.withSize(25)
+            placeholder.textColor = .black
+        } else {
+            placeholder.removeFromSuperview()
+            view.addSubview(firstGraphView)
+            firstGraphView.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(10)
+                make.trailing.equalToSuperview().offset(-10)
+                make.height.equalTo(300)
+                make.centerX.equalToSuperview()
+                make.top.equalTo(titleLabel).offset(30)
+            }
+            print("firstGraphView created")
+            view.addSubview(secondGraphView)
+            secondGraphView.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(10)
+                make.trailing.equalToSuperview().offset(-10)
+                make.height.equalTo(300)
+                make.centerX.equalToSuperview()
+                make.bottom.equalToSuperview().offset(-65)
+            }
+            print("secondGraphView created")
+            
+            for element in analyticsData {
+                if element.value != 0 {
+                    createWasteGraphFirst(view: firstGraphView, element: element.key)
+                    createWasteGraphSecond(view: secondGraphView, element: element.key)
+//                    UserDefaults.standard.set(element.value, forKey: element.key)
+//                    print("UD KEY for \(element.key) is Created")
+                }
             }
         }
-        
-        
     }
     
     private func createWasteGraphFirst(view: UIView, element: String) {
@@ -147,10 +112,13 @@ class AnalyticsViewController: UIViewController {
             make.height.equalTo(height)
             make.bottom.equalTo(view).offset(-50)
             if plusGraphFirst == 0 {
-                make.leading.equalTo(firstGraphView.bounds.minX).offset(20)
+                make.leading.equalTo(firstGraphView.bounds.minX).offset(10)
+            }
+            else if plusGraphFirst == 1 {
+                make.leading.equalTo(firstGraphView.bounds.minX).offset(delta + width + 20)
             }
             else {
-                make.leading.equalTo(view).offset((delta + width) * plusGraphFirst)
+                make.leading.equalTo(view).offset((delta + width) * plusGraphFirst + 20)
             }
         }
         plusGraphFirst += 1
@@ -210,10 +178,13 @@ class AnalyticsViewController: UIViewController {
             make.height.equalTo(height * 2)
             make.bottom.equalTo(view).offset(-50)
             if plusGraphSecond == 0 {
-                make.leading.equalTo(firstGraphView.bounds.minX).offset(20)
+                make.leading.equalTo(secondGraphView.bounds.minX).offset(15)
+            }
+            else if plusGraphSecond == 1 {
+                make.leading.equalTo(secondGraphView.bounds.minX).offset(delta + width + 20)
             }
             else {
-                make.leading.equalTo(view).offset((delta + width) * plusGraphSecond)
+                make.leading.equalTo(view).offset((delta + width) * plusGraphSecond + 20)
             }
         }
         plusGraphSecond += 1

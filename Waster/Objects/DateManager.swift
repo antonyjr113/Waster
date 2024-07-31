@@ -17,12 +17,20 @@ final class DateManager {
     }()
     
     
-    func returnDate() -> String {
+    func returnCurrentDate() -> String {
         let date = Date()
         let format = DateFormatter()
         format.dateFormat = "dd-MM-yyyy"
         let currentDate = format.string(from: date)
         return currentDate
+    }
+    
+    func returnCustomDate(date: Date) -> String {
+        let customDate = date
+        let format = DateFormatter()
+        format.dateFormat = "dd-MM-yyyy"
+        let customDateConverted = format.string(from: customDate)
+        return customDateConverted
     }
     
 

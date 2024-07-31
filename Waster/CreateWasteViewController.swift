@@ -49,6 +49,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     
     var lastMadeWaste: String?
     
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,15 +172,12 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
                 showNewWasteButton.tintColor = UIColor.systemGreen
             }
             
-            let waste = Waste(name: enterNameTF.text, wasteAmount: enterBudgetTF.text, type: nameOfIcon)
+            let waste = Waste(name: enterNameTF.text, wasteAmount: enterBudgetTF.text, type: nameOfIcon, date: DateManager.shared.returnCurrentDate())
             wastesArray.append(waste)
             lastMadeWaste = waste.wasteAmount
             print("tap added to icon \(nameOfIcon)")
             print("object added to array and it is \(wastesArray.last)")
             self.dismiss(animated: true)
-            
-            
-            
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "StatsViewController") as! StatsViewController
             present(vc, animated: true)
@@ -187,9 +185,11 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             saveWasteNameButton.tintColor = .systemYellow
             saveWasteBudgetButton.tintColor = .systemYellow
         }
-        
         updateAnalytics(arrayWithData: wastesArray)
         
+//        let encodedWastesArray = try? NSKeyedArchiver.archivedData(withRootObject: wastesArray, requiringSecureCoding: false)
+//            userDefaults.set(encodedWastesArray, forKey: "wastesArray")
+//        print(userDefaults.object(forKey: "wastesArray"))
     }
     
     private func tapOnIcon(icon: UIImageView) {
@@ -256,6 +256,9 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             }
         }
         analyticsData.updateValue(intSumm, forKey: name)
+        UserDefaults.standard.set(intSumm, forKey: name)
+        print("UD KEY for !\(name)! is Created")
+        print(UserDefaults.standard.value(forKey: name))
         print(analyticsData)
     }
     

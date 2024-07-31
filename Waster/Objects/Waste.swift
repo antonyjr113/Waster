@@ -11,6 +11,7 @@ struct Waste: Codable {
     let name: String?
     let wasteAmount: String?
     let type: String?
+    let date: String?
 }
 
 
@@ -37,14 +38,26 @@ var analyticsData: [String: Int] = [
     "child" : 0
 ]
 
-func summariseWastesForType(type: String) {
-    for element in wastesArray {
-        if element.type == type {
-//            switch type {
-//            case.car:
-//                totalSummforCar += (element.wasteAmount as! NSString).integerValue
-//            }
-        }
-    }
+var budgetEntered = "0"
+
+var currencyEntered = ""
+var currencyForImage = ""
+
+var keysArray: [String] = []
+
+var dataForMonthStatsArray: [MonthStats] = []
+
+struct MonthStats {
+    var month: String?
+    var delta: Int?
+    let title = "Month "
+}
+
+var dataForReportsArray: [Reports] = []
+
+struct Reports {
+    let report: Data?
+    let reportDate: String?
+    let title = "Report "
 }
 

@@ -22,12 +22,13 @@ class JSONManager {
             let data = try test.encode(wastesArray)
             print(String(data: data, encoding: .utf8)!)
             try data.write(to: filePath)
+            dataForReportsArray.append(Reports(report: data, reportDate: DateManager.shared.returnCurrentDate()))
+            print("JSON saved successfully")
         }
         catch {
             print("error while saving data")
         }
     }
-    
 
     func getDocumentsDirectoryUrl() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

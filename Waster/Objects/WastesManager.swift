@@ -31,7 +31,7 @@ final class WastesManager {
         return instance
         
         func appendWaste(name: String, summ: String, icon: String){
-            let newWaste = Waste(name: name, summ: summ, icon: icon, date: DateManager.shared.returnDate())
+            let newWaste = Waste(name: name, summ: summ, icon: icon, date: DateManager.shared.returnCurrentDate())
             allWastesArray.append(newWaste)
         }
         

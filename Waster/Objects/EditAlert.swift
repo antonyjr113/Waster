@@ -10,6 +10,16 @@ import SnapKit
 
 final class EditAlert {
     
+    var firstField: String?
+    var secondField: String?
+    var thirdField: String?
+    
+    init(firstField: String, secondField: String, thirdField: String) {
+        self.firstField = firstField
+        self.secondField = secondField
+        self.thirdField = thirdField
+    }
+    
     let editAlertView: UIView = {
         let view = UIView()
         view.backgroundColor = .themeBg
@@ -18,26 +28,23 @@ final class EditAlert {
         return view
     }()
     
-    let name: UIButton = {
+    let firstOption: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 10
-        button.setTitle("Name", for: .normal)
         return button
     }()
-    let desc: UIButton = {
+    let secondOption: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 10
-        button.setTitle("Description", for: .normal)
         return button
     }()
     
-    let icon: UIButton = {
+    let thirdOption: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 10
-        button.setTitle("Type", for: .normal)
         return button
     }()
     
@@ -63,26 +70,29 @@ final class EditAlert {
             make.height.equalTo(25)
             make.width.equalTo(75)
         }
-        editAlertView.addSubview(name)
-        name.snp.makeConstraints { make in
+        editAlertView.addSubview(firstOption)
+        firstOption.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(100)
             make.centerX.equalToSuperview()
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
-        editAlertView.addSubview(icon)
-        icon.snp.makeConstraints { make in
+        firstOption.setTitle(firstField, for: .normal)
+        editAlertView.addSubview(thirdOption)
+        thirdOption.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-100)
             make.centerX.equalToSuperview()
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
-        editAlertView.addSubview(desc)
-        desc.snp.makeConstraints { make in
+        thirdOption.setTitle(thirdField, for: .normal)
+        editAlertView.addSubview(secondOption)
+        secondOption.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
+        secondOption.setTitle(secondField, for: .normal)
     }
     
 }

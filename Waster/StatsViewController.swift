@@ -46,7 +46,13 @@ class StatsViewController: UIViewController {
     var selectedDate = Date()
     var isTapped = false
     var tapCounter = 0
-    let edit = EditAlert()
+    
+    let edit = EditAlert(firstField: "Edit Note", secondField: "Edit Amount", thirdField: "Edit Type")
+    
+    let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+    var blurEffectView = UIVisualEffectView()
+    
+    let placeholder = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +60,6 @@ class StatsViewController: UIViewController {
         print("StatsViewController opened")
         
         view.backgroundColor = .themeBg
-        
-        // добавить сюда text view для отображения даты текущей и добавления date picker
         sortButton.snp.makeConstraints { make in
             make.width.equalTo(100)
             make.height.equalTo(30)
@@ -84,10 +88,23 @@ class StatsViewController: UIViewController {
         }
         baseY = Int(contentView.frame.minY)
         
-        for element in wastesArray {
-            addNewWaste(onView: contentView, element: element)
-        }
         
+        if wastesArray.isEmpty {
+            view.addSubview(placeholder)
+            placeholder.snp.makeConstraints { make in
+                make.centerX.centerY.equalToSuperview()
+            }
+            placeholder.text = "No wastes"
+            placeholder.textAlignment = .center
+            placeholder.font = placeholder.font.withSize(25)
+            placeholder.textColor = .black
+        } else {
+            placeholder.removeFromSuperview()
+            for element in wastesArray {
+                addNewWaste(onView: contentView, element: element)
+            }
+        }
+
         //        let allWastesData = JSONManager()
         //        allWastesData.saveData()
         
@@ -96,7 +113,6 @@ class StatsViewController: UIViewController {
         //            print("no element in wastes array")
         //        }
         //        addNewWaste(onView: view, element: lastAddedElement)
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(openShareView))
         shareButtonView.addGestureRecognizer(tap)
         shareButtonView.isUserInteractionEnabled = true
@@ -108,6 +124,10 @@ class StatsViewController: UIViewController {
             }
             isTapped = false
         }
+        //trigger saving report in JSON
+        let json = JSONManager()
+        json.saveData()
+        print(dataForReportsArray.count)
     }
     
     private func addNewWaste(onView: UIView, element: Waste) {
@@ -234,6 +254,12 @@ class StatsViewController: UIViewController {
         print("isTapped = ", isTapped)
         tapCounter += 1
         checkTapCounter()
+        
+//        for element in wastesArray {
+//            if element.date == DateManager.shared.returnCustomDate(date: selectedDate) {
+//                addNewWaste(onView: contentView, element: element)
+//            }
+//        }
     }
 
     @objc func openShareView() {
@@ -262,6 +288,12 @@ class StatsViewController: UIViewController {
         }
     }
     @objc private func openEditWindow() {
+//        UIView.animate(withDuration: 0.5, delay: 0.5) {
+//            self.blurEffectView = UIVisualEffectView(effect: self.blurEffect)
+//            self.blurEffectView.frame = self.view.bounds
+//            self.blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//            self.view.addSubview(self.blurEffectView)
+//        }
         edit.editAlertView.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0.5) {
             self.edit.openEditAlert(onView: self.view)
@@ -270,9 +302,9 @@ class StatsViewController: UIViewController {
             generator.impactOccurred()
         }
         edit.closeButton.addTarget(self, action: #selector(closeEditAlert), for: .touchUpInside)
-        edit.name.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
-        edit.desc.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
-        edit.icon.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        edit.firstOption.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        edit.secondOption.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
+        edit.thirdOption.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
         
     }
     @objc private func openAlertToTypeValue() {
@@ -292,7 +324,22 @@ class StatsViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0.5) {
             self.edit.editAlertView.removeFromSuperview()
             self.edit.editAlertView.alpha = 0
+            //self.blurEffectView.removeFromSuperview()
         }
+
+    }
+    //для сортировки по датам
+    private func sortWastesDueToDate(date: String) -> [Waste] {
+        let formater = DateFormatter()
+        formater.dateFormat = "dd-MM-yyyy"
+        let chosen = formater.string(from: selectedDate)
+        var newArray = [Waste]()
+        for element in wastesArray {
+            if element.date == chosen {
+                newArray.append(element)
+            }
+        }
+        return newArray
     }
 }
 
