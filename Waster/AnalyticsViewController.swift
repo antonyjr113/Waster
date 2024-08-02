@@ -84,6 +84,7 @@ class AnalyticsViewController: UIViewController {
         let delta = 20
         let width = 40
         var height = 0
+        var forAmount = 0.0
 
         print("\ntype: ", element)
 
@@ -94,6 +95,7 @@ class AnalyticsViewController: UIViewController {
                 break
             }
         }
+        forAmount = Double(height) / 1000
         print("height = \(height) for element \(element)")
         print("COUNTER = ", plusGraphFirst)
         
@@ -129,6 +131,14 @@ class AnalyticsViewController: UIViewController {
         name.snp.makeConstraints { make in
             make.centerX.equalTo(newTypeView)
             make.bottom.equalTo(newTypeView).offset(20)
+        }
+        let amount = UILabel()
+        amount.text = String(forAmount)
+        amount.font = UIFont(name: "system", size: 5)
+        newTypeView.addSubview(amount)
+        amount.snp.makeConstraints { make in
+            make.centerX.equalTo(newTypeView)
+            make.top.equalTo(newTypeView).offset(-20)
         }
         print("analyticsData.count = ", analyticsData.count)
         print("graphCounter = ", plusGraphFirst)

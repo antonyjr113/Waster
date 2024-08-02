@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 
 class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround, TransferData{
-    
 
-    
     @IBOutlet weak var wasteName: UILabel!
     
     @IBOutlet weak var wasteBudget: UILabel!
@@ -39,7 +37,6 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     @IBOutlet weak var chooseSubsIcon: UIImageView!
     
     @IBOutlet weak var chooseJoyIcon: UIImageView!
-    
     
     let newWaste = WastePageViewController()
     
@@ -105,28 +102,18 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
         
         view.addSubview(saveWasteNameButton)
         saveWasteNameButton.setTitle("Save", for: .normal)
-        
-        
         view.addSubview(saveWasteBudgetButton)
         saveWasteBudgetButton.setTitle("Save", for: .normal)
-        
-        
         view.addSubview(showNewWasteButton)
         showNewWasteButton.setTitle("Add", for: .normal)
-        
         showNewWasteButton.tintColor = .systemYellow
         saveWasteNameButton.tintColor = .systemYellow
         saveWasteBudgetButton.tintColor = .systemYellow
-        
-        
         for element in categoriesArray {
             tapOnIcon(icon: element.view)
         }
-        
     }
-    
     @IBAction func saveNameButtonTap(_ sender: Any) {
-        
         if enterNameTF.text == "" {
             let alert = UIAlertController(title: "Name is empty", message: "Enter name of waste at first", preferredStyle: .alert)
             
@@ -139,9 +126,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
         }
         print("name \(wasteName.text) saved")
     }
-    
     @IBAction func saveBudgetButtonTap(_ sender: Any) {
-        
         if enterBudgetTF.text == "" {
             
             let alert = UIAlertController(title: "Budget summ is empty", message: "Enter the summ of budjet please", preferredStyle: .alert)
@@ -152,14 +137,10 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
         } else {
             saveWasteBudgetButton.tintColor = UIColor.systemGreen
             newWaste.budget = enterBudgetTF.text ?? ""
-            
         }
-        
         print("budget saved")
     }
-    
     @IBAction func addWasteButtonTap(_ sender: Any) {
-        
         if newWaste.name == "" || newWaste.budget == "" {
             let alert = UIAlertController(title: "Empty fields", message: "Please, fill Name and Budget fields", preferredStyle: .alert)
             
@@ -171,10 +152,9 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             if saveWasteNameButton.tintColor == UIColor.systemGreen && saveWasteBudgetButton.tintColor == UIColor.systemGreen {
                 showNewWasteButton.tintColor = UIColor.systemGreen
             }
-            
             let waste = Waste(name: enterNameTF.text, wasteAmount: enterBudgetTF.text, type: nameOfIcon, date: DateManager.shared.returnCurrentDate())
             wastesArray.append(waste)
-            lastMadeWaste = waste.wasteAmount
+            //lastMadeWaste = waste.wasteAmount
             print("tap added to icon \(nameOfIcon)")
             print("object added to array and it is \(wastesArray.last)")
             self.dismiss(animated: true)
@@ -185,29 +165,19 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             saveWasteNameButton.tintColor = .systemYellow
             saveWasteBudgetButton.tintColor = .systemYellow
         }
-        updateAnalytics(arrayWithData: wastesArray)
-        
-//        let encodedWastesArray = try? NSKeyedArchiver.archivedData(withRootObject: wastesArray, requiringSecureCoding: false)
-//            userDefaults.set(encodedWastesArray, forKey: "wastesArray")
-//        print(userDefaults.object(forKey: "wastesArray"))
+        updateAnalytics(type: wastesArray.last?.type ?? "error", amount: wastesArray.last?.wasteAmount ?? "999")
     }
-    
     private func tapOnIcon(icon: UIImageView) {
         let tap = UITapGestureRecognizer(target: self, action: #selector(highlightIcon))
         icon.addGestureRecognizer(tap)
         icon.isUserInteractionEnabled = true
     }
-    
     @objc func highlightIcon(sender : UITapGestureRecognizer) {
-        
         var currentViewTap = sender.view ?? nil
         let alert = UIAlertController(title: "Done", message: "Icon is chosen!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
-        //currentViewTap = lastTappedTypeIcon
-        //currentViewTap = iconForLastWaste
         print("what is tapped = ", sender.view)
-        
         for element in categoriesArray {
             if sender.view == element.view {
                 print("TRUE = ", element.name)
@@ -215,15 +185,12 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
                 //iconForLastWaste = element.view
                 iconForLastWasteGlobal = element.name
                 lastTappedTypeIcon = element.name
-                
                 print("for icon for last view = ", iconForLastWasteGlobal)
             } else {
                 print("шляпа")
             }
-            
         }
     }
-    
     private func compareViewWithIcons(view: UIView) {
         for element in categoriesArray {
             if view == element.view {
@@ -232,50 +199,29 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             print("!!! - ", nameOfIcon)
         }
     }
-    
-    private func updateAnalytics(arrayWithData: [Waste]) {
-        
-        var neededKey = "error"
-        guard
-            let last = arrayWithData.last
-        else {
-            return
-        }
-        print(last.name)
-        let summ = last.wasteAmount ?? "error"
-        print("summ = ", summ)
-        let intSumm = Int(summ)!
-        print("summ int = ", intSumm)
-        
-        let name = last.type ?? "error"
-        print("name = ", name)
-        
+    private func updateAnalytics(type: String, amount: String) {
+        print("all types and wastse = ", analyticsData)
+        print("type for update = ", type)
+        var lastAmount = (amount as NSString).integerValue
+        var actualValue = 0
         for element in analyticsData {
-            if element.key == last.name {
-                neededKey = element.key
+            if element.key == type {
+                var oldValue = element.value
+                oldValue += lastAmount
+                analyticsData.updateValue(oldValue, forKey: type)
+                actualValue = oldValue
             }
         }
-        analyticsData.updateValue(intSumm, forKey: name)
-        UserDefaults.standard.set(intSumm, forKey: name)
-        print("UD KEY for !\(name)! is Created")
-        print(UserDefaults.standard.value(forKey: name))
-        print(analyticsData)
+        print("actual value of \(type) = \(actualValue)")
+        print("all types and wastse fater update = ", analyticsData)
     }
-    
-//    func findNeededKey(array: [String : Int]) {
-//        for element in analyticsData {
-//            if element.key == last.name {
-//                neededKey = element.key
-//            }
-//        }
-//    }
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(
             target: self,
             action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
     }
-
+    
     @objc
     private func dismissKeyboard() {
         view.endEditing(true)
@@ -288,6 +234,4 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     func transferWaste() -> String {
         return lastMadeWaste ?? "999"
     }
-    
-    
 }

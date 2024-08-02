@@ -58,6 +58,7 @@ final class EditAlert {
 
     func openEditAlert(onView: UIView) {
         onView.addSubview(editAlertView)
+        //editAlertView.alpha = 1
         editAlertView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.width.equalTo(300)

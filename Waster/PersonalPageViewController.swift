@@ -302,6 +302,13 @@ class PersonalPageViewController: UIViewController{
     }
     
     @objc private func openEditWindow() {
+        
+//        UIView.animate(withDuration: 1, delay: 0) {
+//            self.edit.editAlertView.alpha = 1
+//            self.edit.openEditAlert(onView: self.view)
+//            self.edit.editAlertView.frame.size.width += 300
+//            self.edit.editAlertView.frame.size.height += 500
+//        }
         edit.openEditAlert(onView: view)
         edit.closeButton.addTarget(self, action: #selector(closeEditAlert), for: .touchUpInside)
         edit.firstOption.addTarget(self, action: #selector(openAlertToTypeUserName), for: .touchUpInside)
