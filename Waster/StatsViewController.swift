@@ -97,22 +97,13 @@ class StatsViewController: UIViewController {
             placeholder.text = "No wastes"
             placeholder.textAlignment = .center
             placeholder.font = placeholder.font.withSize(25)
-            placeholder.textColor = .black
+            placeholder.textColor = UIColor(named: "systemWhite")
         } else {
             placeholder.removeFromSuperview()
             for element in wastesArray {
                 addNewWaste(onView: contentView, element: element)
             }
         }
-
-        //        let allWastesData = JSONManager()
-        //        allWastesData.saveData()
-        
-        //        guard let lastAddedElement = wastesArray.last else {
-        //            return
-        //            print("no element in wastes array")
-        //        }
-        //        addNewWaste(onView: view, element: lastAddedElement)
         let tap = UITapGestureRecognizer(target: self, action: #selector(openShareView))
         shareButtonView.addGestureRecognizer(tap)
         shareButtonView.isUserInteractionEnabled = true
@@ -127,19 +118,18 @@ class StatsViewController: UIViewController {
         //trigger saving report in JSON
         let json = JSONManager()
         json.saveData()
-        print(dataForReportsArray.count)
+        print("saved wastes = ", dataForReportsArray.count)
     }
-    
     private func addNewWaste(onView: UIView, element: Waste) {
-        
         let new = UIView(frame: CGRect(x: baseX, y: baseY, width: 365, height: 150))
         onView.addSubview(new)
         let backForView = ColorRandomizer.shared.randomizeColors()
         new.backgroundColor = backForView
-        
+        new.layer.cornerRadius = 10
         let name = UILabel()
         new.addSubview(name)
         name.text = element.name
+        name.textColor = UIColor(named: "systemBackground")
         print(name)
         name.font = UIFont(name: "system", size: 15)
         name.snp.makeConstraints { make in
@@ -152,37 +142,31 @@ class StatsViewController: UIViewController {
         let longTap = UILongPressGestureRecognizer(target: self, action: #selector(openEditWindow))
         new.addGestureRecognizer(longTap)
         new.isUserInteractionEnabled = true
-        
         let summ = UILabel()
         new.addSubview(summ)
         summ.text = element.wasteAmount
+        summ.textColor = UIColor(named: "systemBackground")
         summ.font = UIFont(name: "system", size: 15)
         summ.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(50)
             make.leading.equalToSuperview().offset(15)
             make.width.equalTo(100)
         }
-        
         let icon = UILabel()
         new.addSubview(icon)
-        icon.text = delegate?.transferIcon()
-        print("DELEGATE ICON TEXT = ", icon.text)
+        //icon.text = delegate?.transferIcon()
+        //print("DELEGATE ICON TEXT = ", icon.text)
         let whatChosen = Icons.RawValue.self
         print("!!!!!! what chosen - ", whatChosen)
-        
-        
         icon.font = UIFont(name: "system", size: 15)
         icon.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(90)
             make.leading.equalToSuperview().offset(15)
             make.width.equalTo(100)
         }
-        
         var iconView = UIImageView()
-        
         new.addSubview(iconView)
         var iconToApply = ""
-        
         switch wastesArray.last?.type ?? "car" {
         case "car":
             iconToApply = "car"
@@ -199,18 +183,16 @@ class StatsViewController: UIViewController {
         default :
             break
         }
-        print("isSetForIConForLastWaste = ", iconToApply)
-        
-        
+        print("isSetForIconForLastWaste = ", iconToApply)
         iconView.image = UIImage(systemName: iconToApply)
         iconView.snp.makeConstraints { make in
             make.centerY.centerX.equalToSuperview()
             make.width.equalTo(90)
             make.height.equalTo(90)
         }
-        
         let dateLabel = UILabel()
         new.addSubview(dateLabel)
+        dateLabel.textColor = UIColor(named: "systemBackground")
         let date = Date()
         let format = DateFormatter()
         format.dateFormat = "dd-MM-yyyy"
@@ -222,30 +204,24 @@ class StatsViewController: UIViewController {
         }
         baseY+=180
     }
-    
     private func randomizeColors() -> UIColor {
         let numberOfColors = (colorsForWastes.count - 1)
         let index = Int.random(in: 0...numberOfColors)
         return colorsForWastes[index]
     }
-    
     @IBAction func sortButtonTap(_ sender: Any) { //пофиксить проблему без выбора даты не закрывается
-        
         print("sortButtonTap success")
-        
         print(isTapped)
         sortButton.setTitle("Close", for: .normal)
-        
         picker.frame.origin.x = view.frame.midX - 150
         picker.frame.origin.y = view.frame.midY - 150
         picker.datePickerMode = .date
         picker.preferredDatePickerStyle = .inline
-        picker.backgroundColor = .white
+        picker.backgroundColor = .systemBackground
         picker.alpha = 0
         picker.addTarget(self, action: #selector(setChosenData), for: UIControl.Event.valueChanged)
         view.addSubview(picker)
-        
-        UIView.animate(withDuration: 0.5, delay: 0.33) {
+        UIView.animate(withDuration: 0.5, delay: 0) {
             self.picker.alpha = 1
             self.picker.frame.size.width = 300
             self.picker.frame.size.height = 300
@@ -254,26 +230,15 @@ class StatsViewController: UIViewController {
         print("isTapped = ", isTapped)
         tapCounter += 1
         checkTapCounter()
-        
-//        for element in wastesArray {
-//            if element.date == DateManager.shared.returnCustomDate(date: selectedDate) {
-//                addNewWaste(onView: contentView, element: element)
-//            }
-//        }
     }
-
     @objc func openShareView() {
         print("openShareButton tap success")
-        
         let allWastesData = JSONManager()
         allWastesData.saveData()
-        
         let items = ["Save or share your wastes", ]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
-        
     }
-    
     @objc func setChosenData() {
         selectedDate = self.picker.date
         print(selectedDate)
@@ -305,7 +270,6 @@ class StatsViewController: UIViewController {
         edit.firstOption.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
         edit.secondOption.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
         edit.thirdOption.addTarget(self, action: #selector(openAlertToTypeValue), for: .touchUpInside)
-        
     }
     @objc private func openAlertToTypeValue() {
         let alert = UIAlertController(title: "Change data", message: "Please, enter new value: ", preferredStyle: .alert)
@@ -326,7 +290,6 @@ class StatsViewController: UIViewController {
             self.edit.editAlertView.alpha = 0
             //self.blurEffectView.removeFromSuperview()
         }
-
     }
     //для сортировки по датам
     private func sortWastesDueToDate(date: String) -> [Waste] {

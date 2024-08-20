@@ -43,9 +43,16 @@ class ViewController: UIViewController {
         return image
     }()
     
+    override func viewDidAppear(_ animated: Bool) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let splash = sb.instantiateViewController(identifier: "SplashViewController") as! SplashViewController
+        splash.modalPresentationStyle = .overFullScreen
+        self.present(splash, animated: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .themeBG
         view.addSubview(plusButtonView)
         view.addSubview(personalPageView)

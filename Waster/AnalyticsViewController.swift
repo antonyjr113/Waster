@@ -27,6 +27,14 @@ class AnalyticsViewController: UIViewController {
         view.backgroundColor = .systemGray
         return view
     }()
+    let firstGraphViewTitle: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    let secondGraphViewTitle: UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -47,7 +55,7 @@ class AnalyticsViewController: UIViewController {
             placeholder.text = "No wastes"
             placeholder.textAlignment = .center
             placeholder.font = placeholder.font.withSize(25)
-            placeholder.textColor = .black
+            placeholder.textColor = UIColor(named: "systemWhite")
         } else {
             placeholder.removeFromSuperview()
             view.addSubview(firstGraphView)
@@ -56,7 +64,7 @@ class AnalyticsViewController: UIViewController {
                 make.trailing.equalToSuperview().offset(-10)
                 make.height.equalTo(300)
                 make.centerX.equalToSuperview()
-                make.top.equalTo(titleLabel).offset(30)
+                make.top.equalTo(titleLabel).offset(60)
             }
             print("firstGraphView created")
             view.addSubview(secondGraphView)
@@ -65,10 +73,29 @@ class AnalyticsViewController: UIViewController {
                 make.trailing.equalToSuperview().offset(-10)
                 make.height.equalTo(300)
                 make.centerX.equalToSuperview()
-                make.bottom.equalToSuperview().offset(-65)
+                make.bottom.equalToSuperview().offset(-45)
             }
             print("secondGraphView created")
-            
+            view.addSubview(firstGraphViewTitle)
+            firstGraphViewTitle.snp.makeConstraints { make in
+                make.top.equalTo(titleLabel).offset(30)
+                make.width.equalToSuperview()
+                make.centerX.equalToSuperview()
+                make.height.equalTo(30)
+            }
+            firstGraphViewTitle.text = "Summary of wastes by types, / 1000"
+            firstGraphViewTitle.font = UIFont(name: "system", size: 25)
+            firstGraphViewTitle.textAlignment = .center
+            view.addSubview(secondGraphViewTitle)
+            secondGraphViewTitle.snp.makeConstraints { make in
+                make.top.equalTo(secondGraphView).offset(-30)
+                make.width.equalToSuperview()
+                make.centerX.equalToSuperview()
+                make.height.equalTo(30)
+            }
+            secondGraphViewTitle.text = "Percentage by waste types, %"
+            secondGraphViewTitle.font = UIFont(name: "system", size: 25)
+            secondGraphViewTitle.textAlignment = .center
             for element in analyticsData {
                 if element.value != 0 {
                     createWasteGraphFirst(view: firstGraphView, element: element.key)

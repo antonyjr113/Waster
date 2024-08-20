@@ -182,7 +182,6 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             if sender.view == element.view {
                 print("TRUE = ", element.name)
                 nameOfIcon = element.name
-                //iconForLastWaste = element.view
                 iconForLastWasteGlobal = element.name
                 lastTappedTypeIcon = element.name
                 print("for icon for last view = ", iconForLastWasteGlobal)

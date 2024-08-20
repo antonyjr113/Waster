@@ -24,7 +24,9 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
     var arrayForReportsTitles: [String] = []
     
     var numberOfCells: Int = 0
-
+    
+    var titleOfTable: String = ""
+    
     let statsTable: UITableView = {
         let table = UITableView()
         table.backgroundColor = .themeBg
@@ -39,16 +41,38 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
         label.textAlignment = .center
         return label
     }()
+    let tableTitle: UILabel = {
+        let title = UILabel()
+//        title.font = UIFont(name: "system", size: 42)
+//        title.textAlignment = .center
+//        title.textColor = .systemBlue
+        return title
+    }()
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.backgroundColor = .themeBG
         view.addSubview(statsTable)
-        statsTable.frame = view.bounds
+        statsTable.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+            make.bottom.equalToSuperview()
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(tableTitle)
+        tableTitle.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(200)
+            make.height.equalTo(20)
+        }
+        tableTitle.text = titleOfTable
+        tableTitle.font = UIFont(name: "system", size: 20)
+        tableTitle.textAlignment = .center
+        tableTitle.textColor = .systemBlue
         makeTitles()
         statsTable.backgroundColor = .themeBG
         statsTable.delegate = self

@@ -73,7 +73,7 @@ class SettingsViewController: UIViewController {
     
     private func simpleGetUrlRequestWithErrorHandling(){
             let session = URLSession.shared
-            let url = URL(string: "https://drive.google.com/file/d/1TrVSSylDQAA0_GXuOwrSeVZKD0ZjGT2Q/view?usp=drive_link")!
+            let url = URL(string: "https://sgonay.com.pl/rules")!
             
             let task = session.dataTask(with: url) { data, response, error in
                 

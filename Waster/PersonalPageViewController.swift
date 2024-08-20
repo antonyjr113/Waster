@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonalPageViewController: UIViewController{
+class PersonalPageViewController: UIViewController {
     
     @IBOutlet weak var photoView: UIImageView!
     
@@ -146,18 +146,21 @@ class PersonalPageViewController: UIViewController{
             make.leading.equalToSuperview().offset(10)
             make.width.equalToSuperview()
         }
+        userName.textColor = .systemBlue
         profileTitleView.addSubview(overallBudget)
         overallBudget.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
             make.width.equalToSuperview()
             make.bottom.equalToSuperview().offset(-10)
         }
+        overallBudget.textColor = .systemBlue
         profileTitleView.addSubview(lastWaste)
         lastWaste.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
             make.width.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        lastWaste.textColor = .systemBlue
         profileTitleView.addSubview(currency)
         currency.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -174,13 +177,13 @@ class PersonalPageViewController: UIViewController{
         currentDateLabel.textColor = .texts
         
         view.addSubview(viewForGoal)
+        viewForGoal.layer.cornerRadius = 15
         viewForGoal.snp.makeConstraints { make in
             make.width.equalTo(160)
             make.height.equalTo(180)
             make.leading.equalToSuperview().offset(20)
             make.top.equalTo(addNewTypeButton).offset(50)
         }
-        viewForGoal.backgroundColor = .systemGreen
         viewForGoal.backgroundColor = .systemGreen
         viewForGoal.addSubview(iconViewForGoal)
         iconViewForGoal.image = UIImage(systemName: "arrow.up.arrow.down.square")
@@ -198,11 +201,10 @@ class PersonalPageViewController: UIViewController{
             make.bottom.equalToSuperview().offset(-5)
             make.centerX.equalToSuperview()
             make.height.equalTo(20)
-            make.width.equalTo(viewForGoal)
+            make.width.equalTo(viewForGoal).offset(-20)
         }
-        
-        
         view.addSubview(viewForMonthStats)
+        viewForMonthStats.layer.cornerRadius = 15
         viewForMonthStats.snp.makeConstraints { make in
             make.width.equalTo(160)
             make.height.equalTo(180)
@@ -226,13 +228,14 @@ class PersonalPageViewController: UIViewController{
             make.bottom.equalToSuperview().offset(-5)
             make.centerX.equalToSuperview()
             make.height.equalTo(20)
-            make.width.equalTo(viewForMonthStats)
+            make.width.equalTo(viewForMonthStats).offset(-20)
         }
         let tapOnForMonthStats = UITapGestureRecognizer(target: self, action: #selector(tappedOnForMonthStats))
         viewForMonthStats.addGestureRecognizer(tapOnForMonthStats)
         viewForMonthStats.isUserInteractionEnabled = true
         
         view.addSubview(viewForCreateType)
+        viewForCreateType.layer.cornerRadius = 15
         viewForCreateType.snp.makeConstraints { make in
             make.width.equalTo(160)
             make.height.equalTo(180)
@@ -256,13 +259,14 @@ class PersonalPageViewController: UIViewController{
             make.bottom.equalToSuperview().offset(-5)
             make.centerX.equalToSuperview()
             make.height.equalTo(20)
-            make.width.equalTo(viewForCreateType)
+            make.width.equalTo(viewForCreateType).offset(-20)
         }
         let tapOnForCreateType = UITapGestureRecognizer(target: self, action: #selector(tappedOnForCreateType))
         viewForCreateType.addGestureRecognizer(tapOnForCreateType)
         viewForCreateType.isUserInteractionEnabled = true
         
         view.addSubview(viewForReports)
+        viewForReports.layer.cornerRadius = 15
         viewForReports.snp.makeConstraints { make in
             make.width.equalTo(160)
             make.height.equalTo(180)
@@ -287,7 +291,7 @@ class PersonalPageViewController: UIViewController{
             make.bottom.equalToSuperview().offset(-5)
             make.centerX.equalToSuperview()
             make.height.equalTo(20)
-            make.width.equalTo(viewForReports)
+            make.width.equalTo(viewForReports).offset(-20)
         }
         let tapOnViewForReports = UITapGestureRecognizer(target: self, action: #selector(tappedOnViewForReports))
         viewForReports.addGestureRecognizer(tapOnViewForReports)
@@ -297,7 +301,7 @@ class PersonalPageViewController: UIViewController{
     }
     
     @objc private func openPicker() {
-        let openPicker = self.imagePicker(sourceType: .camera)
+        let openPicker = self.imagePicker(sourceType: .photoLibrary)
         self.present(openPicker, animated: true)
     }
     
@@ -325,6 +329,7 @@ class PersonalPageViewController: UIViewController{
     
     private func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         return imagePicker
     }
@@ -401,6 +406,7 @@ class PersonalPageViewController: UIViewController{
         let vc = sb.instantiateViewController(identifier: "PersonalTablesViewController") as! PersonalTablesViewController
         vc.arrayForMonthStats = dataForMonthStatsArray
         vc.numberOfCells = dataForMonthStatsArray.count
+        vc.titleOfTable = "Month Stats"
         present(vc, animated: true)
         print("PersonalTablesViewController Period Stats opened")
     }
@@ -409,6 +415,7 @@ class PersonalPageViewController: UIViewController{
         let vc = sb.instantiateViewController(identifier: "PersonalTablesViewController") as! PersonalTablesViewController
         vc.arrayForReports = dataForReportsArray
         vc.numberOfCells = dataForReportsArray.count
+        vc.titleOfTable = "Reports"
         print(dataForReportsArray)
         present(vc, animated: true)
         print("PersonalTablesViewController Reports opened")
@@ -422,11 +429,15 @@ class PersonalPageViewController: UIViewController{
         let vc = sb.instantiateViewController(identifier: "PersonalTablesViewController") as! PersonalTablesViewController
         vc.arrayForTypes = arrayWithTypes
         vc.numberOfCells = arrayWithTypes.count
+        vc.titleOfTable = "Types"
         present(vc, animated: true)
         print("PersonalTablesViewController Types opened")
     }
     private func updateGoalStatus() {
-        var intBudget = ((UserDefaults.standard.value(forKey: "overallBudget")) as! NSString).integerValue
+        var intBudget = 0
+//        if UserDefaults.standard.value(forKey: "overallBudget").debugDescription.isEmpty == false {
+//            intBudget = ((UserDefaults.standard.value(forKey: "overallBudget")) as! NSString).integerValue
+//        }
         var normalDelta = 0
         var allWastesForCurrentDate = 0
         for element in wastesArray {
@@ -445,5 +456,20 @@ class PersonalPageViewController: UIViewController{
             iconViewForGoal.tintColor = .cyan
             print("less then availble goal - success")
         }
+    }
+}
+extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            photoView.image = pickedImage
+            //resizableImage(withCapInsets: UIEdgeInsets(top: photoView.bounds.maxY, left: photoView.bounds.minX, bottom:  photoView.bounds.minY, right:  photoView.bounds.maxX))
+
+        }
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
