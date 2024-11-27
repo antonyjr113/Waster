@@ -27,6 +27,11 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
     
     var titleOfTable: String = ""
     
+    var isSelectTapped = false
+    
+    var selectedRows: [IndexPath] = []
+    var selectedRowsString: [String] = []
+    
     let statsTable: UITableView = {
         let table = UITableView()
         table.backgroundColor = .themeBg
@@ -48,7 +53,28 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
 //        title.textColor = .systemBlue
         return title
     }()
-    
+    let clearButton: UIView = {
+        let view = UIView()
+        return view
+    }()
+    let clearButtonTitle: UILabel = {
+        let text = UILabel()
+        text.text = "Sort"
+        text.textColor = .white
+        text.textAlignment = .center
+        return text
+    }()
+    let selectButton: UIView = {
+        let view = UIView()
+        return view
+    }()
+    let selectButtonTitle: UILabel = {
+        let text = UILabel()
+        text.text = "Select"
+        text.textColor = .white
+        text.textAlignment = .center
+        return text
+    }()
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.backgroundColor = .themeBG
@@ -59,52 +85,86 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
             make.bottom.equalToSuperview()
         }
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableTitle)
+        view.addSubview(clearButton)
+        view.addSubview(selectButton)
+        clearButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().offset(20)
+            make.width.equalTo(70)
+            make.height.equalTo(25)
+        }
+        clearButton.layer.cornerRadius = 5
+        clearButton.backgroundColor = .systemBlue
+        clearButton.addSubview(clearButtonTitle)
+        clearButtonTitle.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        let tapOnClear = UITapGestureRecognizer(target: self, action: (#selector(showSuccessSavedAlert)))
+        clearButton.addGestureRecognizer(tapOnClear)
+        clearButton.isUserInteractionEnabled = true
+        selectButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-20)
+            make.width.equalTo(70)
+            make.height.equalTo(25)
+        }
+        selectButton.layer.cornerRadius = 5
+        selectButton.backgroundColor = .systemBlue
+        selectButton.addSubview(selectButtonTitle)
+        selectButtonTitle.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        let tapOnSelect = UITapGestureRecognizer(target: self, action: (#selector(selectRows)))
+        selectButton.addGestureRecognizer(tapOnSelect)
+        selectButton.isUserInteractionEnabled = true
         tableTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(15)
             make.centerX.equalToSuperview()
             make.width.equalTo(200)
-            make.height.equalTo(20)
+            make.height.equalTo(25)
         }
         tableTitle.text = titleOfTable
-        tableTitle.font = UIFont(name: "system", size: 20)
+        tableTitle.font = tableTitle.font.withSize(25)
         tableTitle.textAlignment = .center
         tableTitle.textColor = .systemBlue
         makeTitles()
         statsTable.backgroundColor = .themeBG
         statsTable.delegate = self
         statsTable.dataSource = self
-        statsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let nib = UINib(nibName: "PersonalPageTableViewCell", bundle: nil)
+        statsTable.register(nib, forCellReuseIdentifier: "PersonalPageTableViewCell")
     }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfCells
-        print("!!! number of rows = ", numberOfCells)
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PersonalPageTableViewCell", for: indexPath) as! PersonalPageTableViewCell
         if arrayForTypes.count != 0 {
-            cell.textLabel?.text = "\(arrayForTypesTitles[indexPath.row])"
+            cell.textInCell.text = "\(arrayForTypesTitles[indexPath.row])"
         } else if arrayForReports.count != 0 && arrayForReports.count <= arrayForReportsTitles.count {
-            cell.textLabel?.text = "Report from \(arrayForReportsTitles[indexPath.row])"
+            cell.textInCell.text = "\(arrayForReportsTitles[indexPath.row])"
         } else if arrayForMonthStats.count != 0 {
-            cell.textLabel?.text = "\(arrayForMonthStatsTitles[indexPath.row])"
+            cell.textInCell.text = "\(arrayForMonthStatsTitles[indexPath.row])"
         }
-        //cell.textLabel?.text = "\(titleForRowArray[indexPath.row])"
-        cell.textLabel?.font = .systemFont(ofSize: 28, weight: .semibold)
-        cell.textLabel?.textColor = .systemBlue
+        cell.textInCell.font = .systemFont(ofSize: 24, weight: .semibold)
+        cell.textInCell.textColor = .white
         cell.backgroundColor = .themeBG
+        cell.cellSelector.image = UIImage(systemName: "circle")
         return cell
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRows.append(indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "ShowReportViewController") as! ShowReportViewController
+        present(vc, animated: true)
+        print("IN SELECTED ARRAY = ", selectedRows)
     }
-    
     private func makeTitles() {
         if arrayForTypes.count != 0 {
             for element in arrayForTypes {
@@ -122,5 +182,25 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
     }
-
+    @objc private func showSuccessSavedAlert() {
+        if arrayForTypes.count == 0 || arrayForReports.count == 0 || arrayForMonthStats.count == 0 {
+            let alert = UIAlertController(title: "No reports", message: "You have no saved reports yet :)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Are you sure?", message: "All your waste reports will be deleted.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Delete reports", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    @objc private func selectRows() {
+        isSelectTapped = true
+        if arrayForTypes.count == 0 || arrayForReports.count == 0 || arrayForMonthStats.count == 0 {
+            let alert = UIAlertController(title: "No reports", message: "You have no saved reports yet :)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        print("select button tapped")
+    }
 }

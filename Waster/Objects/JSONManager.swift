@@ -22,7 +22,7 @@ class JSONManager {
             let data = try test.encode(wastesArray)
             print(String(data: data, encoding: .utf8)!)
             try data.write(to: filePath)
-            dataForReportsArray.append(Reports(report: data, reportDate: DateManager.shared.returnCurrentDate()))
+//            dataForReportsArray.append(Reports(report: data, reportDate: DateManager.shared.returnCurrentDateWithTime()))
             print("JSON saved successfully")
         }
         catch {
@@ -36,5 +36,8 @@ class JSONManager {
         print("!!!\n", documentsDirectory)
         return documentsDirectory
     }
+    
+//    func decodeReport(report: Data) {
+//    }
 }
 

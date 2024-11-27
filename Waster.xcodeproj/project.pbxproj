@@ -35,9 +35,15 @@
 		7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD110F2B6A63A200BA73C7 /* AllColors.swift */; };
 		7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD11382B7E2F7700BA73C7 /* Graph.swift */; };
 		7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */; };
+		7DD83FA42C87307E002B3D40 /* PersonalPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD83FA22C87307E002B3D40 /* PersonalPageTableViewCell.swift */; };
+		7DD83FA52C87307E002B3D40 /* PersonalPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD83FA32C87307E002B3D40 /* PersonalPageTableViewCell.xib */; };
+		7DD83FA72C999B5D002B3D40 /* WebShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD83FA62C999B5D002B3D40 /* WebShowViewController.swift */; };
+		7DD83FA92CB3FC51002B3D40 /* ShowReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD83FA82CB3FC51002B3D40 /* ShowReportViewController.swift */; };
+		7DD83FAB2CB3FD05002B3D40 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD83FAA2CB3FD05002B3D40 /* Report.swift */; };
+		7DD83FAE2CB40334002B3D40 /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD83FAC2CB40334002B3D40 /* ReportTableViewCell.swift */; };
+		7DD83FAF2CB40334002B3D40 /* ReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD83FAD2CB40334002B3D40 /* ReportTableViewCell.xib */; };
 		7DE0971A2B54184700E23A5B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE097192B54184700E23A5B /* ColorExtension.swift */; };
 		7DE0971C2B541A1700E23A5B /* CreateWasteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0971B2B541A1700E23A5B /* CreateWasteViewController.swift */; };
-		7DE0971F2B541C2600E23A5B /* LocalizableWaster.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7DE0971E2B541C2600E23A5B /* LocalizableWaster.xcstrings */; };
 		7DE097212B554A9600E23A5B /* WastePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE097202B554A9600E23A5B /* WastePageViewController.swift */; };
 		7DE097232B584C0200E23A5B /* PersonalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE097222B584C0200E23A5B /* PersonalPageViewController.swift */; };
 		7DE097252B584F1D00E23A5B /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE097242B584F1D00E23A5B /* StatsViewController.swift */; };
@@ -87,9 +93,15 @@
 		7DAD110F2B6A63A200BA73C7 /* AllColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllColors.swift; sourceTree = "<group>"; };
 		7DAD11382B7E2F7700BA73C7 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRandomizer.swift; sourceTree = "<group>"; };
+		7DD83FA22C87307E002B3D40 /* PersonalPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPageTableViewCell.swift; sourceTree = "<group>"; };
+		7DD83FA32C87307E002B3D40 /* PersonalPageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalPageTableViewCell.xib; sourceTree = "<group>"; };
+		7DD83FA62C999B5D002B3D40 /* WebShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebShowViewController.swift; sourceTree = "<group>"; };
+		7DD83FA82CB3FC51002B3D40 /* ShowReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowReportViewController.swift; sourceTree = "<group>"; };
+		7DD83FAA2CB3FD05002B3D40 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		7DD83FAC2CB40334002B3D40 /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
+		7DD83FAD2CB40334002B3D40 /* ReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportTableViewCell.xib; sourceTree = "<group>"; };
 		7DE097192B54184700E23A5B /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7DE0971B2B541A1700E23A5B /* CreateWasteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWasteViewController.swift; sourceTree = "<group>"; };
-		7DE0971E2B541C2600E23A5B /* LocalizableWaster.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = LocalizableWaster.xcstrings; sourceTree = "<group>"; };
 		7DE097202B554A9600E23A5B /* WastePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastePageViewController.swift; sourceTree = "<group>"; };
 		7DE097222B584C0200E23A5B /* PersonalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPageViewController.swift; sourceTree = "<group>"; };
 		7DE097242B584F1D00E23A5B /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +143,7 @@
 				7D27C4EA2C21A75C00A9B304 /* DateManager.swift */,
 				7D9701BF2C3035FD00C11578 /* EditAlert.swift */,
 				7D76F71E2C47E780001B7A26 /* UDManager.swift */,
+				7DD83FAA2CB3FD05002B3D40 /* Report.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -163,18 +176,23 @@
 				7DE097202B554A9600E23A5B /* WastePageViewController.swift */,
 				7DE097222B584C0200E23A5B /* PersonalPageViewController.swift */,
 				7D76F7202C501AC5001B7A26 /* PersonalTablesViewController.swift */,
+				7DD83FA22C87307E002B3D40 /* PersonalPageTableViewCell.swift */,
+				7DD83FA32C87307E002B3D40 /* PersonalPageTableViewCell.xib */,
 				7D76F7222C501EC9001B7A26 /* PersonalTablesCell.swift */,
 				7DE097242B584F1D00E23A5B /* StatsViewController.swift */,
 				7DE097262B585ED600E23A5B /* SettingsViewController.swift */,
+				7DD83FA62C999B5D002B3D40 /* WebShowViewController.swift */,
 				7DE097282B585F2A00E23A5B /* AnalyticsViewController.swift */,
 				7D75379E2B6023D4004ABCAF /* TypesViewController.swift */,
+				7DD83FA82CB3FC51002B3D40 /* ShowReportViewController.swift */,
+				7DD83FAC2CB40334002B3D40 /* ReportTableViewCell.swift */,
+				7DD83FAD2CB40334002B3D40 /* ReportTableViewCell.xib */,
 				7D701B9D2B45E0F300308946 /* Main.storyboard */,
 				7D701BA02B45E0F400308946 /* Assets.xcassets */,
 				7D701BA22B45E0F400308946 /* LaunchScreen.storyboard */,
 				7D701BA52B45E0F400308946 /* Info.plist */,
 				7D1F9DB92B627BA20099C23C /* Objects */,
 				7D1F9DB62B612B8F0099C23C /* CommonData */,
-				7DE0971D2B541C1000E23A5B /* Localization */,
 				7DE097182B54182E00E23A5B /* Extensions */,
 			);
 			path = Waster;
@@ -190,14 +208,6 @@
 				7D27C4E62C0CB45100A9B304 /* TransferData.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		7DE0971D2B541C1000E23A5B /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				7DE0971E2B541C2600E23A5B /* LocalizableWaster.xcstrings */,
-			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,11 +277,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DD83FA52C87307E002B3D40 /* PersonalPageTableViewCell.xib in Resources */,
 				7D701BA42B45E0F400308946 /* LaunchScreen.storyboard in Resources */,
 				7D701BA12B45E0F400308946 /* Assets.xcassets in Resources */,
-				7DE0971F2B541C2600E23A5B /* LocalizableWaster.xcstrings in Resources */,
 				7D701B9F2B45E0F300308946 /* Main.storyboard in Resources */,
 				7D54C0B02C60E6AD00F95D91 /* animationSplash.json in Resources */,
+				7DD83FAF2CB40334002B3D40 /* ReportTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,10 +310,14 @@
 				7D9EA4912C0897CC004CCFFF /* AvoidingKeyboard.swift in Sources */,
 				7D701B9A2B45E0F300308946 /* SceneDelegate.swift in Sources */,
 				7D4777482B69149000BFEEAE /* Category.swift in Sources */,
+				7DD83FAB2CB3FD05002B3D40 /* Report.swift in Sources */,
+				7DD83FA42C87307E002B3D40 /* PersonalPageTableViewCell.swift in Sources */,
 				7D9701C02C3035FD00C11578 /* EditAlert.swift in Sources */,
+				7DD83FA72C999B5D002B3D40 /* WebShowViewController.swift in Sources */,
 				7D75379D2B5EE95D004ABCAF /* IconsExtension.swift in Sources */,
 				7DE097212B554A9600E23A5B /* WastePageViewController.swift in Sources */,
 				7DE097232B584C0200E23A5B /* PersonalPageViewController.swift in Sources */,
+				7DD83FA92CB3FC51002B3D40 /* ShowReportViewController.swift in Sources */,
 				7D1F9DB82B612BAB0099C23C /* AllTypes.swift in Sources */,
 				7D75379F2B6023D4004ABCAF /* TypesViewController.swift in Sources */,
 				7D27C4EB2C21A75C00A9B304 /* DateManager.swift in Sources */,
@@ -310,6 +325,7 @@
 				7D76F7212C501AC5001B7A26 /* PersonalTablesViewController.swift in Sources */,
 				7DE097292B585F2A00E23A5B /* AnalyticsViewController.swift in Sources */,
 				7DE0971A2B54184700E23A5B /* ColorExtension.swift in Sources */,
+				7DD83FAE2CB40334002B3D40 /* ReportTableViewCell.swift in Sources */,
 				7DE097272B585ED600E23A5B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

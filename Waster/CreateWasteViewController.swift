@@ -152,7 +152,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             if saveWasteNameButton.tintColor == UIColor.systemGreen && saveWasteBudgetButton.tintColor == UIColor.systemGreen {
                 showNewWasteButton.tintColor = UIColor.systemGreen
             }
-            let waste = Waste(name: enterNameTF.text, wasteAmount: enterBudgetTF.text, type: nameOfIcon, date: DateManager.shared.returnCurrentDate())
+            let waste = Waste(name: enterNameTF.text ?? "empty", wasteAmount: enterBudgetTF.text ?? "empty", type: nameOfIcon, date: DateManager.shared.returnCurrentDate())
             wastesArray.append(waste)
             //lastMadeWaste = waste.wasteAmount
             print("tap added to icon \(nameOfIcon)")
@@ -165,8 +165,14 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             saveWasteNameButton.tintColor = .systemYellow
             saveWasteBudgetButton.tintColor = .systemYellow
         }
+//        let saveWastesArray = UDManager()
+//        let archivedWastesArray = try? NSKeyedArchiver.archivedData(withRootObject: wastesArray, requiringSecureCoding: false)
+//        saveWastesArray.saveInUD(object: archivedWastesArray ?? nil, key: "lastWastesArray")
+//        print("!! saved wastes array : ", saveWastesArray.getFromUD(key: "lastWastesArray"))
         updateAnalytics(type: wastesArray.last?.type ?? "error", amount: wastesArray.last?.wasteAmount ?? "999")
+        lastAmountOfWastes = wastesArray.count
     }
+    
     private func tapOnIcon(icon: UIImageView) {
         let tap = UITapGestureRecognizer(target: self, action: #selector(highlightIcon))
         icon.addGestureRecognizer(tap)
@@ -201,7 +207,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     private func updateAnalytics(type: String, amount: String) {
         print("all types and wastse = ", analyticsData)
         print("type for update = ", type)
-        var lastAmount = (amount as NSString).integerValue
+        let lastAmount = (amount as NSString).integerValue
         var actualValue = 0
         for element in analyticsData {
             if element.key == type {

@@ -26,11 +26,14 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var contactUsLabel: UILabel!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("SettingsViewController opened")
         
         view.backgroundColor = .themeBG
+        
         
         view.addSubview(touView)
         touView.addSubview(touLabel)
@@ -39,7 +42,6 @@ class SettingsViewController: UIViewController {
         touView.layer.cornerRadius = 10
         touView.backgroundColor = greenProperty
         touLabel.textColor = .texts
-//        touLabel.font = UIFont(name: "system", size: 21)
         
         view.addSubview(ppView)
         ppView.addSubview(ppLabel)
@@ -62,7 +64,8 @@ class SettingsViewController: UIViewController {
         contactUsView.backgroundColor = .systemGreen
         contactUsLabel.textColor = .texts
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(makeRequest))
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(makeRequest))
+        tap.minimumPressDuration = 0
         touView.addGestureRecognizer(tap)
         touView.isUserInteractionEnabled = true
         
@@ -71,47 +74,83 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    private func simpleGetUrlRequestWithErrorHandling(){
-            let session = URLSession.shared
-            let url = URL(string: "https://sgonay.com.pl/rules")!
+    private func simpleGetUrlRequestWithErrorHandling() -> String {
+        let session = URLSession.shared
+        let url = URL(string: "https://sgonay.com.pl/rules")!
+        var result = ""
+        
+        let task = session.dataTask(with: url) { data, response, error in
             
-            let task = session.dataTask(with: url) { data, response, error in
-                
-                if error != nil || data == nil {
-                    print("Client error!")
-                    return
-                }
-                
-                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    print("Server error!")
-                    return
-                }
-                
-                if response == response as? HTTPURLResponse, (400...499).contains(response.statusCode) {
-                    print("Client error!")
-                } else {
-                    return
-                }
-                
-                guard let mime = response.mimeType, mime == "application/json" else {
-                    print("Wrong MIME type!")
-                    return
-                }
-                
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                    print("The Response is : ",json)
-                } catch {
-                    print("JSON error: \(error.localizedDescription)")
-                }
-                
+            result = "Success"
+            
+            if error != nil || data == nil {
+                print("Client error!")
+                return
             }
-            task.resume()
+            
+            guard let response = response as? HTTPURLResponse, (500...599).contains(response.statusCode) else {
+                result = "Server error!"
+                return
+            }
+            
+            if response == response as? HTTPURLResponse, (400...499).contains(response.statusCode) {
+                result = "Client error!"
+            } else {
+                return
+            }
+            //
+            //                guard let mime = response.mimeType, mime == "application/json" else {
+            //                    print("Wrong MIME type!")
+            //                    return
+            //                }
+            //
+            //                do {
+            //                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
+            //                    print("The Response is : ",json)
+            //                } catch {
+            //                    print("JSON error: \(error.localizedDescription)")
+            //                }
+            
         }
-    
-    @objc private func makeRequest() {
-        simpleGetUrlRequestWithErrorHandling()
+        task.resume()
+        print(result)
+        return result
     }
     
-
+    @objc private func makeRequest(_sender: UILongPressGestureRecognizer) {
+        simpleGetUrlRequestWithErrorHandling()
+        if _sender.state == .began {
+            touView.backgroundColor = .ifTapped
+        } else if _sender.state == .ended || _sender.state == .cancelled {
+            touView.backgroundColor = .systemGreen
+        }
+        let webVC = WebShowViewController(linkToShow: "https://sgonay.com.pl/rules")
+        webVC.view.backgroundColor = .themeBg
+        webVC.modalPresentationStyle = .pageSheet
+        present(webVC, animated: true)
+//        var res = simpleGetUrlRequestWithErrorHandling()
+//        if res == "Success" {
+//            
+//            let webVC = WebShowViewController(linkToShow: "https://sgonay.com.pl/rules")
+//            let romashka = UIActivityIndicatorView(frame: CGRect(x: view.frame.midX, y: view.frame.midY, width: 50, height: 50))
+//            romashka.color = .green
+//            webVC.view.addSubview(romashka)
+//            UIView.animate(withDuration: 3) {
+//                romashka.startAnimating()
+//            }
+//            webVC.view.backgroundColor = .themeBg
+//            webVC.modalPresentationStyle = .pageSheet
+//            present(webVC, animated: true)
+//        } else if res == "Client error!" {
+//            let alert = UIAlertController(title: "Ooops :(", message: "Something went wrong", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Try later", style: .default))
+//            self.present(alert, animated: true)
+//            print("Client error!")
+//        } else if res == "Server error!" {
+//            let alert = UIAlertController(title: "Ooops :(", message: "Couldn't connect to server", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Try later", style: .default))
+//            self.present(alert, animated: true)
+//            print("Server error!")
+//        }
+    }
 }

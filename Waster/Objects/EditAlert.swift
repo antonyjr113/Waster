@@ -95,5 +95,4 @@ final class EditAlert {
         }
         secondOption.setTitle(secondField, for: .normal)
     }
-    
 }

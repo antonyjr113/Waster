@@ -61,8 +61,6 @@ class ViewController: UIViewController {
         view.addSubview(settingsView)
         
         personalPageView.layer.cornerRadius = 30
-        personalPageView.layer.shadowColor = UIColor.shadow.cgColor
-        personalPageView.layer.shadowOpacity = 5
         personalPageView.addSubview(persPageIcon)
         
         personalStatsView.layer.cornerRadius = 30

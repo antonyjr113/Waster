@@ -82,6 +82,8 @@ class PersonalPageViewController: UIViewController {
     
     let edit = EditAlert(firstField: "Change Name", secondField: "Change Goal To Save", thirdField: "Change Budget")
     var currentLeftBudget = ""
+    var goalStatus = ""
+    var goalStatusMessage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +136,8 @@ class PersonalPageViewController: UIViewController {
         
         view.addSubview(editButtonView)
         editButtonView.layer.cornerRadius = 30
-        let tapOnProfile = UITapGestureRecognizer(target: self, action: #selector(openEditWindow))
+        let tapOnProfile = UILongPressGestureRecognizer(target: self, action: #selector(openEditWindow))
+        tapOnProfile.minimumPressDuration = 0
         editButtonView.addGestureRecognizer(tapOnProfile)
         editButtonView.isUserInteractionEnabled = true
         
@@ -203,6 +206,10 @@ class PersonalPageViewController: UIViewController {
             make.height.equalTo(20)
             make.width.equalTo(viewForGoal).offset(-20)
         }
+        let tapOnGoal = UITapGestureRecognizer(target: self, action: #selector(tappedOnGoal))
+        viewForGoal.addGestureRecognizer(tapOnGoal)
+        viewForGoal.isUserInteractionEnabled = true
+        
         view.addSubview(viewForMonthStats)
         viewForMonthStats.layer.cornerRadius = 15
         viewForMonthStats.snp.makeConstraints { make in
@@ -305,7 +312,7 @@ class PersonalPageViewController: UIViewController {
         self.present(openPicker, animated: true)
     }
     
-    @objc private func openEditWindow() {
+    @objc private func openEditWindow(_sender : UILongPressGestureRecognizer) {
         
 //        UIView.animate(withDuration: 1, delay: 0) {
 //            self.edit.editAlertView.alpha = 1
@@ -313,6 +320,11 @@ class PersonalPageViewController: UIViewController {
 //            self.edit.editAlertView.frame.size.width += 300
 //            self.edit.editAlertView.frame.size.height += 500
 //        }
+        if _sender.state == .began {
+            editButtonView.backgroundColor = .ifTapped
+        } else if _sender.state == .ended || _sender.state == .cancelled {
+            editButtonView.backgroundColor = .systemYellow
+        }
         edit.openEditAlert(onView: view)
         edit.closeButton.addTarget(self, action: #selector(closeEditAlert), for: .touchUpInside)
         edit.firstOption.addTarget(self, action: #selector(openAlertToTypeUserName), for: .touchUpInside)
@@ -419,6 +431,8 @@ class PersonalPageViewController: UIViewController {
         print(dataForReportsArray)
         present(vc, animated: true)
         print("PersonalTablesViewController Reports opened")
+        print("counted reports = \(dataForReportsArray.count)")
+
     }
     @objc private func tappedOnForCreateType() {
         var arrayWithTypes: [String] = []
@@ -434,7 +448,7 @@ class PersonalPageViewController: UIViewController {
         print("PersonalTablesViewController Types opened")
     }
     private func updateGoalStatus() {
-        var intBudget = 0
+        let intBudget = 0
 //        if UserDefaults.standard.value(forKey: "overallBudget").debugDescription.isEmpty == false {
 //            intBudget = ((UserDefaults.standard.value(forKey: "overallBudget")) as! NSString).integerValue
 //        }
@@ -442,7 +456,7 @@ class PersonalPageViewController: UIViewController {
         var allWastesForCurrentDate = 0
         for element in wastesArray {
             if element.date == currentDateLabel.text {
-                allWastesForCurrentDate += Int(element.wasteAmount ?? "1") ?? 11
+                allWastesForCurrentDate += Int(element.wasteAmount) ?? 11
             }
         }
         print("day wastes = ", allWastesForCurrentDate)
@@ -450,12 +464,21 @@ class PersonalPageViewController: UIViewController {
         if allWastesForCurrentDate > normalDelta {
             iconViewForGoal.image = UIImage(systemName: "exclamationmark.circle")
             iconViewForGoal.tintColor = .orange
+            goalStatus = "Too much wastes :("
+            goalStatusMessage = "Decrease your wastes to ahcieve Save Goal. Complete this ahcievement!"
             print("more then availble goal - success")
         } else {
             iconViewForGoal.image = UIImage(systemName: "hand.thumbsup")
             iconViewForGoal.tintColor = .cyan
+            goalStatus = "Well done!"
+            goalStatusMessage = "Right dynamics! Follow it and your Save Goal will be achieved!"
             print("less then availble goal - success")
         }
+    }
+    @objc private func tappedOnGoal() {
+        let alert = UIAlertController(title: goalStatus, message: goalStatusMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

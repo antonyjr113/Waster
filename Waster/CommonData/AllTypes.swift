@@ -48,19 +48,3 @@ enum Icons: String {
 
 var icon = ""
 
-
-//switch icon {
-//case .car:
-//    return "car"
-//case .health:
-//    return "heart.circle"
-//case .joy:
-//    return "gamecontroller"
-//case .home:
-//    return "house"
-//case .child:
-//    return "figure.arms.open"
-//case .subs:
-//    return "play.tv.fill"
-//}
-

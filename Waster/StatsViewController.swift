@@ -16,11 +16,17 @@ class StatsViewController: UIViewController {
     
     @IBOutlet weak var shareButtonView: UIImageView!
     
+    //var arrayForStats: [Waste] = UserDefaults.standard.object(forKey: "wastesArray")
+    
     var i = 0
     
     var baseX = 15
     
     var baseY = 0
+    
+    var sortedBaseX = 15
+    
+    var sortedBaseY = 50
     
     let delta = 20
     
@@ -87,7 +93,13 @@ class StatsViewController: UIViewController {
             $0.height.equalTo(scrollView).multipliedBy(2)
         }
         baseY = Int(contentView.frame.minY)
-        
+        if isTapped {
+            sortButton.setTitle("Sort", for: .normal)
+            UIView.animate(withDuration: 1, delay: 0.33) {
+                self.picker.removeFromSuperview()
+            }
+            isTapped = false
+        }
         
         if wastesArray.isEmpty {
             view.addSubview(placeholder)
@@ -101,26 +113,18 @@ class StatsViewController: UIViewController {
         } else {
             placeholder.removeFromSuperview()
             for element in wastesArray {
-                addNewWaste(onView: contentView, element: element)
+                addNewWaste(onView: contentView, element: element, iconType: element.type )
+                let forReport = Reports(reportDate: element.date, icon:  element.type , note: element.name)
+                dataForReportsArray.append(forReport)
             }
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(openShareView))
+        reportsArray.append(dataForReportsArray)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showSavedDataAlert))
         shareButtonView.addGestureRecognizer(tap)
         shareButtonView.isUserInteractionEnabled = true
-        
-        if isTapped {
-            sortButton.setTitle("Sort", for: .normal)
-            UIView.animate(withDuration: 1, delay: 0.33) {
-                self.picker.removeFromSuperview()
-            }
-            isTapped = false
-        }
-        //trigger saving report in JSON
-        let json = JSONManager()
-        json.saveData()
-        print("saved wastes = ", dataForReportsArray.count)
+        print("N reports = ", dataForReportsArray.count)
     }
-    private func addNewWaste(onView: UIView, element: Waste) {
+    private func addNewWaste(onView: UIView, element: Waste, iconType: String) {
         let new = UIView(frame: CGRect(x: baseX, y: baseY, width: 365, height: 150))
         onView.addSubview(new)
         let backForView = ColorRandomizer.shared.randomizeColors()
@@ -164,10 +168,10 @@ class StatsViewController: UIViewController {
             make.leading.equalToSuperview().offset(15)
             make.width.equalTo(100)
         }
-        var iconView = UIImageView()
+        let iconView = UIImageView()
         new.addSubview(iconView)
         var iconToApply = ""
-        switch wastesArray.last?.type ?? "car" {
+        switch iconType {
         case "car":
             iconToApply = "car"
         case "health":
@@ -203,6 +207,9 @@ class StatsViewController: UIViewController {
             make.width.equalTo(100)
         }
         baseY+=180
+        // append report
+//        let forReport = Reports(reportDate: dateLabel.text, icon: iconToApply, note: summ.text)
+//        dataForReportsArray.append(forReport)
     }
     private func randomizeColors() -> UIColor {
         let numberOfColors = (colorsForWastes.count - 1)
@@ -230,18 +237,27 @@ class StatsViewController: UIViewController {
         print("isTapped = ", isTapped)
         tapCounter += 1
         checkTapCounter()
+        checkForSort()
     }
-    @objc func openShareView() {
-        print("openShareButton tap success")
+    @objc func showSavedDataAlert() {
+        if wastesArray.isEmpty {
+            let alert = UIAlertController(title: "Nothing to save", message: "Add wastes to save them into Report :)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+        print("Save Report tapped")
+        //save the report with current data in screen
         let allWastesData = JSONManager()
         allWastesData.saveData()
-        let items = ["Save or share your wastes", ]
-        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        present(ac, animated: true)
+        let alert = UIAlertController(title: "Done", message: "Report is saved to Your Page :)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        print("saved wastes = ", dataForReportsArray.count)
     }
     @objc func setChosenData() {
         selectedDate = self.picker.date
-        print(selectedDate)
+        print("SELECTED DATE = ", selectedDate)
+        //sortWastesDueToDate()
     }
     private func checkTapCounter() {
         if tapCounter > 1 {
@@ -291,18 +307,47 @@ class StatsViewController: UIViewController {
             //self.blurEffectView.removeFromSuperview()
         }
     }
-    //для сортировки по датам
-    private func sortWastesDueToDate(date: String) -> [Waste] {
+    private func sortWastes(){
         let formater = DateFormatter()
         formater.dateFormat = "dd-MM-yyyy"
         let chosen = formater.string(from: selectedDate)
+        print(chosen)
         var newArray = [Waste]()
         for element in wastesArray {
             if element.date == chosen {
                 newArray.append(element)
             }
         }
-        return newArray
+        if DateManager.shared.returnCurrentDate() != chosen {
+            print("SORT")
+            for element in newArray {
+                addNewWaste(onView: view, element: element, iconType: element.type ?? "car")
+            }
+            print("USED BASE ARRAY")
+        } else {
+            for element in wastesArray {
+                addNewWaste(onView: view, element: element, iconType: element.type ?? "car")
+            }
+            print("USED SORTED ARRAY")
+        }
+    }
+    private func checkForSort(){
+        let formater = DateFormatter()
+        formater.dateFormat = "dd-MM-yyyy"
+        let chosen = formater.string(from: selectedDate)
+        print(chosen)
+        var newArray = [Waste]()
+        for element in wastesArray {
+            if element.date == chosen {
+                newArray.append(element)
+            }
+        }
+        if DateManager.shared.returnCurrentDate() != chosen {
+            for element in newArray {
+                addNewWaste(onView: view, element: element, iconType: element.type ?? "car")
+            }
+            print("USED BASE ARRAY")
+        }
     }
 }
 

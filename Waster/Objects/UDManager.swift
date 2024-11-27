@@ -11,7 +11,7 @@ class UDManager {
     
     var key = ""
     
-    func saveInUD(object: String, key: String) {
+    func saveInUD(object: Any, key: String) {
         UserDefaults.standard.set(object, forKey: key)
     }
     

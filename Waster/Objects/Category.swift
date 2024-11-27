@@ -38,7 +38,7 @@ class Category {
     
     func createType(onView: UIView, name: String, icon: String) {
         
-        var name = name
+        let name = name
         let icon = icon
         //name = wasteName
         typesArray.append(newTypeView)
@@ -54,9 +54,6 @@ class Category {
         }
         print("color to set = ", newTypeView.backgroundColor)
 
-
-        //typesArray.append(newTypeView)
-        
         let newTypeStruct = TypeSingle(name: name, color: newTypeView.backgroundColor, icon: icon)
         
         typesArrayStruct.append(newTypeStruct)

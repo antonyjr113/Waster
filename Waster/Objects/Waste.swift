@@ -8,12 +8,13 @@
 import UIKit
 
 struct Waste: Codable {
-    let name: String?
-    let wasteAmount: String?
-    let type: String?
-    let date: String?
+    let name: String
+    let wasteAmount: String
+    let type: String
+    let date: String
 }
 
+var lastAmountOfWastes = 0
 
 var wastesArray: [Waste] = []
 
@@ -56,8 +57,12 @@ struct MonthStats {
 var dataForReportsArray: [Reports] = []
 
 struct Reports {
-    let report: Data?
+    //let report: Data?
     let reportDate: String?
     let title = "Report "
+    let icon: String?
+    let note: String?
 }
+
+var reportsArray: [[Reports]] = []
 
