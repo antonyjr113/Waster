@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HCZ-tM-Jwu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HCZ-tM-Jwu">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -27,7 +27,7 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face.smiling.inverse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4xF-k2-WwV">
-                                <rect key="frame" x="50" y="208.99999999999997" width="100" height="98.666666666666714"/>
+                                <rect key="frame" x="50" y="208.66666666666666" width="100" height="98.666666666666714"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="uLt-f1-Cna"/>
@@ -126,6 +126,14 @@
                                     <constraint firstAttribute="height" constant="90" id="y58-z2-r43"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2I-FR-IUz">
+                                <rect key="frame" x="294" y="436" width="50" height="34"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Pro"/>
+                                <connections>
+                                    <action selector="openBanner:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D49-KE-FRO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -137,8 +145,10 @@
                             <constraint firstItem="4xF-k2-WwV" firstAttribute="centerY" secondItem="hS4-fg-5LO" secondAttribute="centerY" id="69D-e1-fO6"/>
                             <constraint firstItem="83i-px-508" firstAttribute="centerX" secondItem="LD3-0W-uMZ" secondAttribute="centerX" id="8df-Cf-Wxe"/>
                             <constraint firstItem="4xF-k2-WwV" firstAttribute="centerX" secondItem="hS4-fg-5LO" secondAttribute="centerX" id="9IQ-hm-JPr"/>
+                            <constraint firstItem="x2I-FR-IUz" firstAttribute="leading" secondItem="OkU-3s-EJI" secondAttribute="trailing" constant="52.333333333333343" id="AZo-2a-GQA"/>
                             <constraint firstItem="07a-P9-Aff" firstAttribute="centerX" secondItem="s6h-W3-kxc" secondAttribute="centerX" id="NVy-Ly-pp6"/>
                             <constraint firstItem="Mcn-Hj-MPq" firstAttribute="centerX" secondItem="SDw-9D-7a5" secondAttribute="centerX" id="QjK-6U-e49"/>
+                            <constraint firstItem="x2I-FR-IUz" firstAttribute="centerY" secondItem="OkU-3s-EJI" secondAttribute="centerY" id="cn7-Id-2G1"/>
                             <constraint firstItem="s6h-W3-kxc" firstAttribute="top" secondItem="OkU-3s-EJI" secondAttribute="bottom" constant="30" id="dY7-Sw-xwl"/>
                             <constraint firstItem="hS4-fg-5LO" firstAttribute="top" secondItem="Lzd-fY-rat" secondAttribute="bottom" constant="10" id="duE-Ub-8ZX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OkU-3s-EJI" secondAttribute="bottom" constant="320" id="gId-RN-GIR"/>
@@ -162,6 +172,7 @@
                         <outlet property="personalPageView" destination="hS4-fg-5LO" id="Bze-L2-rWg"/>
                         <outlet property="personalStatsView" destination="SDw-9D-7a5" id="HPl-5m-VgH"/>
                         <outlet property="plusButtonView" destination="OkU-3s-EJI" id="BDO-YV-k1D"/>
+                        <outlet property="proButton" destination="x2I-FR-IUz" id="oWl-v1-3Lp"/>
                         <outlet property="settingsIcon" destination="eTD-ml-HCG" id="lcz-YQ-1XM"/>
                         <outlet property="settingsLabel" destination="07a-P9-Aff" id="gbC-eW-ME4"/>
                         <outlet property="settingsView" destination="s6h-W3-kxc" id="anl-sv-RX6"/>
@@ -272,14 +283,14 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Wb2-lP-iaq">
-                                        <rect key="frame" x="131.66666666666666" y="9.6666666666666643" width="70" height="69.333333333333343"/>
+                                        <rect key="frame" x="131.66666666666666" y="10.333333333333336" width="70" height="69.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="7Za-Kl-6l0"/>
                                             <constraint firstAttribute="height" constant="70" id="kEo-im-X6o"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aBk-Ku-XSw">
-                                        <rect key="frame" x="243" y="11" width="70" height="68.666666666666671"/>
+                                        <rect key="frame" x="243" y="10.666666666666664" width="70" height="68.666666666666686"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="VOp-J9-hUr"/>
                                             <constraint firstAttribute="height" constant="70" id="njA-Zu-ZYb"/>
@@ -706,7 +717,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d1h-Kl-YBH">
-                                <rect key="frame" x="20" y="72.333333333333329" width="40" height="41.333333333333329"/>
+                                <rect key="frame" x="20" y="72.666666666666657" width="40" height="41.333333333333343"/>
                                 <color key="backgroundColor" name="theme_bg"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="3hx-DR-WAI"/>

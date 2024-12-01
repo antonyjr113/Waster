@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 
 class SplashViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,5 +28,6 @@ class SplashViewController: UIViewController {
                 self.dismiss(animated: false)
             })
         }
+        
     }
 }

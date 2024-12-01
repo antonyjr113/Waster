@@ -36,6 +36,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var plusButtonView: UIView!
     
+    
+    @IBOutlet weak var proButton: UIButton!
+    
     let plusIcon: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "plus")
@@ -44,15 +47,15 @@ class ViewController: UIViewController {
     }()
     
     override func viewDidAppear(_ animated: Bool) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let splash = sb.instantiateViewController(identifier: "SplashViewController") as! SplashViewController
-        splash.modalPresentationStyle = .overFullScreen
-        self.present(splash, animated: false)
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let splash = sb.instantiateViewController(identifier: "SplashViewController") as! SplashViewController
+            splash.modalPresentationStyle = .overFullScreen
+            self.present(splash, animated: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .themeBG
         view.addSubview(plusButtonView)
         view.addSubview(personalPageView)
@@ -178,5 +181,12 @@ class ViewController: UIViewController {
             plusButtonView.backgroundColor = .systemMint
         }
     }
+    
+    @IBAction func openBanner(_ sender: Any) {
+        let vc = ShowBannerViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+    }
+    
 }
 
