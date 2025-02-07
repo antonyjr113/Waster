@@ -46,11 +46,19 @@ class ViewController: UIViewController {
         return image
     }()
     
+    //var isFirstLaunch = UserDefaults.standard.bool(forKey: "isFirstLaunch")
+    
     override func viewDidAppear(_ animated: Bool) {
+        if isFirstLaunchApplication {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let splash = sb.instantiateViewController(identifier: "SplashViewController") as! SplashViewController
             splash.modalPresentationStyle = .overFullScreen
             self.present(splash, animated: false)
+            UserDefaults.standard.set(false, forKey: "isFirstLaunch")
+        } else {
+            return
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -138,9 +146,11 @@ class ViewController: UIViewController {
     }
     @objc private func openStatsPage(_sender : UILongPressGestureRecognizer) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "StatsViewController") as! StatsViewController
-        present(vc, animated: true)
-        print("success stats")
+//        let vc = sb.instantiateViewController(identifier: "StatsViewController") as! StatsViewController
+        let vc = WastesViewController()
+        vc.modalPresentationStyle = .pageSheet
+            present(vc, animated: true)
+        print("WastesViewController opened")
         if _sender.state == .began {
             personalStatsView.backgroundColor = .ifTapped
         } else if _sender.state == .ended || _sender.state == .cancelled {

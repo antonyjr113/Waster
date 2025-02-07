@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UIViewController {
     
@@ -26,6 +27,12 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var contactUsLabel: UILabel!
     
+    enum URLS {
+        case tou
+        case pp
+        case review
+        case contact
+    }
     
     
     override func viewDidLoad() {
@@ -64,10 +71,15 @@ class SettingsViewController: UIViewController {
         contactUsView.backgroundColor = .systemGreen
         contactUsLabel.textColor = .texts
         
-        let tap = UILongPressGestureRecognizer(target: self, action: #selector(makeRequest))
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(openTerms))
         tap.minimumPressDuration = 0
         touView.addGestureRecognizer(tap)
         touView.isUserInteractionEnabled = true
+        
+        let tapPrivacy = UILongPressGestureRecognizer(target: self, action: #selector(openPrivacy))
+        tapPrivacy.minimumPressDuration = 0
+        ppView.addGestureRecognizer(tapPrivacy)
+        ppView.isUserInteractionEnabled = true
         
         if tap.state == .began {
             touView.backgroundColor = .systemMint
@@ -152,5 +164,22 @@ class SettingsViewController: UIViewController {
 //            self.present(alert, animated: true)
 //            print("Server error!")
 //        }
+
+    }
+    @objc private func openTerms() {
+        if let url = URL(string: "https://sgonay.com.pl/rules") {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
+    }
+    @objc private func openPrivacy() {
+        if let url = URL(string: "https://habr.com/ru/articles/759842/") {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
     }
 }

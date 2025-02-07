@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround, TransferData{
+class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround, TransferData, UITextFieldDelegate {
 
     @IBOutlet weak var wasteName: UILabel!
     
@@ -48,12 +48,18 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     
     let userDefaults = UserDefaults.standard
     
+    var id: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        wasteID += 1
+        id = wasteID
         
         hideKeyboardWhenTappedAround()
         
         print("CreateWasteViewController opened")
+        print("id = \(id)")
         
         view.backgroundColor = .themeBG
         
@@ -129,14 +135,21 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     @IBAction func saveBudgetButtonTap(_ sender: Any) {
         if enterBudgetTF.text == "" {
             
-            let alert = UIAlertController(title: "Budget summ is empty", message: "Enter the summ of budjet please", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Budget summ is empty :(", message: "Enter the summ of budjet please", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
             
             self.present(alert, animated: true)
-        } else {
+        }
+        if validateBudjet() == true {
             saveWasteBudgetButton.tintColor = UIColor.systemGreen
             newWaste.budget = enterBudgetTF.text ?? ""
+        } else {
+            let alert = UIAlertController(title: "Ooops", message: "Inccorrect summ! Try to correct and re-enter it :)", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Retry", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
         }
         print("budget saved")
     }
@@ -152,7 +165,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             if saveWasteNameButton.tintColor == UIColor.systemGreen && saveWasteBudgetButton.tintColor == UIColor.systemGreen {
                 showNewWasteButton.tintColor = UIColor.systemGreen
             }
-            let waste = Waste(name: enterNameTF.text ?? "empty", wasteAmount: enterBudgetTF.text ?? "empty", type: nameOfIcon, date: DateManager.shared.returnCurrentDate())
+            let waste = Waste(id: id, name: enterNameTF.text ?? "empty", wasteAmount: enterBudgetTF.text ?? "empty", type: nameOfIcon, date: DateManager.shared.returnCurrentDate())
             wastesArray.append(waste)
             //lastMadeWaste = waste.wasteAmount
             print("tap added to icon \(nameOfIcon)")
@@ -192,7 +205,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
                 lastTappedTypeIcon = element.name
                 print("for icon for last view = ", iconForLastWasteGlobal)
             } else {
-                print("шляпа")
+                print("not appropriate icon")
             }
         }
     }
@@ -239,4 +252,12 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     func transferWaste() -> String {
         return lastMadeWaste ?? "999"
     }
+    
+    func validateBudjet() -> Bool {
+        guard let summ = Double(enterBudgetTF.text!) else {
+            return false
+        }
+        return true
+    }
+
 }

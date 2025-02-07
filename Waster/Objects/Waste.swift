@@ -7,12 +7,18 @@
 
 import UIKit
 
+
+var wasteID = 0
+
 struct Waste: Codable {
+    let id: Int
     let name: String
     let wasteAmount: String
     let type: String
     let date: String
 }
+
+
 
 var lastAmountOfWastes = 0
 

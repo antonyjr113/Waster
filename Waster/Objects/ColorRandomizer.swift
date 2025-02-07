@@ -9,7 +9,7 @@ import UIKit
 
 class ColorRandomizer {
     
-    static var shared: ColorRandomizer =  {
+    static let shared: ColorRandomizer =  {
         let instance = ColorRandomizer()
         
         let colors = [greenProperty, redProperty, cyanProperty, indigoProperty, yellowProperty, pinkProperty]

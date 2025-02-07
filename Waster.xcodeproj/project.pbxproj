@@ -29,6 +29,12 @@
 		7D76F71F2C47E780001B7A26 /* UDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76F71E2C47E780001B7A26 /* UDManager.swift */; };
 		7D76F7212C501AC5001B7A26 /* PersonalTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76F7202C501AC5001B7A26 /* PersonalTablesViewController.swift */; };
 		7D76F7232C501EC9001B7A26 /* PersonalTablesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76F7222C501EC9001B7A26 /* PersonalTablesCell.swift */; };
+		7D893F732D382C7A00B5097A /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D893F722D382C7A00B5097A /* PrivacyViewController.swift */; };
+		7D893F752D3AF0A900B5097A /* WatstesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D893F742D3AF0A900B5097A /* WatstesList.swift */; };
+		7D893FA32D3C0F6600B5097A /* WastesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D893FA22D3C0F6600B5097A /* WastesTableViewController.swift */; };
+		7D893FA52D3C1D1500B5097A /* WastesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D893FA42D3C1D1500B5097A /* WastesTableView.swift */; };
+		7D893FA82D3D62B000B5097A /* WastesTableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D893FA72D3D62B000B5097A /* WastesTableTableViewCell.xib */; };
+		7D893FA92D3D62B000B5097A /* WastesTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D893FA62D3D62B000B5097A /* WastesTableTableViewCell.swift */; };
 		7D9701C02C3035FD00C11578 /* EditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9701BF2C3035FD00C11578 /* EditAlert.swift */; };
 		7D9EA48F2C0897BC004CCFFF /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EA48E2C0897BC004CCFFF /* HideKeyboard.swift */; };
 		7D9EA4912C0897CC004CCFFF /* AvoidingKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EA4902C0897CC004CCFFF /* AvoidingKeyboard.swift */; };
@@ -38,6 +44,7 @@
 		7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD110F2B6A63A200BA73C7 /* AllColors.swift */; };
 		7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD11382B7E2F7700BA73C7 /* Graph.swift */; };
 		7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */; };
+		7DBB37382D495F060034BE31 /* WastesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB37372D495F060034BE31 /* WastesViewController.swift */; };
 		7DD83FA42C87307E002B3D40 /* PersonalPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD83FA22C87307E002B3D40 /* PersonalPageTableViewCell.swift */; };
 		7DD83FA52C87307E002B3D40 /* PersonalPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD83FA32C87307E002B3D40 /* PersonalPageTableViewCell.xib */; };
 		7DD83FA72C999B5D002B3D40 /* WebShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD83FA62C999B5D002B3D40 /* WebShowViewController.swift */; };
@@ -90,6 +97,12 @@
 		7D76F71E2C47E780001B7A26 /* UDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDManager.swift; sourceTree = "<group>"; };
 		7D76F7202C501AC5001B7A26 /* PersonalTablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTablesViewController.swift; sourceTree = "<group>"; };
 		7D76F7222C501EC9001B7A26 /* PersonalTablesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTablesCell.swift; sourceTree = "<group>"; };
+		7D893F722D382C7A00B5097A /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		7D893F742D3AF0A900B5097A /* WatstesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatstesList.swift; sourceTree = "<group>"; };
+		7D893FA22D3C0F6600B5097A /* WastesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesTableViewController.swift; sourceTree = "<group>"; };
+		7D893FA42D3C1D1500B5097A /* WastesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesTableView.swift; sourceTree = "<group>"; };
+		7D893FA62D3D62B000B5097A /* WastesTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesTableTableViewCell.swift; sourceTree = "<group>"; };
+		7D893FA72D3D62B000B5097A /* WastesTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WastesTableTableViewCell.xib; sourceTree = "<group>"; };
 		7D9701BF2C3035FD00C11578 /* EditAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlert.swift; sourceTree = "<group>"; };
 		7D9EA48E2C0897BC004CCFFF /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		7D9EA4902C0897CC004CCFFF /* AvoidingKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidingKeyboard.swift; sourceTree = "<group>"; };
@@ -99,6 +112,7 @@
 		7DAD110F2B6A63A200BA73C7 /* AllColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllColors.swift; sourceTree = "<group>"; };
 		7DAD11382B7E2F7700BA73C7 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRandomizer.swift; sourceTree = "<group>"; };
+		7DBB37372D495F060034BE31 /* WastesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesViewController.swift; sourceTree = "<group>"; };
 		7DD83FA22C87307E002B3D40 /* PersonalPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPageTableViewCell.swift; sourceTree = "<group>"; };
 		7DD83FA32C87307E002B3D40 /* PersonalPageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalPageTableViewCell.xib; sourceTree = "<group>"; };
 		7DD83FA62C999B5D002B3D40 /* WebShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebShowViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +166,8 @@
 				7D76F71E2C47E780001B7A26 /* UDManager.swift */,
 				7DD83FAA2CB3FD05002B3D40 /* Report.swift */,
 				7DA061E72CFCB01C00A125DD /* Banner.swift */,
+				7D893F742D3AF0A900B5097A /* WatstesList.swift */,
+				7D893FA42D3C1D1500B5097A /* WastesTableView.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -187,14 +203,19 @@
 				7DD83FA22C87307E002B3D40 /* PersonalPageTableViewCell.swift */,
 				7DD83FA32C87307E002B3D40 /* PersonalPageTableViewCell.xib */,
 				7D76F7222C501EC9001B7A26 /* PersonalTablesCell.swift */,
+				7D893FA22D3C0F6600B5097A /* WastesTableViewController.swift */,
+				7D893FA62D3D62B000B5097A /* WastesTableTableViewCell.swift */,
+				7D893FA72D3D62B000B5097A /* WastesTableTableViewCell.xib */,
 				7DE097242B584F1D00E23A5B /* StatsViewController.swift */,
 				7DE097262B585ED600E23A5B /* SettingsViewController.swift */,
 				7DD83FA62C999B5D002B3D40 /* WebShowViewController.swift */,
+				7D893F722D382C7A00B5097A /* PrivacyViewController.swift */,
 				7DE097282B585F2A00E23A5B /* AnalyticsViewController.swift */,
 				7D75379E2B6023D4004ABCAF /* TypesViewController.swift */,
 				7DD83FA82CB3FC51002B3D40 /* ShowReportViewController.swift */,
 				7DD83FAC2CB40334002B3D40 /* ReportTableViewCell.swift */,
 				7DA061EB2CFCBDCC00A125DD /* ShowBannerViewController.swift */,
+				7DBB37372D495F060034BE31 /* WastesViewController.swift */,
 				7DD83FAD2CB40334002B3D40 /* ReportTableViewCell.xib */,
 				7D701B9D2B45E0F300308946 /* Main.storyboard */,
 				7D701BA02B45E0F400308946 /* Assets.xcassets */,
@@ -288,6 +309,7 @@
 			files = (
 				7DD83FA52C87307E002B3D40 /* PersonalPageTableViewCell.xib in Resources */,
 				7D701BA42B45E0F400308946 /* LaunchScreen.storyboard in Resources */,
+				7D893FA82D3D62B000B5097A /* WastesTableTableViewCell.xib in Resources */,
 				7D701BA12B45E0F400308946 /* Assets.xcassets in Resources */,
 				7D701B9F2B45E0F300308946 /* Main.storyboard in Resources */,
 				7D54C0B02C60E6AD00F95D91 /* animationSplash.json in Resources */,
@@ -307,11 +329,14 @@
 				7D5C2F432BDFED9B00B12F07 /* JSONManager.swift in Sources */,
 				7DA061EC2CFCBDCC00A125DD /* ShowBannerViewController.swift in Sources */,
 				7D76F7232C501EC9001B7A26 /* PersonalTablesCell.swift in Sources */,
+				7DBB37382D495F060034BE31 /* WastesViewController.swift in Sources */,
 				7D27C4E72C0CB45100A9B304 /* TransferData.swift in Sources */,
 				7D701B9C2B45E0F300308946 /* ViewController.swift in Sources */,
 				7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */,
+				7D893F752D3AF0A900B5097A /* WatstesList.swift in Sources */,
 				7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */,
 				7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */,
+				7D893FA92D3D62B000B5097A /* WastesTableTableViewCell.swift in Sources */,
 				7DE0971C2B541A1700E23A5B /* CreateWasteViewController.swift in Sources */,
 				7DA061EE2CFCE83000A125DD /* UserDafaults.swift in Sources */,
 				7D27C4E92C21A3ED00A9B304 /* WastesManager.swift in Sources */,
@@ -325,6 +350,7 @@
 				7DD83FA42C87307E002B3D40 /* PersonalPageTableViewCell.swift in Sources */,
 				7D9701C02C3035FD00C11578 /* EditAlert.swift in Sources */,
 				7DD83FA72C999B5D002B3D40 /* WebShowViewController.swift in Sources */,
+				7D893FA52D3C1D1500B5097A /* WastesTableView.swift in Sources */,
 				7D75379D2B5EE95D004ABCAF /* IconsExtension.swift in Sources */,
 				7DE097212B554A9600E23A5B /* WastePageViewController.swift in Sources */,
 				7DE097232B584C0200E23A5B /* PersonalPageViewController.swift in Sources */,
@@ -333,6 +359,8 @@
 				7D75379F2B6023D4004ABCAF /* TypesViewController.swift in Sources */,
 				7D27C4EB2C21A75C00A9B304 /* DateManager.swift in Sources */,
 				7D76F71F2C47E780001B7A26 /* UDManager.swift in Sources */,
+				7D893FA32D3C0F6600B5097A /* WastesTableViewController.swift in Sources */,
+				7D893F732D382C7A00B5097A /* PrivacyViewController.swift in Sources */,
 				7D76F7212C501AC5001B7A26 /* PersonalTablesViewController.swift in Sources */,
 				7DE097292B585F2A00E23A5B /* AnalyticsViewController.swift in Sources */,
 				7DE0971A2B54184700E23A5B /* ColorExtension.swift in Sources */,

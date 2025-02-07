@@ -84,6 +84,9 @@ class PersonalPageViewController: UIViewController {
     var currentLeftBudget = ""
     var goalStatus = ""
     var goalStatusMessage = ""
+    let profileImage = "profileImage"
+    var photoPath = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,14 +95,14 @@ class PersonalPageViewController: UIViewController {
         
         view.backgroundColor = .themeBG
         
-        if UserDefaults.standard.value(forKey: "overallBudget").debugDescription.isEmpty {
+        if (UserDefaults.standard.value(forKey: "overallBudget") as? String)?.isEmpty == true {
             overallBudget.text = "enter budget :)"
         } else {
-            overallBudget.text = "\(UserDefaults.standard.value(forKey: "overallBudget") ?? "error")\(currencyEntered)"
+            overallBudget.text = "\(UserDefaults.standard.string(forKey: "overallBudget") ?? "error")\(currencyEntered)"
         }
         
-        if UserDefaults.standard.value(forKey: "currencyOnScreen") as? String ?? "percent" != "" {
-            let image = UserDefaults.standard.value(forKey: "currencyOnScreen") as? String ?? "percent"
+        if UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent" != "" {
+            let image = UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent"
             currency.image = UIImage(systemName: image)
         } else {
             currency.image = UIImage(systemName: "number")
@@ -127,12 +130,13 @@ class PersonalPageViewController: UIViewController {
         titleLabel.textColor = .texts
         titleLabel.text = "Your Page"
         
+        //adding photo to profile 
         view.addSubview(photoView)
         photoView.layer.cornerRadius = 20
         let tapOnPhoto = UITapGestureRecognizer(target: self, action: #selector(openPicker))
         photoView.addGestureRecognizer(tapOnPhoto)
         photoView.isUserInteractionEnabled = true
-        
+        getImageAndSet()
         
         view.addSubview(editButtonView)
         editButtonView.layer.cornerRadius = 30
@@ -487,12 +491,45 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
         if let pickedImage = info[.originalImage] as? UIImage {
             photoView.image = pickedImage
             //resizableImage(withCapInsets: UIEdgeInsets(top: photoView.bounds.maxY, left: photoView.bounds.minX, bottom:  photoView.bounds.minY, right:  photoView.bounds.maxX))
-
+            saveProfilePhoto(image: pickedImage)
         }
         dismiss(animated: true, completion: nil)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    func saveProfilePhoto(image: UIImage) {
+        guard let photo = image.jpegData(compressionQuality: 1) else {
+            return
+        }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) as NSURL else {
+            return
+        }
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(profileImage).jpeg")
+            print("where is profile image", paths)
+            UserDefaults.standard.set(paths, forKey: "pathToProfilePhoto")
+            //photoPath = paths
+        do
+        {
+            try photo.write(to: directory.appendingPathComponent("\(profileImage).jpeg")!)
+        } catch {
+            print("Error while writing photo to directory")
+            print(error.localizedDescription)
+        }
+
+        print("image saved successfully")
+    }
+    func getImageAndSet(){
+        guard let path = UserDefaults.standard.string(forKey: "pathToProfilePhoto") else {
+            print("NO PATH in UD")
+            return
+        }
+        if FileManager.default.fileExists(atPath: path) {
+            photoView.image = UIImage(contentsOfFile: path)
+            print("Profile image is set\n \(path)")
+        } else {
+            print("Error when appending image to profile")
+        }
     }
 }
