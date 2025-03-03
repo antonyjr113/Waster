@@ -42,7 +42,8 @@ struct WatstesList: View {
             let alert = UIAlertController(title: "Nothing to save", message: "Add wastes to save them into Report :)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             return false
-        } else {
+        }
+        else {
             let allWastesData = JSONManager()
             allWastesData.saveData()
             let alert = UIAlertController(title: "Done", message: "Report is saved to Your Page :)", preferredStyle: .alert)

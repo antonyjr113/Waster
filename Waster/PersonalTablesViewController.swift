@@ -146,9 +146,13 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: "PersonalPageTableViewCell", for: indexPath) as! PersonalPageTableViewCell
         if arrayForTypes.count != 0 {
             cell.textInCell.text = "\(arrayForTypesTitles[indexPath.row])"
-        } else if arrayForReports.count != 0 && arrayForReports.count <= arrayForReportsTitles.count {
+        }
+        else
+        if arrayForReports.count != 0 && arrayForReports.count <= arrayForReportsTitles.count {
             cell.textInCell.text = "\(arrayForReportsTitles[indexPath.row])"
-        } else if arrayForMonthStats.count != 0 {
+        }
+        else
+        if arrayForMonthStats.count != 0 {
             cell.textInCell.text = "\(arrayForMonthStatsTitles[indexPath.row])"
         }
         cell.textInCell.font = .systemFont(ofSize: 24, weight: .semibold)
@@ -187,7 +191,8 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
             let alert = UIAlertController(title: "No reports", message: "You have no saved reports yet :)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true)
-        } else {
+        }
+        else {
             let alert = UIAlertController(title: "Are you sure?", message: "All your waste reports will be deleted.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete reports", style: .default, handler: nil))

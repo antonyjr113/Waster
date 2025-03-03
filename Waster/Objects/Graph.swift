@@ -43,7 +43,8 @@ class Graph {
             make.centerY.equalTo(view)
             if numberOfGraph == 0 {
                 make.leading.equalToSuperview().offset(-15)
-            } else {
+            }
+            else {
                 make.leading.equalToSuperview().offset((2*delta + width) * numberOfGraph)
             }
         }
@@ -66,7 +67,8 @@ class Graph {
         
         if totalSumm > 100 {
             height = totalSumm / 5
-        } else{
+        }
+        else{
             if totalSumm > 1000 {
                 height = totalSumm / 20
             }

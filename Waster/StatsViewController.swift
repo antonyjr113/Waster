@@ -110,7 +110,8 @@ class StatsViewController: UIViewController {
             placeholder.textAlignment = .center
             placeholder.font = placeholder.font.withSize(25)
             placeholder.textColor = UIColor(named: "systemWhite")
-        } else {
+        }
+        else {
             placeholder.removeFromSuperview()
             for element in wastesArray {
                 addNewWaste(onView: contentView, element: element, iconType: element.type )
@@ -324,7 +325,8 @@ class StatsViewController: UIViewController {
                 addNewWaste(onView: view, element: element, iconType: element.type ?? "car")
             }
             print("USED BASE ARRAY")
-        } else {
+        }
+        else {
             for element in wastesArray {
                 addNewWaste(onView: view, element: element, iconType: element.type ?? "car")
             }

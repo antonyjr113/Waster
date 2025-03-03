@@ -97,21 +97,24 @@ class PersonalPageViewController: UIViewController {
         
         if (UserDefaults.standard.value(forKey: "overallBudget") as? String)?.isEmpty == true {
             overallBudget.text = "enter budget :)"
-        } else {
+        }
+        else {
             overallBudget.text = "\(UserDefaults.standard.string(forKey: "overallBudget") ?? "error")\(currencyEntered)"
         }
         
         if UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent" != "" {
             let image = UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent"
             currency.image = UIImage(systemName: image)
-        } else {
+        }
+        else {
             currency.image = UIImage(systemName: "number")
         }
 
         if wastesArray.isEmpty {
             //overallBudget.text = "\(budgetEntered)\(currencyEntered)"
             lastWaste.text = "no wastes :)"
-        } else {
+        }
+        else {
             lastWaste.text = "-\(wastesArray.last?.wasteAmount ?? "error")\(currencyEntered)"
         }
        
@@ -326,7 +329,9 @@ class PersonalPageViewController: UIViewController {
 //        }
         if _sender.state == .began {
             editButtonView.backgroundColor = .ifTapped
-        } else if _sender.state == .ended || _sender.state == .cancelled {
+        }
+        else
+        if _sender.state == .ended || _sender.state == .cancelled {
             editButtonView.backgroundColor = .systemYellow
         }
         edit.openEditAlert(onView: view)
@@ -471,7 +476,8 @@ class PersonalPageViewController: UIViewController {
             goalStatus = "Too much wastes :("
             goalStatusMessage = "Decrease your wastes to ahcieve Save Goal. Complete this ahcievement!"
             print("more then availble goal - success")
-        } else {
+        }
+        else {
             iconViewForGoal.image = UIImage(systemName: "hand.thumbsup")
             iconViewForGoal.tintColor = .cyan
             goalStatus = "Well done!"
@@ -500,19 +506,20 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
         dismiss(animated: true, completion: nil)
     }
     func saveProfilePhoto(image: UIImage) {
-        guard let photo = image.jpegData(compressionQuality: 1) else {
+        guard let photo = image.jpegData(compressionQuality: 1)
+        else {
             return
         }
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) as NSURL else {
-            return
-        }
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(profileImage).jpeg")
+//        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) as NSURL else {
+//            return
+//        }
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(self.profileImage).jpeg")
             print("where is profile image", paths)
             UserDefaults.standard.set(paths, forKey: "pathToProfilePhoto")
             //photoPath = paths
         do
         {
-            try photo.write(to: directory.appendingPathComponent("\(profileImage).jpeg")!)
+            try photo.write(to: URL(filePath: paths))
         } catch {
             print("Error while writing photo to directory")
             print(error.localizedDescription)
@@ -521,14 +528,16 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
         print("image saved successfully")
     }
     func getImageAndSet(){
-        guard let path = UserDefaults.standard.string(forKey: "pathToProfilePhoto") else {
+        guard let path = UserDefaults.standard.string(forKey: "pathToProfilePhoto")
+        else {
             print("NO PATH in UD")
             return
         }
         if FileManager.default.fileExists(atPath: path) {
             photoView.image = UIImage(contentsOfFile: path)
             print("Profile image is set\n \(path)")
-        } else {
+        }
+        else {
             print("Error when appending image to profile")
         }
     }

@@ -35,12 +35,16 @@
 		7D893FA52D3C1D1500B5097A /* WastesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D893FA42D3C1D1500B5097A /* WastesTableView.swift */; };
 		7D893FA82D3D62B000B5097A /* WastesTableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D893FA72D3D62B000B5097A /* WastesTableTableViewCell.xib */; };
 		7D893FA92D3D62B000B5097A /* WastesTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D893FA62D3D62B000B5097A /* WastesTableTableViewCell.swift */; };
+		7D92DC542D6C9089004825B9 /* SwipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92DC532D6C9089004825B9 /* SwipesView.swift */; };
+		7D92DC562D6C909A004825B9 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92DC552D6C909A004825B9 /* Album.swift */; };
+		7D92DC582D6C90C7004825B9 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92DC572D6C90C7004825B9 /* Tool.swift */; };
+		7D92DC5A2D6C9123004825B9 /* AICategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92DC592D6C9123004825B9 /* AICategory.swift */; };
 		7D9701C02C3035FD00C11578 /* EditAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9701BF2C3035FD00C11578 /* EditAlert.swift */; };
 		7D9EA48F2C0897BC004CCFFF /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EA48E2C0897BC004CCFFF /* HideKeyboard.swift */; };
 		7D9EA4912C0897CC004CCFFF /* AvoidingKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EA4902C0897CC004CCFFF /* AvoidingKeyboard.swift */; };
 		7DA061E82CFCB01C00A125DD /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA061E72CFCB01C00A125DD /* Banner.swift */; };
 		7DA061EC2CFCBDCC00A125DD /* ShowBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA061EB2CFCBDCC00A125DD /* ShowBannerViewController.swift */; };
-		7DA061EE2CFCE83000A125DD /* UserDafaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA061ED2CFCE83000A125DD /* UserDafaults.swift */; };
+		7DA061EE2CFCE83000A125DD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA061ED2CFCE83000A125DD /* UserDefaults.swift */; };
 		7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD110F2B6A63A200BA73C7 /* AllColors.swift */; };
 		7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAD11382B7E2F7700BA73C7 /* Graph.swift */; };
 		7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */; };
@@ -103,12 +107,16 @@
 		7D893FA42D3C1D1500B5097A /* WastesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesTableView.swift; sourceTree = "<group>"; };
 		7D893FA62D3D62B000B5097A /* WastesTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesTableTableViewCell.swift; sourceTree = "<group>"; };
 		7D893FA72D3D62B000B5097A /* WastesTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WastesTableTableViewCell.xib; sourceTree = "<group>"; };
+		7D92DC532D6C9089004825B9 /* SwipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipesView.swift; sourceTree = "<group>"; };
+		7D92DC552D6C909A004825B9 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		7D92DC572D6C90C7004825B9 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		7D92DC592D6C9123004825B9 /* AICategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICategory.swift; sourceTree = "<group>"; };
 		7D9701BF2C3035FD00C11578 /* EditAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlert.swift; sourceTree = "<group>"; };
 		7D9EA48E2C0897BC004CCFFF /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		7D9EA4902C0897CC004CCFFF /* AvoidingKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidingKeyboard.swift; sourceTree = "<group>"; };
 		7DA061E72CFCB01C00A125DD /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		7DA061EB2CFCBDCC00A125DD /* ShowBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBannerViewController.swift; sourceTree = "<group>"; };
-		7DA061ED2CFCE83000A125DD /* UserDafaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDafaults.swift; sourceTree = "<group>"; };
+		7DA061ED2CFCE83000A125DD /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		7DAD110F2B6A63A200BA73C7 /* AllColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllColors.swift; sourceTree = "<group>"; };
 		7DAD11382B7E2F7700BA73C7 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		7DAF76F22BB8440200CF2CD9 /* ColorRandomizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRandomizer.swift; sourceTree = "<group>"; };
@@ -147,7 +155,7 @@
 			children = (
 				7D1F9DB72B612BAB0099C23C /* AllTypes.swift */,
 				7DAD110F2B6A63A200BA73C7 /* AllColors.swift */,
-				7DA061ED2CFCE83000A125DD /* UserDafaults.swift */,
+				7DA061ED2CFCE83000A125DD /* UserDefaults.swift */,
 			);
 			path = CommonData;
 			sourceTree = "<group>";
@@ -221,11 +229,23 @@
 				7D701BA02B45E0F400308946 /* Assets.xcassets */,
 				7D701BA22B45E0F400308946 /* LaunchScreen.storyboard */,
 				7D701BA52B45E0F400308946 /* Info.plist */,
+				7D92DC502D6C9060004825B9 /* Cleaner */,
 				7D1F9DB92B627BA20099C23C /* Objects */,
 				7D1F9DB62B612B8F0099C23C /* CommonData */,
 				7DE097182B54182E00E23A5B /* Extensions */,
 			);
 			path = Waster;
+			sourceTree = "<group>";
+		};
+		7D92DC502D6C9060004825B9 /* Cleaner */ = {
+			isa = PBXGroup;
+			children = (
+				7D92DC532D6C9089004825B9 /* SwipesView.swift */,
+				7D92DC552D6C909A004825B9 /* Album.swift */,
+				7D92DC572D6C90C7004825B9 /* Tool.swift */,
+				7D92DC592D6C9123004825B9 /* AICategory.swift */,
+			);
+			path = Cleaner;
 			sourceTree = "<group>";
 		};
 		7DE097182B54182E00E23A5B /* Extensions */ = {
@@ -338,7 +358,9 @@
 				7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */,
 				7D893FA92D3D62B000B5097A /* WastesTableTableViewCell.swift in Sources */,
 				7DE0971C2B541A1700E23A5B /* CreateWasteViewController.swift in Sources */,
-				7DA061EE2CFCE83000A125DD /* UserDafaults.swift in Sources */,
+				7D92DC562D6C909A004825B9 /* Album.swift in Sources */,
+				7D92DC582D6C90C7004825B9 /* Tool.swift in Sources */,
+				7DA061EE2CFCE83000A125DD /* UserDefaults.swift in Sources */,
 				7D27C4E92C21A3ED00A9B304 /* WastesManager.swift in Sources */,
 				7DE097252B584F1D00E23A5B /* StatsViewController.swift in Sources */,
 				7D701B982B45E0F300308946 /* AppDelegate.swift in Sources */,
@@ -356,6 +378,7 @@
 				7DE097232B584C0200E23A5B /* PersonalPageViewController.swift in Sources */,
 				7DD83FA92CB3FC51002B3D40 /* ShowReportViewController.swift in Sources */,
 				7D1F9DB82B612BAB0099C23C /* AllTypes.swift in Sources */,
+				7D92DC5A2D6C9123004825B9 /* AICategory.swift in Sources */,
 				7D75379F2B6023D4004ABCAF /* TypesViewController.swift in Sources */,
 				7D27C4EB2C21A75C00A9B304 /* DateManager.swift in Sources */,
 				7D76F71F2C47E780001B7A26 /* UDManager.swift in Sources */,
@@ -365,6 +388,7 @@
 				7DE097292B585F2A00E23A5B /* AnalyticsViewController.swift in Sources */,
 				7DE0971A2B54184700E23A5B /* ColorExtension.swift in Sources */,
 				7DA061E82CFCB01C00A125DD /* Banner.swift in Sources */,
+				7D92DC542D6C9089004825B9 /* SwipesView.swift in Sources */,
 				7DD83FAE2CB40334002B3D40 /* ReportTableViewCell.swift in Sources */,
 				7DE097272B585ED600E23A5B /* SettingsViewController.swift in Sources */,
 			);
@@ -444,7 +468,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -501,7 +525,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -526,7 +550,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,7 +582,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

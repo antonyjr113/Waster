@@ -56,7 +56,8 @@ class AnalyticsViewController: UIViewController {
             placeholder.textAlignment = .center
             placeholder.font = placeholder.font.withSize(25)
             placeholder.textColor = UIColor(named: "systemWhite")
-        } else {
+        }
+        else {
             placeholder.removeFromSuperview()
             view.addSubview(firstGraphView)
             firstGraphView.snp.makeConstraints { make in
@@ -143,7 +144,8 @@ class AnalyticsViewController: UIViewController {
             if plusGraphFirst == 0 {
                 make.leading.equalTo(firstGraphView.bounds.minX).offset(10)
             }
-            else if plusGraphFirst == 1 {
+            else
+            if plusGraphFirst == 1 {
                 make.leading.equalTo(firstGraphView.bounds.minX).offset(delta + width + 20)
             }
             else {
@@ -217,7 +219,8 @@ class AnalyticsViewController: UIViewController {
             if plusGraphSecond == 0 {
                 make.leading.equalTo(secondGraphView.bounds.minX).offset(15)
             }
-            else if plusGraphSecond == 1 {
+            else
+            if plusGraphSecond == 1 {
                 make.leading.equalTo(secondGraphView.bounds.minX).offset(delta + width + 20)
             }
             else {
@@ -251,7 +254,8 @@ class AnalyticsViewController: UIViewController {
     private func correctHeight(height: Int) -> Int  {
         if height > 1000 {
             heightCorrected = height / 100
-        } else {
+        }
+        else {
             if height > 100 {
                 heightCorrected = height / 10
             }

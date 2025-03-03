@@ -20,5 +20,5 @@ class WastesViewController: UIViewController {
         childView.didMove(toParent: self)
         
     }
-
+    //вынести логику сюда из view 
 }

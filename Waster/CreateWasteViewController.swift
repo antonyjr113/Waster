@@ -126,7 +126,8 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
             
             self.present(alert, animated: true)
-        } else {
+        }
+        else {
             saveWasteNameButton.tintColor = UIColor.systemGreen
             newWaste.name = enterNameTF.text ?? ""
         }
@@ -144,7 +145,8 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
         if validateBudjet() == true {
             saveWasteBudgetButton.tintColor = UIColor.systemGreen
             newWaste.budget = enterBudgetTF.text ?? ""
-        } else {
+        }
+        else {
             let alert = UIAlertController(title: "Ooops", message: "Inccorrect summ! Try to correct and re-enter it :)", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Retry", style: .cancel, handler: nil))
@@ -204,7 +206,8 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
                 iconForLastWasteGlobal = element.name
                 lastTappedTypeIcon = element.name
                 print("for icon for last view = ", iconForLastWasteGlobal)
-            } else {
+            }
+            else {
                 print("not appropriate icon")
             }
         }
@@ -254,7 +257,9 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     }
     
     func validateBudjet() -> Bool {
-        guard let summ = Double(enterBudgetTF.text!) else {
+        guard let text = enterBudgetTF.text,
+              let summ = Double(text)
+        else {
             return false
         }
         return true

@@ -100,14 +100,16 @@ class SettingsViewController: UIViewController {
                 return
             }
             
-            guard let response = response as? HTTPURLResponse, (500...599).contains(response.statusCode) else {
+            guard let response = response as? HTTPURLResponse, (500...599).contains(response.statusCode)
+            else {
                 result = "Server error!"
                 return
             }
             
             if response == response as? HTTPURLResponse, (400...499).contains(response.statusCode) {
                 result = "Client error!"
-            } else {
+            }
+            else {
                 return
             }
             //
@@ -171,7 +173,7 @@ class SettingsViewController: UIViewController {
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
             let vc = SFSafariViewController(url: url, configuration: config)
-            present(vc, animated: true)
+            self.present(vc, animated: true)
         }
     }
     @objc private func openPrivacy() {
@@ -179,7 +181,7 @@ class SettingsViewController: UIViewController {
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
             let vc = SFSafariViewController(url: url, configuration: config)
-            present(vc, animated: true)
+            self.present(vc, animated: true)
         }
     }
 }

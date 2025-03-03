@@ -55,7 +55,8 @@ class ViewController: UIViewController {
             splash.modalPresentationStyle = .overFullScreen
             self.present(splash, animated: false)
             UserDefaults.standard.set(false, forKey: "isFirstLaunch")
-        } else {
+        }
+        else {
             return
         }
         
@@ -129,7 +130,9 @@ class ViewController: UIViewController {
         self.present(addVC, animated: true, completion: nil)
         if gesture.state == .began {
             plusButtonView.backgroundColor = .ifTapped
-        } else if gesture.state == .ended || gesture.state == .cancelled {
+        }
+        else
+        if gesture.state == .ended || gesture.state == .cancelled {
             plusButtonView.backgroundColor = .systemGreen
         }
     }
@@ -140,7 +143,9 @@ class ViewController: UIViewController {
         print("success personal")
         if _sender.state == .began {
             personalPageView.backgroundColor = .ifTapped
-        } else if _sender.state == .ended || _sender.state == .cancelled {
+        }
+        else
+        if _sender.state == .ended || _sender.state == .cancelled {
             personalPageView.backgroundColor = .systemGreen
         }
     }
@@ -153,7 +158,9 @@ class ViewController: UIViewController {
         print("WastesViewController opened")
         if _sender.state == .began {
             personalStatsView.backgroundColor = .ifTapped
-        } else if _sender.state == .ended || _sender.state == .cancelled {
+        }
+        else
+        if _sender.state == .ended || _sender.state == .cancelled {
             personalStatsView.backgroundColor = .systemGreen
         }
     }
@@ -166,7 +173,9 @@ class ViewController: UIViewController {
         print("success analytics")
         if _sender.state == .began {
             analyticsView.backgroundColor = .ifTapped
-        } else if _sender.state == .ended || _sender.state == .cancelled {
+        }
+        else
+        if _sender.state == .ended || _sender.state == .cancelled {
             analyticsView.backgroundColor = .systemGreen
         }
     }
@@ -177,7 +186,9 @@ class ViewController: UIViewController {
         print("success settings")
         if _sender.state == .began || _sender.state == .changed {
             settingsView.backgroundColor = .ifTapped
-        } else if _sender.state == .ended || _sender.state == .cancelled {
+        }
+        else
+        if _sender.state == .ended || _sender.state == .cancelled {
             settingsView.backgroundColor = .systemGreen
         }
     }
