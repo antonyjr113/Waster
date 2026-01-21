@@ -91,23 +91,19 @@ class ViewController: UIViewController {
             make.width.height.equalTo(70)
         }
             
-        let tapOnPersPage = UILongPressGestureRecognizer(target: self, action: #selector(openPersonalPage))
-        tapOnPersPage.minimumPressDuration = 0
+        let tapOnPersPage = UITapGestureRecognizer(target: self, action: #selector(openPersonalPage))
         personalPageView.addGestureRecognizer(tapOnPersPage)
         personalPageView.isUserInteractionEnabled = true
         
-        let tapOnStatsPage = UILongPressGestureRecognizer(target: self, action: #selector(openStatsPage))
-        tapOnStatsPage.minimumPressDuration = 0
+        let tapOnStatsPage = UITapGestureRecognizer(target: self, action: #selector(openStatsPage))
         personalStatsView.addGestureRecognizer(tapOnStatsPage)
         personalStatsView.isUserInteractionEnabled = true
         
-        let tapOnAnalyticsView = UILongPressGestureRecognizer(target: self, action: #selector(openAnalytics))
-        tapOnAnalyticsView.minimumPressDuration = 0
+        let tapOnAnalyticsView = UITapGestureRecognizer(target: self, action: #selector(openAnalytics))
         analyticsView.addGestureRecognizer(tapOnAnalyticsView)
         analyticsView.isUserInteractionEnabled = true
         
-        let tapOnSettingsView = UILongPressGestureRecognizer(target: self, action: #selector(openSettings))
-        tapOnSettingsView.minimumPressDuration = 0
+        let tapOnSettingsView = UITapGestureRecognizer(target: self, action: #selector(openSettings))
         settingsView.addGestureRecognizer(tapOnSettingsView)
         settingsView.isUserInteractionEnabled = true
         
@@ -139,7 +135,8 @@ class ViewController: UIViewController {
     @objc private func openPersonalPage(_sender : UILongPressGestureRecognizer) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "PersonalPageViewController") as! PersonalPageViewController
-        present(vc, animated: true)
+//        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
         print("success personal")
         if _sender.state == .began {
             personalPageView.backgroundColor = .ifTapped
@@ -153,8 +150,9 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
 //        let vc = sb.instantiateViewController(identifier: "StatsViewController") as! StatsViewController
         let vc = WastesViewController()
-        vc.modalPresentationStyle = .pageSheet
-            present(vc, animated: true)
+//        vc.modalPresentationStyle = .pageSheet
+//        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
         print("WastesViewController opened")
         if _sender.state == .began {
             personalStatsView.backgroundColor = .ifTapped
@@ -168,7 +166,8 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "AnalyticsViewController") as! AnalyticsViewController
         //vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+//        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
         print("TypesViewController opened")
         print("success analytics")
         if _sender.state == .began {
@@ -182,7 +181,8 @@ class ViewController: UIViewController {
     @objc private func openSettings(_sender : UILongPressGestureRecognizer) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
-        present(vc, animated: true)
+//        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
         print("success settings")
         if _sender.state == .began || _sender.state == .changed {
             settingsView.backgroundColor = .ifTapped
