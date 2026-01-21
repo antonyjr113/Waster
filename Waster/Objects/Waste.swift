@@ -17,25 +17,14 @@ struct Waste: Codable {
     let type: String
     let date: String
 }
-
-
-
 var lastAmountOfWastes = 0
-
 var wastesArray: [Waste] = []
-
 var totalSummforHealth = 0
-
 var totalSummforHome = 0
-
 var totalSummforJoy = 0
-
 var totalSummforSubs = 0
-
 var totalSummforChild = 0
-
 var totalSummforCar = 0
-
 var analyticsData: [String: Int] = [
     "car" : 0,
     "health" : 0,
@@ -46,12 +35,9 @@ var analyticsData: [String: Int] = [
 ]
 
 var budgetEntered = "0"
-
 var currencyEntered = ""
 var currencyForImage = ""
-
 var keysArray: [String] = []
-
 var dataForMonthStatsArray: [MonthStats] = []
 
 struct MonthStats {
@@ -59,7 +45,6 @@ struct MonthStats {
     var delta: Int?
     let title = "Month "
 }
-
 var dataForReportsArray: [Reports] = []
 
 struct Reports {
@@ -69,6 +54,5 @@ struct Reports {
     let icon: String?
     let note: String?
 }
-
 var reportsArray: [[Reports]] = []
 

@@ -11,32 +11,18 @@ import SnapKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var personalPageView: UIView!
-    
     @IBOutlet weak var persPageIcon: UIImageView!
-    
     @IBOutlet weak var personalStatsView: UIView!
-    
     @IBOutlet weak var statsIcon: UIImageView!
-    
     @IBOutlet weak var analyticsView: UIView!
-    
     @IBOutlet weak var analyticsIcon: UIImageView!
-    
     @IBOutlet weak var settingsView: UIView!
-    
     @IBOutlet weak var settingsIcon: UIImageView!
-    
     @IBOutlet weak var yourPageLabel: UILabel!
-    
     @IBOutlet weak var allWastesLabel: UILabel!
-    
     @IBOutlet weak var analyticsLabel: UILabel!
-    
     @IBOutlet weak var settingsLabel: UILabel!
-    
     @IBOutlet weak var plusButtonView: UIView!
-    
-    
     @IBOutlet weak var proButton: UIButton!
     
     let plusIcon: UIImageView = {
@@ -45,9 +31,7 @@ class ViewController: UIViewController {
         image.tintColor = .systemYellow
         return image
     }()
-    
-    //var isFirstLaunch = UserDefaults.standard.bool(forKey: "isFirstLaunch")
-    
+
     override func viewDidAppear(_ animated: Bool) {
         if isFirstLaunchApplication {
             let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -59,12 +43,10 @@ class ViewController: UIViewController {
         else {
             return
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .themeBG
         view.addSubview(plusButtonView)
         view.addSubview(personalPageView)
@@ -121,7 +103,6 @@ class ViewController: UIViewController {
         dataForMonthStatsArray.append(MonthStats(month: "December"))
         dataForMonthStatsArray.append(MonthStats(month: "November"))
         dataForMonthStatsArray.append(MonthStats(month: "July"))
-
     }
     
     @objc private func openAddWasteScreen(gesture: UILongPressGestureRecognizer) {
@@ -131,11 +112,11 @@ class ViewController: UIViewController {
         if gesture.state == .began {
             plusButtonView.backgroundColor = .ifTapped
         }
-        else
-        if gesture.state == .ended || gesture.state == .cancelled {
+        else if gesture.state == .ended || gesture.state == .cancelled {
             plusButtonView.backgroundColor = .systemGreen
         }
     }
+    
     @objc private func openPersonalPage(_sender : UILongPressGestureRecognizer) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "PersonalPageViewController") as! PersonalPageViewController
@@ -144,14 +125,13 @@ class ViewController: UIViewController {
         if _sender.state == .began {
             personalPageView.backgroundColor = .ifTapped
         }
-        else
-        if _sender.state == .ended || _sender.state == .cancelled {
+        else if _sender.state == .ended || _sender.state == .cancelled {
             personalPageView.backgroundColor = .systemGreen
         }
     }
+    
     @objc private func openStatsPage(_sender : UILongPressGestureRecognizer) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = sb.instantiateViewController(identifier: "StatsViewController") as! StatsViewController
         let vc = WastesViewController()
         vc.modalPresentationStyle = .pageSheet
             present(vc, animated: true)
@@ -167,15 +147,13 @@ class ViewController: UIViewController {
     @objc private func openAnalytics(_sender : UILongPressGestureRecognizer) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "AnalyticsViewController") as! AnalyticsViewController
-        //vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
         print("TypesViewController opened")
         print("success analytics")
         if _sender.state == .began {
             analyticsView.backgroundColor = .ifTapped
         }
-        else
-        if _sender.state == .ended || _sender.state == .cancelled {
+        else if _sender.state == .ended || _sender.state == .cancelled {
             analyticsView.backgroundColor = .systemGreen
         }
     }
@@ -187,8 +165,7 @@ class ViewController: UIViewController {
         if _sender.state == .began || _sender.state == .changed {
             settingsView.backgroundColor = .ifTapped
         }
-        else
-        if _sender.state == .ended || _sender.state == .cancelled {
+        else if _sender.state == .ended || _sender.state == .cancelled {
             settingsView.backgroundColor = .systemGreen
         }
     }

@@ -124,26 +124,19 @@ class TypesViewController: UIViewController {
                 make.trailing.equalToSuperview().offset(-20)
             }
             typesArray.append(newTypeView)
-
         }
-        
     }
     
     private func editWasteType(wt: Category) {
 
         let alert = UIAlertController(title: "Enter new type name", message: "You are to enter the neame of your personal waste type :", preferredStyle: .alert)
-        
         alert.addTextField { (textField) in
             textField.text = ""
         }
-        
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
             let tf = alert?.textFields![0]
             wt.wasteName = tf?.text ?? "error"
         }))
-
         self.present(alert, animated: true)
-        
     }
-    
 }

@@ -11,26 +11,18 @@ import SnapKit
 class Graph {
     
     let nameOfGraph: String
-    
     var heightOfGraph = 0
-    
     init(name: String) {
         self.nameOfGraph = name
     }
-    
     let baseValue = 200
-    
     let minValue = 10
-    
     var summForCountHeight = 0
     
     func createGraph(summ: Int, view: UIView, numberOfGraph: Int) {
-        
         let delta = 15
         let width = 45
-        
         //let height = (summ / 10)
-        
         let newTypeView: UIView = {
             let view = UIView()
             view.backgroundColor = .systemRed
@@ -48,7 +40,6 @@ class Graph {
                 make.leading.equalToSuperview().offset((2*delta + width) * numberOfGraph)
             }
         }
-        
         let name = UILabel()
         name.text = nameOfGraph
         name.font = UIFont(name: "system", size: 9)
@@ -61,10 +52,7 @@ class Graph {
     }
     
     private func countHeightOfGraph(totalSumm: Int) -> Int{
-        
-        
         var height: Int?
-        
         if totalSumm > 100 {
             height = totalSumm / 5
         }
@@ -78,12 +66,9 @@ class Graph {
         if heightOfGraph == 0 {
             print("error with counting height for \(nameOfGraph)")
         }
-        
         return height ?? 0
     }
-    
 //    func updateSumm(array: ) {
 //        
 //    }
-    
 }

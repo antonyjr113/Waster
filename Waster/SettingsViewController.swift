@@ -12,19 +12,12 @@ class SettingsViewController: UIViewController {
     
     
     @IBOutlet weak var touView: UIView!
-    
     @IBOutlet weak var touLabel: UILabel!
-    
     @IBOutlet weak var ppView: UIView!
-    
     @IBOutlet weak var ppLabel: UILabel!
-    
     @IBOutlet weak var rateUsView: UIView!
-    
     @IBOutlet weak var rateUsLabel: UILabel!
-    
     @IBOutlet weak var contactUsView: UIView!
-    
     @IBOutlet weak var contactUsLabel: UILabel!
     
     enum URLS {
@@ -34,17 +27,13 @@ class SettingsViewController: UIViewController {
         case contact
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("SettingsViewController opened")
-        
         view.backgroundColor = .themeBG
-        
         
         view.addSubview(touView)
         touView.addSubview(touLabel)
-        
         
         touView.layer.cornerRadius = 10
         touView.backgroundColor = greenProperty
@@ -90,22 +79,17 @@ class SettingsViewController: UIViewController {
         let session = URLSession.shared
         let url = URL(string: "https://sgonay.com.pl/rules")!
         var result = ""
-        
         let task = session.dataTask(with: url) { data, response, error in
-            
             result = "Success"
-            
             if error != nil || data == nil {
                 print("Client error!")
                 return
             }
-            
             guard let response = response as? HTTPURLResponse, (500...599).contains(response.statusCode)
             else {
                 result = "Server error!"
                 return
             }
-            
             if response == response as? HTTPURLResponse, (400...499).contains(response.statusCode) {
                 result = "Client error!"
             }

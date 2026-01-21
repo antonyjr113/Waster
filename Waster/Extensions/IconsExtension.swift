@@ -9,5 +9,4 @@ import UIKit
 
 extension UIImageView {
     static let carIcon = UIImage(named: "car")
-    
 }

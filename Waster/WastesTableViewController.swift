@@ -38,7 +38,6 @@ class WastesTableViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "WastesTableTableViewCell", for: indexPath) as! WastesTableTableViewCell
         for _ in wastesArray {
             var iconName = ""
-            
             switch iconName {
             case "car":
                 iconName = "car"
@@ -79,5 +78,4 @@ class WastesTableViewController: UIViewController, UITableViewDelegate, UITableV
         }
         return cell
     }
-    
 }

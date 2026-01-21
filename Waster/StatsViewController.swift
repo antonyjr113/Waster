@@ -13,58 +13,40 @@ class StatsViewController: UIViewController {
     
     
     @IBOutlet weak var sortButton: UIButton!
-    
     @IBOutlet weak var shareButtonView: UIImageView!
-    
     //var arrayForStats: [Waste] = UserDefaults.standard.object(forKey: "wastesArray")
     
     var i = 0
-    
     var baseX = 15
-    
     var baseY = 0
-    
     var sortedBaseX = 15
-    
     var sortedBaseY = 50
-    
     let delta = 20
-    
     var iconForLastWaste: Icon?
-    
     var delegate: TransferData?
-    
     var wasteNumber = wastesArray.count
-    
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.backgroundColor = .themeBg
         return scroll
     }()
-    
     let contentView: UIView = {
         let addView = UIView()
         addView.backgroundColor = .themeBg
         return addView
     }()
-    
     let picker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     var selectedDate = Date()
     var isTapped = false
     var tapCounter = 0
-    
     let edit = EditAlert(firstField: "Edit Note", secondField: "Edit Amount", thirdField: "Edit Type")
-    
     let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
     var blurEffectView = UIVisualEffectView()
-    
     let placeholder = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print("StatsViewController opened")
-        
         view.backgroundColor = .themeBg
         sortButton.snp.makeConstraints { make in
             make.width.equalTo(100)
@@ -100,7 +82,6 @@ class StatsViewController: UIViewController {
             }
             isTapped = false
         }
-        
         if wastesArray.isEmpty {
             view.addSubview(placeholder)
             placeholder.snp.makeConstraints { make in
@@ -125,6 +106,7 @@ class StatsViewController: UIViewController {
         shareButtonView.isUserInteractionEnabled = true
         print("N reports = ", dataForReportsArray.count)
     }
+    
     private func addNewWaste(onView: UIView, element: Waste, iconType: String) {
         let new = UIView(frame: CGRect(x: baseX, y: baseY, width: 365, height: 150))
         onView.addSubview(new)
@@ -212,11 +194,13 @@ class StatsViewController: UIViewController {
 //        let forReport = Reports(reportDate: dateLabel.text, icon: iconToApply, note: summ.text)
 //        dataForReportsArray.append(forReport)
     }
+    
     private func randomizeColors() -> UIColor {
         let numberOfColors = (colorsForWastes.count - 1)
         let index = Int.random(in: 0...numberOfColors)
         return colorsForWastes[index]
     }
+    
     @IBAction func sortButtonTap(_ sender: Any) { //пофиксить проблему без выбора даты не закрывается
         print("sortButtonTap success")
         print(isTapped)
@@ -240,6 +224,7 @@ class StatsViewController: UIViewController {
         checkTapCounter()
         checkForSort()
     }
+    
     @objc func showSavedDataAlert() {
         if wastesArray.isEmpty {
             let alert = UIAlertController(title: "Nothing to save", message: "Add wastes to save them into Report :)", preferredStyle: .alert)
@@ -255,11 +240,13 @@ class StatsViewController: UIViewController {
         self.present(alert, animated: true)
         print("saved wastes = ", dataForReportsArray.count)
     }
+    
     @objc func setChosenData() {
         selectedDate = self.picker.date
         print("SELECTED DATE = ", selectedDate)
         //sortWastesDueToDate()
     }
+    
     private func checkTapCounter() {
         if tapCounter > 1 {
             sortButton.setTitle("Sort", for: .normal)
@@ -269,6 +256,7 @@ class StatsViewController: UIViewController {
             }
         }
     }
+    
     @objc private func openEditWindow() {
 //        UIView.animate(withDuration: 0.5, delay: 0.5) {
 //            self.blurEffectView = UIVisualEffectView(effect: self.blurEffect)
@@ -301,6 +289,7 @@ class StatsViewController: UIViewController {
         }))
         self.present(alert, animated: true)
     }
+    
     @objc private func closeEditAlert() {
         UIView.animate(withDuration: 0.5, delay: 0.5) {
             self.edit.editAlertView.removeFromSuperview()
@@ -308,6 +297,7 @@ class StatsViewController: UIViewController {
             //self.blurEffectView.removeFromSuperview()
         }
     }
+    
     private func sortWastes(){
         let formater = DateFormatter()
         formater.dateFormat = "dd-MM-yyyy"
@@ -333,6 +323,7 @@ class StatsViewController: UIViewController {
             print("USED SORTED ARRAY")
         }
     }
+    
     private func checkForSort(){
         let formater = DateFormatter()
         formater.dateFormat = "dd-MM-yyyy"

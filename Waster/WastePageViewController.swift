@@ -15,35 +15,21 @@ class WastePageViewController: UIViewController {
     
     
     @IBOutlet weak var titleLabel: UILabel!
-    
-    
     @IBOutlet weak var nameField: UILabel!
-    
     @IBOutlet weak var nameValue: UILabel!
-    
-    
     @IBOutlet weak var budgetField: UILabel!
-    
     @IBOutlet weak var markField: UILabel!
-    
     @IBOutlet weak var budgetValue: UILabel!
-    
     @IBOutlet weak var markValue: UILabel!
-    
     @IBOutlet weak var wasteIconView: UIImageView!
-    
     @IBOutlet weak var editBudgetButton: UIButton!
     
     let nameView = UIView()
     //let budgetView = UIView()
-    
     let lastWasteView = UIView()
-    
 
     override func viewDidLoad() {
-        
         print("WastePageViewController opened")
-        
         super.viewDidLoad()
         view.backgroundColor = .themeBG
         
@@ -75,20 +61,14 @@ class WastePageViewController: UIViewController {
     
     
     private func editFieldValue(field: UILabel) {
- 
         let alert = UIAlertController(title: "Change value", message: "Enter new value of budget for current waste:", preferredStyle: .alert)
-        
         alert.addTextField { (textField) in
             textField.text = ""
         }
-        
         alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] (_) in
             let tf = alert?.textFields![0]
             field.text = tf?.text
         }))
-
         self.present(alert, animated: true)
-        
     }
-
 }

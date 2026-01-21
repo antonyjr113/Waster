@@ -16,7 +16,6 @@ final class ShowBannerViewController: UIViewController {
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         return button
     }()
-    
     var isClose: Bool?
 
     override func viewDidLoad() {
@@ -42,5 +41,4 @@ final class ShowBannerViewController: UIViewController {
     @objc private func closeTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
 }

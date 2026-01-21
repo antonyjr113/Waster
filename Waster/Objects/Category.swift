@@ -12,17 +12,13 @@ import SnapKit
 class Category {
     
     let baseH = 160
-    
     var wasteName = ""
-    
     let numberOfColors = colorsStringArray.count
-    
     let newTypeView: UIView = {
         let addView = UIView()
         addView.backgroundColor = .systemYellow
         return addView
     }()
-    
     let editNewView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemMint
@@ -37,14 +33,12 @@ class Category {
     }
     
     func createType(onView: UIView, name: String, icon: String) {
-        
         let name = name
         let icon = icon
         //name = wasteName
         typesArray.append(newTypeView)
         onView.addSubview(newTypeView)
         newTypeView.backgroundColor = UIColor(named: randomizeColors(n: numberOfColors))
-
         print("set color = ", newTypeView.backgroundColor)
         newTypeView.snp.makeConstraints { make in
             make.height.equalTo(baseH)
@@ -53,12 +47,8 @@ class Category {
             make.trailing.equalToSuperview().offset(-20)
         }
         print("color to set = ", newTypeView.backgroundColor)
-
         let newTypeStruct = TypeSingle(name: name, color: newTypeView.backgroundColor, icon: icon)
-        
         typesArrayStruct.append(newTypeStruct)
-
-        
         let iconIV = UIImageView()
         iconIV.image = UIImage(systemName: "car")
         newTypeView.addSubview(iconIV)
@@ -68,7 +58,6 @@ class Category {
             make.trailing.equalToSuperview().offset(-20)
             make.width.height.equalTo(80)
         }
-        
         let typeName = UILabel()
         typeName.text = name
         typeName.font = UIFont(name: "system", size: 30)
@@ -79,7 +68,6 @@ class Category {
             make.leading.equalToSuperview().offset(20)
             make.width.height.equalTo(80)
         }
-        
     }
     
     func openEditView(onView: UIView) {
@@ -95,5 +83,4 @@ class Category {
             self.editNewView.frame.size = CGSize(width: 150, height: 350)
         }
     }
-
 }

@@ -11,9 +11,7 @@ class PersonalPageTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var textInCell: UILabel!
-
     @IBOutlet weak var iconInCell: UIImageView!
-    
     @IBOutlet weak var cellSelector: UIImageView!
     
     override func awakeFromNib() {
@@ -24,5 +22,4 @@ class PersonalPageTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         cellSelector.image = UIImage(systemName: "circle")
     }
-    
 }

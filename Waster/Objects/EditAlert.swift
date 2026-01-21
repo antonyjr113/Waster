@@ -13,13 +13,11 @@ final class EditAlert {
     var firstField: String?
     var secondField: String?
     var thirdField: String?
-    
     init(firstField: String, secondField: String, thirdField: String) {
         self.firstField = firstField
         self.secondField = secondField
         self.thirdField = thirdField
     }
-    
     let editAlertView: UIView = {
         let view = UIView()
         view.backgroundColor = .themeBg
@@ -27,7 +25,6 @@ final class EditAlert {
         view.layer.borderWidth = 1
         return view
     }()
-    
     let firstOption: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGreen
@@ -40,14 +37,12 @@ final class EditAlert {
         button.layer.cornerRadius = 10
         return button
     }()
-    
     let thirdOption: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 10
         return button
     }()
-    
     let closeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemBlue

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 var colorsStringArray = ["systemGreenColor", "systemRedColor", "systemCyanColor", "systemPinkColor", "systemOrangeColor", "systemMintColor", "systemGray2Color"]
 
 

@@ -16,13 +16,10 @@ class ColorRandomizer {
         
         return instance
     }()
-    
 
-    
     func randomizeColors() -> UIColor {
         let numberOfColors = (colorsForWastes.count - 1)
         let index = Int.random(in: 0...numberOfColors)
         return colorsForWastes[index]
     }
-    
 }

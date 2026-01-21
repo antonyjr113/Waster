@@ -15,13 +15,11 @@ class AnalyticsViewController: UIViewController {
     var heightCorrected = 0
     var totalOfAll = 0
     var sumsOfTypes = [Int]()
-    
     let firstGraphView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray2
         return view
     }()
-    
     let secondGraphView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray
@@ -35,9 +33,7 @@ class AnalyticsViewController: UIViewController {
         let label = UILabel()
         return label
     }()
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     let placeholder = UILabel()
     
     override func viewDidLoad() {
@@ -113,9 +109,7 @@ class AnalyticsViewController: UIViewController {
         let width = 40
         var height = 0
         var forAmount = 0.0
-
         print("\ntype: ", element)
-
         print("COUNTER = ", plusGraphFirst)
         for type in analyticsData {
             if type.key == element {
@@ -176,8 +170,6 @@ class AnalyticsViewController: UIViewController {
         print("COUNTER = ", plusGraphFirst)
     }
     
-    
-    
     private func createWasteGraphSecond(view: UIView, element: String) {
         let delta = 20
         let width = 40
@@ -204,7 +196,6 @@ class AnalyticsViewController: UIViewController {
         //print("COUNTER = ", plusGraphSecond)
         //height = (correctHeight(height: height))
         print("height of graph = ", height)
-        
         let newTypeView: UIView = {
             let view = UIView()
             view.backgroundColor = ColorRandomizer.shared.randomizeColors()
@@ -281,5 +272,4 @@ class AnalyticsViewController: UIViewController {
         print("UPDATED ARRAY FOR 2 FUNC = ", array)
         return array
     }
-    
 }

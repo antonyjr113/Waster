@@ -10,7 +10,6 @@ import UIKit
 
 class PersonalTablesCell: UITableViewCell {
 
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -22,5 +21,4 @@ class PersonalTablesCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-
 }

@@ -11,14 +11,11 @@ import WebKit
 class WebShowViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
-
     var linkToShow: String?
-
     init(linkToShow: String) {
         self.linkToShow = linkToShow
         super.init(nibName: "WebShowViewController", bundle: nil)
     }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -33,8 +30,7 @@ class WebShowViewController: UIViewController, WKUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard
-            let myURL = URL(string: linkToShow ?? "https://www.onliner.by/")
+        guard let myURL = URL(string: linkToShow ?? "https://www.onliner.by/")
         else {
             return
         }
@@ -42,5 +38,4 @@ class WebShowViewController: UIViewController, WKUIDelegate {
         webView.load(myRequest)
         print(linkToShow)
     }
-
 }

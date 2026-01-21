@@ -8,7 +8,6 @@
 import UIKit
 
 class UDManager {
-    
     var key = ""
     
     func saveInUD(object: Any, key: String) {

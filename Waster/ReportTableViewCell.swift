@@ -11,11 +11,8 @@ import SnapKit
 class ReportTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
-    
     @IBOutlet weak var noteLabel: UILabel!
-    
     @IBOutlet weak var icon: UIImageView!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

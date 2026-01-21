@@ -32,5 +32,4 @@ class PrivacyViewController: UIViewController {
             present(vc, animated: true)
         }
     }
-
 }

@@ -36,7 +36,6 @@ class JSONManager {
         print("!!!\n", documentsDirectory)
         return documentsDirectory
     }
-    
 //    func decodeReport(report: Data) {
 //    }
 }

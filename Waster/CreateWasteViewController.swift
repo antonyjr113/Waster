@@ -11,58 +11,38 @@ import SnapKit
 class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround, TransferData, UITextFieldDelegate {
 
     @IBOutlet weak var wasteName: UILabel!
-    
     @IBOutlet weak var wasteBudget: UILabel!
-    
     @IBOutlet weak var enterNameTF: UITextField!
-    
     @IBOutlet weak var enterBudgetTF: UITextField!
-    
     @IBOutlet weak var saveWasteNameButton: UIButton!
-    
     @IBOutlet weak var saveWasteBudgetButton: UIButton!
-    
     @IBOutlet weak var showNewWasteButton: UIButton!
-    
     @IBOutlet weak var chooseIconView: UIView!
-    
     @IBOutlet weak var chooseCarIcon: UIImageView!
-    
     @IBOutlet weak var chooseHomeIcon: UIImageView!
-    
     @IBOutlet weak var chooseHealthIcon: UIImageView!
-    
     @IBOutlet weak var chooseChildIcon: UIImageView!
-    
     @IBOutlet weak var chooseSubsIcon: UIImageView!
-    
     @IBOutlet weak var chooseJoyIcon: UIImageView!
     
     let newWaste = WastePageViewController()
-    
     var nameOfIcon = ""
-    
     var lastTappedTypeIcon: String?
-    
     var lastMadeWaste: String?
-    
     let userDefaults = UserDefaults.standard
-    
     var id: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         wasteID += 1
         id = wasteID
-        
+
         hideKeyboardWhenTappedAround()
         
         print("CreateWasteViewController opened")
         print("id = \(id)")
         
         view.backgroundColor = .themeBG
-        
         view.addSubview(chooseIconView)
         chooseIconView.addSubview(chooseCarIcon)
         chooseIconView.addSubview(chooseHomeIcon)
@@ -84,7 +64,6 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
         categoriesArray.append(child)
         categoriesArray.append(sub)
         categoriesArray.append(joy)
-        
         
         view.addSubview(wasteName)
         wasteName.text = "Enter waste name"
@@ -122,9 +101,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     @IBAction func saveNameButtonTap(_ sender: Any) {
         if enterNameTF.text == "" {
             let alert = UIAlertController(title: "Name is empty", message: "Enter name of waste at first", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-            
             self.present(alert, animated: true)
         }
         else {
@@ -135,11 +112,8 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     }
     @IBAction func saveBudgetButtonTap(_ sender: Any) {
         if enterBudgetTF.text == "" {
-            
             let alert = UIAlertController(title: "Budget summ is empty :(", message: "Enter the summ of budjet please", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-            
             self.present(alert, animated: true)
         }
         if validateBudjet() == true {
@@ -148,9 +122,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
         }
         else {
             let alert = UIAlertController(title: "Ooops", message: "Inccorrect summ! Try to correct and re-enter it :)", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Retry", style: .cancel, handler: nil))
-            
             self.present(alert, animated: true)
         }
         print("budget saved")
@@ -158,9 +130,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
     @IBAction func addWasteButtonTap(_ sender: Any) {
         if newWaste.name == "" || newWaste.budget == "" {
             let alert = UIAlertController(title: "Empty fields", message: "Please, fill Name and Budget fields", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            
             self.present(alert, animated: true)
         }
         else {
@@ -264,5 +234,4 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
         }
         return true
     }
-
 }

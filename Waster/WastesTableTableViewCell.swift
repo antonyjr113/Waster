@@ -10,12 +10,8 @@ import UIKit
 class WastesTableTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var dateLabel: UILabel!
-    
     @IBOutlet weak var amountLabel: UILabel!
-    
-    
     @IBOutlet weak var iconImage: UIImageView!
     
     override func awakeFromNib() {
@@ -28,5 +24,4 @@ class WastesTableTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

@@ -18,7 +18,6 @@ final class WastesManager {
     
     
     static var shared: WastesManager =  {
-        
         var totalCar = 0
         var totalHome = 0
         var totalChild = 0
@@ -38,7 +37,6 @@ final class WastesManager {
         func returnWasteData() -> [Waste] {
             return allWastesArray
         }
-        
 //        func returnTotalForCategory(cat: String) {
 //            for
 //        }
