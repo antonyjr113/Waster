@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0D832D2F294785000D0519 /* WastesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D832C2F294785000D0519 /* WastesDataModel.swift */; };
+		7D0D832F2F294A59000D0519 /* UserProfileConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D832E2F294A59000D0519 /* UserProfileConfig.swift */; };
+		7D0D83312F294A69000D0519 /* UserDefualtsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D83302F294A69000D0519 /* UserDefualtsKeys.swift */; };
+		7D0D83332F294CA0000D0519 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D83322F294CA0000D0519 /* Currency.swift */; };
 		7D1F9DB82B612BAB0099C23C /* AllTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DB72B612BAB0099C23C /* AllTypes.swift */; };
 		7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DBA2B627BB60099C23C /* Waste.swift */; };
 		7D27C4E52C09ED9B00A9B304 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7D27C4E42C09ED9B00A9B304 /* SnapKit */; };
@@ -79,6 +83,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D0D832C2F294785000D0519 /* WastesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesDataModel.swift; sourceTree = "<group>"; };
+		7D0D832E2F294A59000D0519 /* UserProfileConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileConfig.swift; sourceTree = "<group>"; };
+		7D0D83302F294A69000D0519 /* UserDefualtsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefualtsKeys.swift; sourceTree = "<group>"; };
+		7D0D83322F294CA0000D0519 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		7D1F9DB72B612BAB0099C23C /* AllTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTypes.swift; sourceTree = "<group>"; };
 		7D1F9DBA2B627BB60099C23C /* Waste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waste.swift; sourceTree = "<group>"; };
 		7D27C4E62C0CB45100A9B304 /* TransferData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferData.swift; sourceTree = "<group>"; };
@@ -224,6 +232,10 @@
 				7DD83FAC2CB40334002B3D40 /* ReportTableViewCell.swift */,
 				7DA061EB2CFCBDCC00A125DD /* ShowBannerViewController.swift */,
 				7DBB37372D495F060034BE31 /* WastesViewController.swift */,
+				7D0D832C2F294785000D0519 /* WastesDataModel.swift */,
+				7D0D832E2F294A59000D0519 /* UserProfileConfig.swift */,
+				7D0D83302F294A69000D0519 /* UserDefualtsKeys.swift */,
+				7D0D83322F294CA0000D0519 /* Currency.swift */,
 				7DD83FAD2CB40334002B3D40 /* ReportTableViewCell.xib */,
 				7D701B9D2B45E0F300308946 /* Main.storyboard */,
 				7D701BA02B45E0F400308946 /* Assets.xcassets */,
@@ -346,6 +358,7 @@
 			files = (
 				7D54C0A92C5CDA9100F95D91 /* SplashViewController.swift in Sources */,
 				7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */,
+				7D0D832D2F294785000D0519 /* WastesDataModel.swift in Sources */,
 				7D5C2F432BDFED9B00B12F07 /* JSONManager.swift in Sources */,
 				7DA061EC2CFCBDCC00A125DD /* ShowBannerViewController.swift in Sources */,
 				7D76F7232C501EC9001B7A26 /* PersonalTablesCell.swift in Sources */,
@@ -355,6 +368,7 @@
 				7DAF76F32BB8440200CF2CD9 /* ColorRandomizer.swift in Sources */,
 				7D893F752D3AF0A900B5097A /* WatstesList.swift in Sources */,
 				7DAD11392B7E2F7700BA73C7 /* Graph.swift in Sources */,
+				7D0D832F2F294A59000D0519 /* UserProfileConfig.swift in Sources */,
 				7DAD11102B6A63A200BA73C7 /* AllColors.swift in Sources */,
 				7D893FA92D3D62B000B5097A /* WastesTableTableViewCell.swift in Sources */,
 				7DE0971C2B541A1700E23A5B /* CreateWasteViewController.swift in Sources */,
@@ -365,6 +379,7 @@
 				7DE097252B584F1D00E23A5B /* StatsViewController.swift in Sources */,
 				7D701B982B45E0F300308946 /* AppDelegate.swift in Sources */,
 				7D9EA48F2C0897BC004CCFFF /* HideKeyboard.swift in Sources */,
+				7D0D83332F294CA0000D0519 /* Currency.swift in Sources */,
 				7D9EA4912C0897CC004CCFFF /* AvoidingKeyboard.swift in Sources */,
 				7D701B9A2B45E0F300308946 /* SceneDelegate.swift in Sources */,
 				7D4777482B69149000BFEEAE /* Category.swift in Sources */,
@@ -374,6 +389,7 @@
 				7DD83FA72C999B5D002B3D40 /* WebShowViewController.swift in Sources */,
 				7D893FA52D3C1D1500B5097A /* WastesTableView.swift in Sources */,
 				7D75379D2B5EE95D004ABCAF /* IconsExtension.swift in Sources */,
+				7D0D83312F294A69000D0519 /* UserDefualtsKeys.swift in Sources */,
 				7DE097212B554A9600E23A5B /* WastePageViewController.swift in Sources */,
 				7DE097232B584C0200E23A5B /* PersonalPageViewController.swift in Sources */,
 				7DD83FA92CB3FC51002B3D40 /* ShowReportViewController.swift in Sources */,
