@@ -23,6 +23,7 @@ class PersonalPageTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         cellSelector.image = UIImage(systemName: "circle")
+        textInCell.textColor = .texts
     }
     
 }

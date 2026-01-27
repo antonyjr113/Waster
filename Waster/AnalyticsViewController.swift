@@ -46,6 +46,7 @@ class AnalyticsViewController: UIViewController {
         view.backgroundColor = .themeBG
         view.addSubview(titleLabel)
         titleLabel.textAlignment = .center
+        titleLabel.textColor = .texts
 
         if wastesArray.isEmpty {
             view.addSubview(placeholder)

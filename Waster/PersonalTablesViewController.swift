@@ -129,9 +129,9 @@ class PersonalTablesViewController: UIViewController, UITableViewDelegate, UITab
             make.height.equalTo(25)
         }
         tableTitle.text = titleOfTable
+        tableTitle.textColor = .texts
         tableTitle.font = tableTitle.font.withSize(25)
         tableTitle.textAlignment = .center
-        tableTitle.textColor = .systemBlue
         makeTitles()
         statsTable.backgroundColor = .themeBG
         statsTable.delegate = self
