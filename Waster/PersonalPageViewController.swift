@@ -75,7 +75,7 @@ class PersonalPageViewController: UIViewController {
         last.textAlignment = .left
         return last
     }()
-    let currency: UIImageView = {
+    let currencyView: UIImageView = {
         let image = UIImageView()
         return image
     }()
@@ -86,6 +86,11 @@ class PersonalPageViewController: UIViewController {
     var goalStatusMessage = ""
     let profileImage = "profileImage"
     var photoPath = ""
+    enum CurrencySymbol: String {
+        case dollar = "$"
+        case euro = "€"
+        case ruble = "₽"
+    }
 
     
     override func viewDidLoad() {
@@ -104,10 +109,10 @@ class PersonalPageViewController: UIViewController {
         
         if UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent" != "" {
             let image = UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent"
-            currency.image = UIImage(systemName: image)
+            currencyView.image = UIImage(systemName: image)
         }
         else {
-            currency.image = UIImage(systemName: "number")
+            currencyView.image = UIImage(systemName: "number")
         }
 
         if wastesArray.isEmpty {
@@ -126,7 +131,7 @@ class PersonalPageViewController: UIViewController {
         addNewTypeButton.layer.cornerRadius = 10
         
         view.addSubview(profileTitleView)
-        profileTitleView.backgroundColor = .systemMint
+        profileTitleView.backgroundColor = .systemGreen
 
         view.addSubview(titleLabel)
         titleLabel.font = UIFont.systemFont(ofSize: 28)
@@ -135,6 +140,7 @@ class PersonalPageViewController: UIViewController {
         
         //adding photo to profile 
         view.addSubview(photoView)
+        photoView.contentMode = .scaleAspectFill
         photoView.layer.cornerRadius = 20
         let tapOnPhoto = UITapGestureRecognizer(target: self, action: #selector(openPicker))
         photoView.addGestureRecognizer(tapOnPhoto)
@@ -171,15 +177,15 @@ class PersonalPageViewController: UIViewController {
             make.centerY.equalToSuperview()
         }
         lastWaste.textColor = .systemBlue
-        profileTitleView.addSubview(currency)
-        currency.snp.makeConstraints { make in
+        profileTitleView.addSubview(currencyView)
+        currencyView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(70)
+            make.width.height.equalTo(40)
             make.trailing.equalToSuperview().offset(-10)
         }
         let tapOnCurrency = UITapGestureRecognizer(target: self, action: #selector(chooseCurrnecy))
-        currency.addGestureRecognizer(tapOnCurrency)
-        currency.isUserInteractionEnabled = true
+        currencyView.addGestureRecognizer(tapOnCurrency)
+        currencyView.isUserInteractionEnabled = true
                 
         view.addSubview(currentDateLabel)
         currentDateLabel.font = UIFont.systemFont(ofSize: 21)
@@ -399,23 +405,30 @@ class PersonalPageViewController: UIViewController {
         
         let currencyChoice = UIAlertController(title: nil, message: "Choose Currency", preferredStyle: .actionSheet)
         
-        let saveAction = UIAlertAction(title: "$", style: .default, handler: {
+        let dollarChoice = UIAlertAction(title: CurrencySymbol.dollar.rawValue, style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.currency.image = UIImage(systemName: "dollarsign")
+            self.currencyView.image = UIImage(systemName: Currency.dollar.rawValue)
             currencyForImage = "dollarsign"
-            currencyEntered = "$"
-            UserDefaults.standard.set(currencyForImage, forKey: "currencyOnScreen")
+            currencyEntered = CurrencySymbol.dollar.rawValue
+            UserDefaults.standard.set(currencyForImage, forKey: UserDefualtsKeys.currencyOnScreen.rawValue)
         })
-        currencyChoice.addAction(saveAction)
-        let deleteAction = UIAlertAction(title: "₽", style: .default, handler: {
+        currencyChoice.addAction(dollarChoice)
+        let euroChoice = UIAlertAction(title: CurrencySymbol.euro.rawValue, style: .default) { UIAlertAction in
+            self.currencyView.image = UIImage(systemName: Currency.euro.rawValue)
+            currencyEntered = CurrencySymbol.euro.rawValue
+            currencyForImage = Currency.euro.rawValue
+            UserDefaults.standard.set(currencyForImage, forKey: UserDefualtsKeys.currencyOnScreen.rawValue)
+        }
+        currencyChoice.addAction(euroChoice)
+        let rubleChoice = UIAlertAction(title: CurrencySymbol.ruble.rawValue, style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.currency.image = UIImage(systemName: "rublesign")
-            currencyEntered = "₽"
-            currencyForImage = "rublesign"
-            UserDefaults.standard.set(currencyForImage, forKey: "currencyOnScreen")
+            self.currencyView.image = UIImage(systemName: Currency.ruble.rawValue)
+            currencyEntered = CurrencySymbol.ruble.rawValue
+            currencyForImage = Currency.ruble.rawValue
+            UserDefaults.standard.set(currencyForImage, forKey: UserDefualtsKeys.currencyOnScreen.rawValue)
         })
-        currencyChoice.addAction(deleteAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        currencyChoice.addAction(rubleChoice)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })
@@ -496,7 +509,6 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             photoView.image = pickedImage
-            //resizableImage(withCapInsets: UIEdgeInsets(top: photoView.bounds.maxY, left: photoView.bounds.minX, bottom:  photoView.bounds.minY, right:  photoView.bounds.maxX))
             saveProfilePhoto(image: pickedImage)
         }
         dismiss(animated: true, completion: nil)
@@ -515,7 +527,7 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
 //        }
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(self.profileImage).jpeg")
             print("where is profile image", paths)
-            UserDefaults.standard.set(paths, forKey: "pathToProfilePhoto")
+        UserDefaults.standard.set(paths, forKey: UserDefualtsKeys.pathToProfilePhoto.rawValue)
             //photoPath = paths
         do
         {
@@ -528,7 +540,7 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
         print("image saved successfully")
     }
     func getImageAndSet(){
-        guard let path = UserDefaults.standard.string(forKey: "pathToProfilePhoto")
+        guard let path = UserDefaults.standard.string(forKey: UserDefualtsKeys.pathToProfilePhoto.rawValue)
         else {
             print("NO PATH in UD")
             return
