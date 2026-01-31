@@ -12,4 +12,6 @@ enum UserDefualtsKeys: String {
     case monthlyReport = "monthlyReport"
     case customPeriodReport = "customPeriodReport"
     case userProfile = "userProfile"
+    case currencyOnScreen = "currencyOnScreen"
+    case pathToProfilePhoto = "pathToProfilePhoto"
 }
