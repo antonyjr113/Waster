@@ -58,24 +58,24 @@ class PersonalPageViewController: UIViewController {
     
     let userName: UILabel = {
         let name = UILabel()
-        name.text = "Jules"
+        name.text = "-"
         name.font = UIFont(name: "system", size: 30)
-        name.textAlignment = .left
+        name.textAlignment = .right
         return name
     }()
     let overallBudget: UILabel = {
         let budget = UILabel()
         budget.font = UIFont(name: "system", size: 30)
-        budget.textAlignment = .left
+        budget.textAlignment = .right
         return budget
     }()
     let lastWaste: UILabel = {
         let last = UILabel()
         last.font = UIFont(name: "system", size: 30)
-        last.textAlignment = .left
+        last.textAlignment = .right
         return last
     }()
-    let currency: UIImageView = {
+    let currencyView: UIImageView = {
         let image = UIImageView()
         return image
     }()
@@ -86,6 +86,26 @@ class PersonalPageViewController: UIViewController {
     var goalStatusMessage = ""
     let profileImage = "profileImage"
     var photoPath = ""
+    enum Placeholders : String {
+        case name = "Name:"
+        case lastWaste = "Last waste:"
+        case budjet = "Budget:"
+    }
+    let namePlaceholder: UILabel = {
+        let namePlaceholder = UILabel()
+        namePlaceholder.text = Placeholders.name.rawValue
+        return namePlaceholder
+    }()
+    let lastWastePlaceholder: UILabel = {
+        let lastWastePlaceholder = UILabel()
+        lastWastePlaceholder.text = Placeholders.lastWaste.rawValue
+        return lastWastePlaceholder
+    }()
+    let budjetPlaceholder: UILabel = {
+        let budjetPlaceholder = UILabel()
+        budjetPlaceholder.text = Placeholders.budjet.rawValue
+        return budjetPlaceholder
+    }()
 
     
     override func viewDidLoad() {
@@ -99,23 +119,23 @@ class PersonalPageViewController: UIViewController {
             overallBudget.text = "enter budget :)"
         }
         else {
-            overallBudget.text = "\(UserDefaults.standard.string(forKey: "overallBudget") ?? "error")\(currencyEntered)"
+            overallBudget.text = "\(UserDefaults.standard.string(forKey: "overallBudget") ?? "-") \(currencyEntered)"
         }
         
-        if UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent" != "" {
-            let image = UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "percent"
-            currency.image = UIImage(systemName: image)
+        if UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "banknote" != "" {
+            let image = UserDefaults.standard.string(forKey: "currencyOnScreen") ?? "banknote"
+            currencyView.image = UIImage(systemName: image)
         }
         else {
-            currency.image = UIImage(systemName: "number")
+            currencyView.image = UIImage(systemName: "number")
         }
 
         if wastesArray.isEmpty {
             //overallBudget.text = "\(budgetEntered)\(currencyEntered)"
-            lastWaste.text = "no wastes :)"
+            lastWaste.text = "-"
         }
         else {
-            lastWaste.text = "-\(wastesArray.last?.wasteAmount ?? "error")\(currencyEntered)"
+            lastWaste.text = "-\(wastesArray.last?.wasteAmount ?? "error") \(currencyEntered)"
         }
        
         
@@ -125,9 +145,6 @@ class PersonalPageViewController: UIViewController {
         }
         addNewTypeButton.layer.cornerRadius = 10
         
-        view.addSubview(profileTitleView)
-        profileTitleView.backgroundColor = .systemMint
-
         view.addSubview(titleLabel)
         titleLabel.font = UIFont.systemFont(ofSize: 28)
         titleLabel.textColor = .texts
@@ -135,6 +152,7 @@ class PersonalPageViewController: UIViewController {
         
         //adding photo to profile 
         view.addSubview(photoView)
+        photoView.contentMode = .scaleAspectFill
         photoView.layer.cornerRadius = 20
         let tapOnPhoto = UITapGestureRecognizer(target: self, action: #selector(openPicker))
         photoView.addGestureRecognizer(tapOnPhoto)
@@ -143,46 +161,71 @@ class PersonalPageViewController: UIViewController {
         
         view.addSubview(editButtonView)
         editButtonView.layer.cornerRadius = 30
+        editButtonView.backgroundColor = .clear
         let tapOnProfile = UILongPressGestureRecognizer(target: self, action: #selector(openEditWindow))
         tapOnProfile.minimumPressDuration = 0
         editButtonView.addGestureRecognizer(tapOnProfile)
         editButtonView.isUserInteractionEnabled = true
         
         view.addSubview(profileTitleView)
+        profileTitleView.backgroundColor = .systemGreen
         profileTitleView.layer.cornerRadius = 20
         profileTitleView.addSubview(userName)
         userName.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
-            make.leading.equalToSuperview().offset(10)
-            make.width.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().dividedBy(2)
         }
         userName.textColor = .systemBlue
+        profileTitleView.addSubview(namePlaceholder)
+        namePlaceholder.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            namePlaceholder.topAnchor.constraint(equalTo: profileTitleView.topAnchor, constant: 10),
+            namePlaceholder.leadingAnchor.constraint(equalTo: profileTitleView.leadingAnchor, constant: 10),
+            namePlaceholder.widthAnchor.constraint(equalTo: profileTitleView.widthAnchor, multiplier: 0.5)
+        ])
         profileTitleView.addSubview(overallBudget)
         overallBudget.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
-            make.width.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().dividedBy(2)
             make.bottom.equalToSuperview().offset(-10)
         }
         overallBudget.textColor = .systemBlue
+        profileTitleView.addSubview(budjetPlaceholder)
+        budjetPlaceholder.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            budjetPlaceholder.bottomAnchor.constraint(equalTo: profileTitleView.bottomAnchor, constant: -10),
+            budjetPlaceholder.leadingAnchor.constraint(equalTo: profileTitleView.leadingAnchor, constant: 10),
+            budjetPlaceholder.widthAnchor.constraint(equalTo: profileTitleView.widthAnchor, multiplier: 0.5)
+        ])
         profileTitleView.addSubview(lastWaste)
         lastWaste.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
-            make.width.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().dividedBy(2)
             make.centerY.equalToSuperview()
         }
         lastWaste.textColor = .systemBlue
-        profileTitleView.addSubview(currency)
-        currency.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(70)
-            make.trailing.equalToSuperview().offset(-10)
+        profileTitleView.addSubview(lastWastePlaceholder)
+        lastWastePlaceholder.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lastWastePlaceholder.centerYAnchor.constraint(equalTo: profileTitleView.centerYAnchor),
+            lastWastePlaceholder.leadingAnchor.constraint(equalTo: profileTitleView.leadingAnchor, constant: 10),
+            lastWastePlaceholder.widthAnchor.constraint(equalTo: profileTitleView.widthAnchor, multiplier: 0.5)
+        ])
+        
+        view.addSubview(currencyView)
+        currencyView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().offset(30)
+            make.centerY.equalTo(editButtonView)
+            make.width.height.equalTo(40)
+            make.top.equalTo(editButtonView)
         }
         let tapOnCurrency = UITapGestureRecognizer(target: self, action: #selector(chooseCurrnecy))
-        currency.addGestureRecognizer(tapOnCurrency)
-        currency.isUserInteractionEnabled = true
+        currencyView.addGestureRecognizer(tapOnCurrency)
+        currencyView.isUserInteractionEnabled = true
                 
         view.addSubview(currentDateLabel)
-        currentDateLabel.font = UIFont.systemFont(ofSize: 21)
+        currentDateLabel.font = UIFont.systemFont(ofSize: 24)
         fillDate(label: currentDateLabel)
         currentDateLabel.textColor = .texts
         
@@ -320,7 +363,6 @@ class PersonalPageViewController: UIViewController {
     }
     
     @objc private func openEditWindow(_sender : UILongPressGestureRecognizer) {
-        
 //        UIView.animate(withDuration: 1, delay: 0) {
 //            self.edit.editAlertView.alpha = 1
 //            self.edit.openEditAlert(onView: self.view)
@@ -328,11 +370,11 @@ class PersonalPageViewController: UIViewController {
 //            self.edit.editAlertView.frame.size.height += 500
 //        }
         if _sender.state == .began {
-            editButtonView.backgroundColor = .ifTapped
+            editIcon.tintColor = .ifTapped
         }
         else
         if _sender.state == .ended || _sender.state == .cancelled {
-            editButtonView.backgroundColor = .systemYellow
+            editIcon.tintColor = .systemGreen
         }
         edit.openEditAlert(onView: view)
         edit.closeButton.addTarget(self, action: #selector(closeEditAlert), for: .touchUpInside)
@@ -344,7 +386,7 @@ class PersonalPageViewController: UIViewController {
     private func fillDate(label: UILabel) {
         let date = Date()
         let format = DateFormatter()
-        format.dateFormat = "dd-MM-yyyy"
+        format.dateFormat = "dd.MM.yyyy"
         label.text = format.string(from: date)
     }
     
@@ -401,7 +443,7 @@ class PersonalPageViewController: UIViewController {
         
         let saveAction = UIAlertAction(title: "$", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.currency.image = UIImage(systemName: "dollarsign")
+            self.currencyView.image = UIImage(systemName: "dollarsign")
             currencyForImage = "dollarsign"
             currencyEntered = "$"
             UserDefaults.standard.set(currencyForImage, forKey: "currencyOnScreen")
@@ -409,7 +451,7 @@ class PersonalPageViewController: UIViewController {
         currencyChoice.addAction(saveAction)
         let deleteAction = UIAlertAction(title: "₽", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.currency.image = UIImage(systemName: "rublesign")
+            self.currencyView.image = UIImage(systemName: "rublesign")
             currencyEntered = "₽"
             currencyForImage = "rublesign"
             UserDefaults.standard.set(currencyForImage, forKey: "currencyOnScreen")
@@ -496,7 +538,6 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             photoView.image = pickedImage
-            //resizableImage(withCapInsets: UIEdgeInsets(top: photoView.bounds.maxY, left: photoView.bounds.minX, bottom:  photoView.bounds.minY, right:  photoView.bounds.maxX))
             saveProfilePhoto(image: pickedImage)
         }
         dismiss(animated: true, completion: nil)
