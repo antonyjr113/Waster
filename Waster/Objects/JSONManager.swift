@@ -19,9 +19,9 @@ class JSONManager {
         print(filePath)
         
         do {
-            let data = try test.encode(wastesArray)
-            print(String(data: data, encoding: .utf8)!)
-            try data.write(to: filePath)
+//            let data = try test.encode(wastesArray)
+//            print(String(data: data, encoding: .utf8)!)
+//            try data.write(to: filePath)
 //            dataForReportsArray.append(Reports(report: data, reportDate: DateManager.shared.returnCurrentDateWithTime()))
             print("JSON saved successfully")
         }

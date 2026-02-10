@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,8 +42,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQT-S3-gfk">
-                        <rect key="frame" x="498" y="81" width="100" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQT-S3-gfk">
+                        <rect key="frame" x="25" y="81" width="100" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="g5d-Q2-m2M"/>
                         </constraints>
@@ -51,21 +51,32 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spc-pI-j4y" userLabel="Checkbox">
+                        <rect key="frame" x="568" y="76.666666666666671" width="30" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="J2Q-6T-3P8"/>
+                            <constraint firstAttribute="width" constant="30" id="JSw-9o-CwA"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="spc-pI-j4y" secondAttribute="trailing" constant="25" id="3Gn-ZQ-P5C"/>
                     <constraint firstItem="4zO-65-sK6" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="5Ha-df-fiY"/>
                     <constraint firstItem="IDD-sS-Wd1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="7bt-gr-Ymg"/>
                     <constraint firstAttribute="bottom" secondItem="0L2-NC-rd7" secondAttribute="bottom" constant="40" id="8lS-bg-ebR"/>
                     <constraint firstItem="YQT-S3-gfk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JBK-j6-aie"/>
+                    <constraint firstItem="spc-pI-j4y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LP0-vk-oXt"/>
+                    <constraint firstItem="YQT-S3-gfk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="MDg-f1-BNQ"/>
                     <constraint firstItem="0L2-NC-rd7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="ONP-GO-zn9"/>
                     <constraint firstItem="4zO-65-sK6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bpC-yy-8dq"/>
                     <constraint firstItem="IDD-sS-Wd1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="hdf-lZ-uZz"/>
-                    <constraint firstAttribute="trailing" secondItem="YQT-S3-gfk" secondAttribute="trailing" constant="25" id="jl7-5M-YSu"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="amountLabel" destination="0L2-NC-rd7" id="7BU-Jh-xFg"/>
+                <outlet property="checkboxView" destination="spc-pI-j4y" id="EQg-Eg-SbT"/>
                 <outlet property="dateLabel" destination="YQT-S3-gfk" id="jVh-6U-7qO"/>
                 <outlet property="iconImage" destination="4zO-65-sK6" id="MR2-xN-6Qp"/>
                 <outlet property="nameLabel" destination="IDD-sS-Wd1" id="U8q-IU-mLg"/>

@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct WastesTableView: UIViewControllerRepresentable {
+    var isExportSelected: Bool
     
     typealias UIViewControllerType = WastesTableViewController
     
     func makeUIViewController(context: Context) -> WastesTableViewController {
-        WastesTableViewController()
+        let vc = WastesTableViewController()
+        vc.didUpdateExportState(isExportSelected)
+        return vc
     }
     
     func updateUIViewController(_ uiViewController: WastesTableViewController, context: Context) {
-        
+        uiViewController.didUpdateExportState(isExportSelected)
     }
 
 }

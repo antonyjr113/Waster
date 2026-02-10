@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D0D832D2F294785000D0519 /* WastesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D832C2F294785000D0519 /* WastesDataModel.swift */; };
 		7D0D832F2F294A59000D0519 /* UserProfileConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D832E2F294A59000D0519 /* UserProfileConfig.swift */; };
-		7D0D83312F294A69000D0519 /* UserDefualtsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D83302F294A69000D0519 /* UserDefualtsKeys.swift */; };
+		7D0D83312F294A69000D0519 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D83302F294A69000D0519 /* UserDefaultsKeys.swift */; };
 		7D0D83332F294CA0000D0519 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D83322F294CA0000D0519 /* Currency.swift */; };
 		7D1F9DB82B612BAB0099C23C /* AllTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DB72B612BAB0099C23C /* AllTypes.swift */; };
 		7D1F9DBB2B627BB60099C23C /* Waste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F9DBA2B627BB60099C23C /* Waste.swift */; };
@@ -85,7 +85,7 @@
 /* Begin PBXFileReference section */
 		7D0D832C2F294785000D0519 /* WastesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WastesDataModel.swift; sourceTree = "<group>"; };
 		7D0D832E2F294A59000D0519 /* UserProfileConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileConfig.swift; sourceTree = "<group>"; };
-		7D0D83302F294A69000D0519 /* UserDefualtsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefualtsKeys.swift; sourceTree = "<group>"; };
+		7D0D83302F294A69000D0519 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		7D0D83322F294CA0000D0519 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		7D1F9DB72B612BAB0099C23C /* AllTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTypes.swift; sourceTree = "<group>"; };
 		7D1F9DBA2B627BB60099C23C /* Waste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waste.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 				7DBB37372D495F060034BE31 /* WastesViewController.swift */,
 				7D0D832C2F294785000D0519 /* WastesDataModel.swift */,
 				7D0D832E2F294A59000D0519 /* UserProfileConfig.swift */,
-				7D0D83302F294A69000D0519 /* UserDefualtsKeys.swift */,
+				7D0D83302F294A69000D0519 /* UserDefaultsKeys.swift */,
 				7D0D83322F294CA0000D0519 /* Currency.swift */,
 				7DD83FAD2CB40334002B3D40 /* ReportTableViewCell.xib */,
 				7D701B9D2B45E0F300308946 /* Main.storyboard */,
@@ -389,7 +389,7 @@
 				7DD83FA72C999B5D002B3D40 /* WebShowViewController.swift in Sources */,
 				7D893FA52D3C1D1500B5097A /* WastesTableView.swift in Sources */,
 				7D75379D2B5EE95D004ABCAF /* IconsExtension.swift in Sources */,
-				7D0D83312F294A69000D0519 /* UserDefualtsKeys.swift in Sources */,
+				7D0D83312F294A69000D0519 /* UserDefaultsKeys.swift in Sources */,
 				7DE097212B554A9600E23A5B /* WastePageViewController.swift in Sources */,
 				7DE097232B584C0200E23A5B /* PersonalPageViewController.swift in Sources */,
 				7DD83FA92CB3FC51002B3D40 /* ShowReportViewController.swift in Sources */,

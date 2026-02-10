@@ -7,18 +7,16 @@
 
 import SwiftUI
 
+protocol ExportStateDelegate: AnyObject {
+    func didUpdateExportState(_ isExport: Bool)
+}
 
 struct WatstesList: View {
+    @State var isExportSelected = false
     var body: some View {
-        
         HStack {
-//            Button("export"){
-//
-//            }
             Button("export", action: {
-                if showSavedDataAlert() == true {
-                    
-                }
+                isExportSelected.toggle()
             })
             .padding(.leading, 30)
             .buttonStyle(.borderedProminent)
@@ -34,7 +32,7 @@ struct WatstesList: View {
         }
         .padding(.top, 20)
         Spacer()
-        WastesTableView()
+        WastesTableView(isExportSelected: isExportSelected)
             .padding(.bottom, 25)
     }
     func showSavedDataAlert() -> Bool {

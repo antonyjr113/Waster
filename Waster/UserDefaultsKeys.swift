@@ -7,11 +7,13 @@
 
 import Foundation
 
-enum UserDefualtsKeys: String {
+enum UserDefaultsKeys: String {
     case wastesData = "wastesData"
     case monthlyReport = "monthlyReport"
     case customPeriodReport = "customPeriodReport"
     case userProfile = "userProfile"
     case currencyOnScreen = "currencyOnScreen"
     case pathToProfilePhoto = "pathToProfilePhoto"
+    case isSelectionModeActivated = "isSelectionModeActivated"
+    case isExportModeActivated = "isExportModeActivated"
 }

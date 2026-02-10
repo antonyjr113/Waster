@@ -10,12 +10,13 @@ import UIKit
 
 var wasteID = 0
 
-struct Waste: Codable {
+struct Waste {
     let id: Int
     let name: String
     let wasteAmount: String
     let type: String
     let date: String
+    let color: UIColor
 }
 
 

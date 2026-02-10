@@ -167,7 +167,7 @@ class CreateWasteViewController: UIViewController, HideKeyboardWhenTappedAround,
             if saveWasteNameButton.tintColor == UIColor.systemGreen && saveWasteBudgetButton.tintColor == UIColor.systemGreen {
                 showNewWasteButton.tintColor = UIColor.systemGreen
             }
-            let waste = Waste(id: id, name: enterNameTF.text ?? "empty", wasteAmount: enterBudgetTF.text ?? "empty", type: nameOfIcon, date: DateManager.shared.returnCurrentDate())
+            let waste = Waste(id: id, name: enterNameTF.text ?? "empty", wasteAmount: enterBudgetTF.text ?? "empty", type: nameOfIcon, date: DateManager.shared.returnCurrentDate(), color:            ColorRandomizer.shared.randomizeColors())
             wastesArray.append(waste)
             //lastMadeWaste = waste.wasteAmount
             print("tap added to icon \(nameOfIcon)")

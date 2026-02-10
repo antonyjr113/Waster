@@ -410,14 +410,14 @@ class PersonalPageViewController: UIViewController {
             self.currencyView.image = UIImage(systemName: Currency.dollar.rawValue)
             currencyForImage = "dollarsign"
             currencyEntered = CurrencySymbol.dollar.rawValue
-            UserDefaults.standard.set(currencyForImage, forKey: UserDefualtsKeys.currencyOnScreen.rawValue)
+            UserDefaults.standard.set(currencyForImage, forKey: UserDefaultsKeys.currencyOnScreen.rawValue)
         })
         currencyChoice.addAction(dollarChoice)
         let euroChoice = UIAlertAction(title: CurrencySymbol.euro.rawValue, style: .default) { UIAlertAction in
             self.currencyView.image = UIImage(systemName: Currency.euro.rawValue)
             currencyEntered = CurrencySymbol.euro.rawValue
             currencyForImage = Currency.euro.rawValue
-            UserDefaults.standard.set(currencyForImage, forKey: UserDefualtsKeys.currencyOnScreen.rawValue)
+            UserDefaults.standard.set(currencyForImage, forKey: UserDefaultsKeys.currencyOnScreen.rawValue)
         }
         currencyChoice.addAction(euroChoice)
         let rubleChoice = UIAlertAction(title: CurrencySymbol.ruble.rawValue, style: .default, handler: {
@@ -425,7 +425,7 @@ class PersonalPageViewController: UIViewController {
             self.currencyView.image = UIImage(systemName: Currency.ruble.rawValue)
             currencyEntered = CurrencySymbol.ruble.rawValue
             currencyForImage = Currency.ruble.rawValue
-            UserDefaults.standard.set(currencyForImage, forKey: UserDefualtsKeys.currencyOnScreen.rawValue)
+            UserDefaults.standard.set(currencyForImage, forKey: UserDefaultsKeys.currencyOnScreen.rawValue)
         })
         currencyChoice.addAction(rubleChoice)
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: {
@@ -527,7 +527,7 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
 //        }
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(self.profileImage).jpeg")
             print("where is profile image", paths)
-        UserDefaults.standard.set(paths, forKey: UserDefualtsKeys.pathToProfilePhoto.rawValue)
+        UserDefaults.standard.set(paths, forKey: UserDefaultsKeys.pathToProfilePhoto.rawValue)
             //photoPath = paths
         do
         {
@@ -540,7 +540,7 @@ extension PersonalPageViewController: UIImagePickerControllerDelegate, UINavigat
         print("image saved successfully")
     }
     func getImageAndSet(){
-        guard let path = UserDefaults.standard.string(forKey: UserDefualtsKeys.pathToProfilePhoto.rawValue)
+        guard let path = UserDefaults.standard.string(forKey: UserDefaultsKeys.pathToProfilePhoto.rawValue)
         else {
             print("NO PATH in UD")
             return
